@@ -3,38 +3,77 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title="Projects" sideBarActiveItemID="services">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Services Header</div>
+<BaseLayout
+  title="Services | Mayo Racek"
+  description="Analytics, measurement, BigQuery, data quality, AI-ready analytics and football intelligence services."
+  sideBarActiveItemID="services"
+>
+  <div class="mb-8">
+    <div class="text-3xl w-full font-bold mb-4">How I can help</div>
+
+    <p class="text-lg mb-4">
+      I work where measurement, data engineering and business decisions meet.
+      My focus is not simply collecting more data, but making it reliable,
+      understandable and genuinely useful.
+    </p>
+
+    <p class="text-lg">
+      I am comfortable working across strategy, implementation, quality
+      assurance, modelling and communication — helping connect technical
+      details with the decisions people need to make.
+    </p>
   </div>
 
   <HorizontalCard
-    title="Service 1"
+    title="Measurement and Tracking Architecture"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    badge="NEW"
-    url="#"
+    desc="Designing, auditing and improving browser-side and server-side measurement systems, including Google Tag Manager, GA4, consent, first-party collection and implementation diagnostics."
+    badge="MEASUREMENT"
+    url="mailto:mayo@powerfuldata.io?subject=Measurement%20and%20Tracking"
+    tags={["GTM", "GA4", "Server-side", "Consent"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Service 2"
+    title="Analytics Engineering and BigQuery"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="Transforming raw event data into dependable user, session, page, content and conversion models using SQL, BigQuery, Dataform and maintainable data pipelines."
+    badge="DATA"
+    url="mailto:mayo@powerfuldata.io?subject=Analytics%20Engineering%20and%20BigQuery"
+    tags={["BigQuery", "SQL", "Dataform", "Data Modelling"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Service 3"
+    title="Data Quality, Governance and Activation"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    desc="Building monitoring, validation rules, naming standards, ownership models and activation pipelines so teams can trust their data and use it safely."
+    badge="RELIABILITY"
+    url="mailto:mayo@powerfuldata.io?subject=Data%20Quality%20and%20Governance"
+    tags={["Data Quality", "Governance", "Monitoring", "Activation"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Service 4"
+    title="AI-Ready Analytics Systems"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="Structuring metrics, glossaries, verified queries and governed datasets so analysts, business users and AI agents can reach consistent and explainable answers."
+    badge="AI"
+    url="mailto:mayo@powerfuldata.io?subject=AI-Ready%20Analytics"
+    tags={["AI Agents", "Verified Queries", "Semantic Layer"]}
+  />
+
+  <div class="divider my-0"></div>
+
+  <HorizontalCard
+    title="Football Data and Intelligence"
+    img="/post_img.webp"
+    desc="Exploring how performance, growth, maturity, tactical and scouting data can support player development and better football decisions."
+    badge="FOOTBALL"
+    url="mailto:mayo@powerfuldata.io?subject=Football%20Data%20and%20Intelligence"
+    tags={["Football Analytics", "Player Development", "Scouting"]}
   />
 </BaseLayout>
