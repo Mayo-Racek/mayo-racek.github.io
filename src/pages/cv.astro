@@ -3,31 +3,34 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 ---
 
-<BaseLayout title="Resume" sideBarActiveItemID="cv">
+<BaseLayout
+  title="CV | Mayo Racek"
+  description="Professional profile and experience of Mayo Racek, Data Analyst & Engineer."
+  sideBarActiveItemID="cv"
+>
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Profile</div>
   </div>
 
-  <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </div>
+  <div class="mb-10 text-lg">
+    <p class="mb-4">
+      I am a Data Analyst & Engineer with more than a decade of experience
+      across digital analytics, measurement architecture, cloud data
+      engineering and business intelligence.
+    </p>
 
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
-  </div>
+    <p class="mb-4">
+      I enjoy working between technical implementation and business
+      understanding: defining what should be measured, making collection
+      reliable, transforming raw data into useful models and helping people
+      reach clear decisions.
+    </p>
 
-  <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
+    <p>
+      I value curiosity, clear communication, attention to detail and
+      solutions that remain understandable and maintainable after
+      implementation.
+    </p>
   </div>
 
   <div class="mb-5">
@@ -36,57 +39,125 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
   <div class="time-line-container mb-10">
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Senior Data Analyst & Engineer / Analytics Consultant"
+      subtitle="Current · Enterprise digital analytics and data engineering"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      <p class="mb-3">
+        Designing and operating analytics, measurement and data solutions
+        across complex international digital environments.
+      </p>
+
+      <ul class="list-disc ml-6 grid gap-1">
+        <li>Measurement architecture and Google Tag Manager governance</li>
+        <li>GA4 and first-party/server-side tracking</li>
+        <li>BigQuery data modelling and analytics engineering</li>
+        <li>Dataform pipelines and incremental transformations</li>
+        <li>Consent, privacy and tracking-quality controls</li>
+        <li>Monitoring, anomaly detection and data reliability</li>
+        <li>Customer-data activation and event-driven integrations</li>
+        <li>Documentation, stakeholder communication and technical guidance</li>
+      </ul>
     </TimeLineElement>
+
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Founder and Data Consultant — Powerful Data"
+      subtitle="Independent analytics and data consultancy"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      <p>
+        Helping organisations turn raw digital and customer data into
+        reliable analytics systems. Work includes measurement strategy,
+        technical implementation, BigQuery modelling, reporting, data
+        quality, automation and practical decision-support solutions.
+      </p>
     </TimeLineElement>
+
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="Earlier Digital Analytics Roles"
+      subtitle="Agency and in-house environments"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+      <p>
+        More than a decade working across analytics implementation,
+        reporting, optimisation and data engineering for organisations
+        ranging from smaller businesses to complex international companies.
+        This experience shaped my belief that good analytics requires more
+        than tools: it requires business context, reliable definitions,
+        technical discipline and communication.
+      </p>
     </TimeLineElement>
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
+    <div class="text-3xl w-full font-bold">Core capabilities</div>
   </div>
 
-  <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-  </ul>
+  <div class="mb-10 grid md:grid-cols-2 gap-5">
+    <div class="border border-base-300 rounded-box p-5">
+      <div class="font-bold text-xl mb-2">Measurement</div>
+      <p>
+        GA4, Google Tag Manager, server-side tracking, consent,
+        measurement architecture and implementation quality.
+      </p>
+    </div>
+
+    <div class="border border-base-300 rounded-box p-5">
+      <div class="font-bold text-xl mb-2">Analytics Engineering</div>
+      <p>
+        SQL, BigQuery, Dataform, user/session/page models, incremental
+        pipelines and reusable analytical datasets.
+      </p>
+    </div>
+
+    <div class="border border-base-300 rounded-box p-5">
+      <div class="font-bold text-xl mb-2">Reliability and Governance</div>
+      <p>
+        Data-quality controls, monitoring, anomaly detection, naming
+        standards, ownership and documentation.
+      </p>
+    </div>
+
+    <div class="border border-base-300 rounded-box p-5">
+      <div class="font-bold text-xl mb-2">Decision Support</div>
+      <p>
+        Reporting, visualisation, business interpretation, activation,
+        conversational analytics and AI-ready data products.
+      </p>
+    </div>
+  </div>
 
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">Skills</div>
   </div>
 
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
+  <ul class="list-disc md:columns-3 columns-2 mx-6 mb-10">
+    <li>Analytics Engineering</li>
+    <li>SQL</li>
+    <li>BigQuery</li>
+    <li>Google Cloud Platform</li>
+    <li>Dataform</li>
+    <li>Google Analytics 4</li>
+    <li>Google Tag Manager</li>
+    <li>Server-side GTM</li>
+    <li>Measurement Architecture</li>
+    <li>Data Quality</li>
+    <li>Data Governance</li>
+    <li>Consent and Privacy</li>
+    <li>Customer Data Activation</li>
+    <li>Looker Studio</li>
+    <li>Tableau</li>
+    <li>Python</li>
+    <li>R</li>
+    <li>AI Agents</li>
+    <li>Conversational Analytics</li>
+    <li>Football Analytics</li>
   </ul>
+
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Beyond data</div>
+  </div>
+
+  <div class="text-lg">
+    I am a husband and father of three, an amateur astronomer and a lifelong
+    football enthusiast. These interests keep me curious, grounded and
+    willing to look at problems from different angles.
+  </div>
 </BaseLayout>
