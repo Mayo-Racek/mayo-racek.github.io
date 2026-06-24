@@ -2,62 +2,100 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
+import createSlug from "../lib/createSlug";
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
 const last_posts = posts.slice(0, 3);
 ---
 
-<BaseLayout sideBarActiveItemID="home">
+<BaseLayout
+  title="Mayo Racek | Data Analyst & Engineer"
+  description="Data Analyst & Engineer building reliable analytics, measurement, BigQuery, AI and football intelligence systems."
+  sideBarActiveItemID="home"
+>
   <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="text-xl py-1">Hello, I’m Mayo 👋</div>
+
+    <div class="text-5xl font-bold">Mayo Racek</div>
+
+    <div class="text-3xl py-3 font-bold">Data Analyst & Engineer</div>
+
     <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
+      <p class="text-lg mb-4">
+        I build reliable analytics, measurement and data systems that turn
+        complex digital behaviour into clear, practical decisions.
+      </p>
+
+      <p class="text-lg mb-4">
+        My work sits between analytics, engineering and business understanding —
+        from tracking architecture and server-side collection to BigQuery
+        modelling, data quality, activation and AI-ready analytics.
+      </p>
+
+      <p class="text-lg">
+        I also explore how data can support football intelligence, player
+        development and better decision-making. This website is my public
+        engineering lab: a place where I share projects, technical reports,
+        experiments and lessons learned while building real systems.
+      </p>
     </div>
-    <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a class="btn" href="/projects">Explore my projects</a>
+
+      <a class="btn btn-outline" href="/blog/">
+        Read the blog
       </a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">
+      Selected projects {"</>"}
+    </div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
+    title="First-Party Analytics Pipeline"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    desc="A governed analytics pipeline for mayoracek.com using Astro, Server GTM and BigQuery. The project explores raw behavioural evidence, sessions, journeys, acquisition and meaningful conversions."
+    url="/blog/first-party-analytics-pipeline"
+    target="_self"
+    badge="BUILDING IN PUBLIC"
+    tags={["Analytics Engineering", "Server GTM", "BigQuery"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Demo Project 2"
+    title="Polaris FC Universe"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="A constraint-valid football club data ecosystem designed for analytics, player development, decision support and future AI agents."
+    url="/projects"
+    target="_self"
+    badge="FOOTBALL DATA"
+    tags={["Football Analytics", "Synthetic Data", "AI"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Demo Project 3"
+    title="Analytics Debugger"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    desc="A browser-based debugging project for inspecting GTM, GA4, dataLayer activity, consent, network requests and implementation quality."
+    url="/projects"
+    target="_self"
+    badge="OPEN SOURCE"
+    tags={["GTM", "GA4", "DevTools", "Data Quality"]}
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">
+      Latest from the blog
+    </div>
   </div>
 
   {
@@ -70,6 +108,7 @@ const last_posts = posts.slice(0, 3);
           url={"/blog/" + createSlug(post.data.title, post.slug)}
           target="_self"
           badge={post.data.badge}
+          tags={post.data.tags}
         />
         <div class="divider my-0" />
       </>
