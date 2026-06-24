@@ -3,49 +3,72 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+<BaseLayout
+  title="Projects | Mayo Racek"
+  description="Open and reproducible projects in analytics engineering, measurement, BigQuery, AI and football intelligence."
+  sideBarActiveItemID="projects"
+>
+  <div class="mb-8">
+    <div class="text-3xl w-full font-bold mb-4">Projects</div>
+
+    <p class="text-lg">
+      I use these projects to explore real analytics, engineering and
+      football-data problems in public. My goal is to make each project
+      understandable, reproducible and useful beyond a single demonstration.
+    </p>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
+    title="mayoracek.com"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="My personal portfolio and public engineering lab, built with Astro and GitHub Pages. The site documents projects, reports and experiments around analytics and football data."
+    url="https://github.com/Mayo-Racek/mayo-racek.github.io"
+    badge="LIVE"
+    tags={["Astro", "GitHub Pages", "Open Source"]}
   />
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
-  </div>
+  <div class="divider my-0"></div>
 
   <HorizontalCard
-    title="Demo Project 3"
+    title="First-Party Analytics Pipeline"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    desc="A custom analytics system for mayoracek.com using an anonymous visitor identity, governed events, Server GTM and BigQuery as the analytical source of truth."
+    url="/blog/first-party-analytics-pipeline"
+    target="_self"
+    badge="BUILDING IN PUBLIC"
+    tags={["Server GTM", "BigQuery", "Analytics Engineering"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Demo Project 4"
+    title="Polaris FC Universe"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="A realistic football club data universe designed around operational constraints, analytics quality gates and future decision-support agents."
+    url="https://github.com/Mayo-Racek"
+    badge="IN DEVELOPMENT"
+    tags={["Football Analytics", "Synthetic Data", "AI Agents"]}
   />
+
   <div class="divider my-0"></div>
+
   <HorizontalCard
-    title="Demo Project 5"
+    title="Analytics Debugger"
     img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    desc="A DevTools-based analytics debugging project for understanding network requests, dataLayer events, consent, GTM loading and measurement quality."
+    url="https://github.com/Mayo-Racek"
+    badge="IN DEVELOPMENT"
+    tags={["GTM", "GA4", "DevTools", "Quality Assurance"]}
+  />
+
+  <div class="divider my-0"></div>
+
+  <HorizontalCard
+    title="DataSquad"
+    img="/post_img.webp"
+    desc="A reproducible football intelligence project for evaluating players using real data, transparent criteria and explainable analytical models."
+    url="https://github.com/Mayo-Racek"
+    badge="PLANNED"
+    tags={["Football Intelligence", "Scouting", "BigQuery"]}
   />
 </BaseLayout>
