@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://mayoracek.com/sitemap-index.xml
