@@ -1,0 +1,8 @@
+---
+import { projects, renderProject } from '../../lib/site.mjs';
+export function getStaticPaths() {
+  return projects.map(({ slug }) => ({ params: { slug }, props: { slug } }));
+}
+const html = renderProject(Astro.props.slug);
+---
+<Fragment set:html={html} />
