@@ -309,3 +309,113 @@ body{background:#101317;color:var(--ink)}
  .hero-visual .portrait{max-height:220px}
 }
 @media(max-width:350px){.eyebrow{max-width:100%;font-size:9px;letter-spacing:.045em;white-space:nowrap}}
+/* Final editorial refinement, mobile-first enhancements */
+:root{--champagne:#e4c8a0}
+/* The portrait is a trimmed color-transparent WebP with no card or background. */
+.hero{background:radial-gradient(ellipse at 84% 38%,rgba(143,139,134,.19),transparent 48%),linear-gradient(113deg,#111417 0%,#1b1e22 59%,#24272b 100%)}
+.hero-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:0}
+.hero-copy{padding:72px 0 78px}
+.hero h1{font-size:clamp(50px,4.65vw,69px);max-width:770px;line-height:1.08}
+.hero-intro{max-width:625px;line-height:1.68}
+.hero-visual{height:585px;position:relative;align-self:end;overflow:visible;isolation:isolate}
+.hero-visual .portrait{position:absolute;right:0;bottom:0;width:auto;height:100%;max-height:585px;max-width:100%;object-fit:contain;object-position:right bottom;filter:drop-shadow(-16px 17px 36px rgba(0,0,0,.26));mask-image:none;-webkit-mask-image:none;transform:none}
+.hero-visual:before{content:'';position:absolute;inset:10% -14% 6% 0;background:radial-gradient(ellipse at 60% 55%,rgba(213,185,151,.13),transparent 66%);filter:blur(33px);z-index:-1}
+.hero h1 em,.page-hero h1 em{background:linear-gradient(100deg,#f7e5ca 4%,#e6bc85 52%,#ba9b7b 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-bottom-fade{height:70px;background:linear-gradient(0deg,#111417,transparent)}
+/* Serve visitors' problems before the implementation jargon. */
+.services-section .section-head h2{font-size:clamp(34px,3.3vw,45px)}
+.service-card h3{font-size:clamp(20px,1.8vw,24px);letter-spacing:-.025em}
+.service-card p{font-size:15px;line-height:1.7}
+.service-card{min-height:290px}
+.service-grid{gap:17px}
+.service-card .card-link{color:#f0d4ae}
+.nav-contact{color:#f8f5ef}
+/* Dedicated tablet layouts: balanced image and text, touch-sized controls. */
+@media (min-width:701px) and (max-width:1100px){
+ .site-container{width:calc(100% - 52px)}
+ .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:4px;min-height:570px}
+ .hero-copy{padding:50px 0 72px}
+ .hero h1{font-size:clamp(39px,4.75vw,53px);letter-spacing:-.045em}
+ .hero-intro{font-size:16px;line-height:1.58}
+ .hero-visual{height:535px}
+ .hero-visual .portrait{max-height:535px;right:-10px}
+ .hero-signoff{margin-top:28px}
+ .service-card,.service-card:nth-child(2),.service-card:nth-child(3){padding:23px 20px;min-height:285px}
+ .service-card h3{font-size:19px}
+ .service-card p{font-size:13.5px}
+}
+/* Narrow tablets: use an intentional single-column hero; portrait follows the headline, not the CTA. */
+@media (min-width:601px) and (max-width:760px){
+ .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:0;min-height:530px}
+ .hero h1{font-size:38px;max-width:100%;min-height:unset}
+ .hero-intro{font-size:15px;line-height:1.55}
+ .hero-visual{height:455px}
+ .hero-visual .portrait{max-height:455px}
+ .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .service-card:last-child{grid-column:1/-1}
+}
+/* Phones: photo shares the upper hero with the title, while the introduction stays full-width. */
+@media(max-width:600px){
+ .header-inner{height:68px}
+ .site-nav{top:68px}
+ .hero-grid{position:relative;display:block;min-height:unset;padding-bottom:0}
+ .hero-copy{position:relative;z-index:3;padding:32px 0 46px}
+ .eyebrow{font-size:10px;letter-spacing:.07em;line-height:1.4;max-width:90%;gap:9px}
+ .hero h1{font-size:clamp(31px,8.15vw,40px);letter-spacing:-.05em;line-height:1.11;max-width:53%;min-height:234px;margin:27px 0 13px;overflow-wrap:normal}
+ .hero-visual{position:absolute;z-index:2;right:-17px;top:96px;max-width:none;width:54%;height:298px;margin:0;pointer-events:none}
+ .hero-visual .portrait{width:100%;height:auto;max-width:none;max-height:100%;right:0;bottom:0;object-fit:contain;object-position:right bottom}
+ .hero-intro{max-width:100%;font-size:15.5px;line-height:1.64;margin-top:5px}
+ .hero-actions{position:relative;z-index:4;display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+ .hero-actions .btn{min-height:48px;white-space:normal;text-align:center;line-height:1.25;flex:1 1 auto;min-width:130px}
+ .hero-signoff{margin-top:23px;gap:13px}
+ .hero-bottom-fade{height:38px}
+ .hero-visual .portrait-orbit,.hero-visual .orbit-two{border-color:rgba(228,203,170,.085)}
+ .services-section{padding-top:62px}
+ .service-grid{grid-template-columns:1fr;gap:13px}
+ .service-card,.service-card:nth-child(2),.service-card:nth-child(3){min-height:unset;padding:22px 21px;border:1px solid rgba(224,223,217,.18);border-radius:16px}
+ .service-card:last-child{border:1px solid rgba(224,223,217,.18)}
+ .service-card:first-child{padding-left:21px}
+ .service-card h3{font-size:21px;margin:16px 0 9px}
+ .service-card p{font-size:14px;margin-bottom:16px}
+ .service-card .card-link{font-size:13px}
+ .site-container{width:calc(100% - 36px)}
+ .section-head h2{font-size:clamp(29px,7.5vw,38px)}
+ .project-grid,.post-grid{grid-template-columns:1fr}
+ .about-photo img{filter:none;mask-image:none;-webkit-mask-image:none}
+}
+@media(max-width:390px){
+ .site-container{width:calc(100% - 32px)}
+ .hero-copy{padding-top:30px}
+ .hero h1{font-size:clamp(29px,8.1vw,34px);max-width:55%;min-height:224px}
+ .hero-visual{top:96px;right:-13px;width:54%;height:272px}
+ .hero-intro{font-size:15px}
+ .hero-actions .btn{min-width:130px;font-size:13px;padding:10px 13px}
+}
+@media(max-width:350px){
+ .hero h1{font-size:28px;max-width:56%;min-height:213px}
+ .hero-visual{width:52%;height:251px;top:99px;right:-12px}
+ .hero-actions .btn{width:100%;flex-basis:100%}
+}
+@media(prefers-reduced-motion:reduce){.service-card,.btn{transition:none!important}}
+/* Tighter phone composition: a larger portrait, deliberately cropped at the right edge. */
+@media(max-width:600px){
+ .hero-visual{top:68px;height:302px;width:54%}
+ .hero-visual .portrait{width:119%;height:auto;max-width:none;max-height:none;right:-24px;bottom:0;object-fit:contain;object-position:right bottom}
+}
+@media(max-width:390px){
+ .hero-visual{top:70px;height:284px;width:54%}
+ .hero-visual .portrait{width:122%;max-height:none;right:-25px}
+}
+@media(max-width:350px){
+ .hero-visual{top:73px;height:261px;width:52%}
+ .hero-visual .portrait{width:129%;max-height:none;right:-26px}
+}
+/* Keep all profile images in their original color, including About. */
+.about-photo img{filter:none;mask-image:none;-webkit-mask-image:none}
+@media(min-width:701px) and (max-width:850px){
+ .hero-actions .btn{padding:10px 14px;gap:8px;font-size:13px}
+}
+@media(min-width:501px) and (max-width:600px){
+ .hero-visual{top:90px;height:300px;width:51%}
+ .hero-visual .portrait{width:91%;max-width:300px;max-height:none;right:-12px}
+}
