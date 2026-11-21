@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 const dist=path.resolve('dist');
-const routes=['','services/','services/measurement-architecture/','services/cloud-data-products/','services/applied-ai-systems/','projects/','blog/','resume/','about/','contact/','projects/measurement-case-study/','projects/data-product-case-study/','projects/ai-workflow-case-study/','blog/before-you-fix-the-dashboard/','blog/what-a-useful-data-model-needs/','blog/ai-agents-need-release-process/'];
+const routes=['','services/','services/measurement-architecture/','services/cloud-data-products/','services/applied-ai-systems/','projects/','blog/','resume/','about/','contact/','start/','projects/measurement-case-study/','projects/data-product-case-study/','projects/ai-workflow-case-study/','blog/before-you-fix-the-dashboard/','blog/what-a-useful-data-model-needs/','blog/ai-agents-need-release-process/'];
 const problems=[],pages=[];
 for(const route of routes){
  const file=path.join(dist,route,'index.html');
@@ -40,3 +40,19 @@ for(const [route,html] of pages){
 }
 if(problems.length){console.error(problems.join('\n'));process.exit(1);}
 console.log('Public portfolio QA passed:',pages.length,'routes, resume PDF, local links and selected secret patterns.');
+
+const start=pages.find(x=>x[0]==='start/')?.[1]||'';
+const cloud=pages.find(x=>x[0]==='services/cloud-data-products/')?.[1]||'';
+const ai=pages.find(x=>x[0]==='services/applied-ai-systems/')?.[1]||'';
+if(!start.includes('id="project-brief"') || !start.includes('Prepare email to Mayo')) problems.push('Lead intake page missing');
+if(!home.includes('href="/start/"'))problems.push('Homepage lacks project brief CTA');
+if(!cloud.includes('Customer.io') || !cloud.includes('Google Ads') || !cloud.includes('AI-ready data foundations'))problems.push('Activation & AI readiness coverage missing');
+if(!ai.includes('least-privilege') || !measure.includes('legal-basis'))problems.push('Privacy and security controls missing');
+const intake=path.join(dist,'intake.js');
+if(!fs.existsSync(intake))problems.push('Intake script missing');
+else {
+ const code=fs.readFileSync(intake,'utf8');
+ if(!code.includes('mailto:me@mayoracek.com') || /fetch\s*\(|localStorage|sendBeacon|XMLHttpRequest/.test(code))problems.push('Unexpected intake behavior or missing email route');
+}
+if(problems.length){console.error(problems.join('\n'));process.exit(1);}
+console.log('Intake and activation QA passed.');
