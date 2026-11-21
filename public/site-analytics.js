@@ -107,7 +107,7 @@
     if (!(target instanceof Element)) return;
 
     const menuButton = target.closest('.menu-toggle');
-    if (menuButton && menuButton.getAttribute('aria-expanded') === 'false') {
+    if (menuButton && menuButton.getAttribute('aria-expanded') === 'true') {
       track('navigationMenuOpened', { actionId: 'mobileMenu', actionLocation: 'header' });
       return;
     }
