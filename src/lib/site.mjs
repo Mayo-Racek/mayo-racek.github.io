@@ -162,11 +162,12 @@ function contactCta(base,{compact=false}={}){return `<section class="contact-ban
 function shell({title,description,body,active='home',base='/',canonical='',og='website'}){
   const fullTitle= title==='Home'?'Mayo Racek | Data & AI Solutions Architect':`${title} | Mayo Racek`;
   const metaDesc=description||'Cloud data engineering, measurement architecture and governed AI automation. Solutions designed around real problems.';
-  const fullUrl=`https://mayoracek.com${canonical||'/'}`;
-  const noindex = /^\/projects\/[^/]+\/$/.test(canonical);
-  const segments = (canonical || '/').split('/').filter(Boolean);
-  const pageType = !segments.length ? 'home' : segments[0] === 'services' && segments.length > 1 ? 'serviceDetail' : segments[0] === 'blog' && segments.length > 1 ? 'article' : segments[0] === 'lab' ? 'labProject' : segments[0];
-  const pageEvent = {event:'pageViewed',schemaVersion:'1.0.0',page:{pageType,pagePath:canonical || '/',pageTitle:title,language:'en',canonicalUrl:fullUrl}};
+  const fullUrl=`https://mayoracek.com${title==='Page not found'?'/404/':canonical||'/'}`;
+  const noindex = title==='Page not found' || /^\/projects\/[^/]+\/$/.test(canonical);
+  const pagePath = title==='Page not found'?'/404/':canonical||'/';
+  const segments = pagePath.split('/').filter(Boolean);
+  const pageType = title==='Page not found' ? 'notFound' : !segments.length ? 'home' : segments[0] === 'services' && segments.length > 1 ? 'serviceDetail' : segments[0] === 'blog' && segments.length > 1 ? 'article' : segments[0] === 'lab' ? 'labProject' : segments[0];
+  const pageEvent = {event:'pageViewed',schemaVersion:'1.0.0',page:{pageType,pagePath,pageTitle:title,language:'en',canonicalUrl:fullUrl}};
   // Data layer messages remain local until a separately governed collection integration is added.
   const dataLayerInit = '<script>window.dataLayer=window.dataLayer||[];window.dataLayer.push('+JSON.stringify(pageEvent).replace(/</g,'\\u003c')+');</script>';
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="color-scheme" content="dark"/><meta name="theme-color" content="#071325"/><meta name="description" content="${esc(metaDesc)}"/>${noindex?'<meta name="robots" content="noindex, follow"/>':''}<meta property="og:type" content="${esc(og)}"/><meta property="og:title" content="${esc(fullTitle)}"/><meta property="og:description" content="${esc(metaDesc)}"/><meta property="og:url" content="${esc(fullUrl)}"/><link rel="canonical" href="${esc(fullUrl)}"/>${dataLayerInit}<link rel="icon" href="${path('favicon.svg',base)}" type="image/svg+xml"/><link rel="stylesheet" href="${path('styles.css',base)}"/><title>${esc(fullTitle)}</title></head><body>${header(active,base)}<main id="main-content">${body}</main>${footer(base)}<script defer src="${path('site-analytics.js',base)}"></script><script>(function(){const b=document.querySelector('.menu-toggle');const n=document.querySelector('.site-nav');if(b&&n){const close=()=>{b.setAttribute('aria-expanded','false');n.classList.remove('open')};b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));n.classList.toggle('open',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();b.focus()}});document.addEventListener('click',e=>{if(!b.contains(e.target)&&!n.contains(e.target))close()})}})();</script></body></html>`;
