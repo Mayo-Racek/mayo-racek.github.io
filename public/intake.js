@@ -1,5 +1,5 @@
 /* Privacy-first lead intake for static GitHub Pages.
-   No requests, storage, analytics or third-party endpoints.
+   No network requests, storage or third-party endpoints. Optional local-only dataLayer intent events.
    The visitor sends the prepared email using their own email application. */
 (() => {
   const form = document.getElementById('project-brief');
@@ -33,6 +33,7 @@
     if (!message) return;
     const href = 'mailto:me@mayoracek.com?subject=' + encodeURIComponent(message.subject) +
       '&body=' + encodeURIComponent(message.body);
+    window.siteAnalytics?.track('projectBriefEmailPrepared', { actionId: 'prepareEmail', actionLocation: 'projectBriefForm', formId: 'projectBrief' });
     feedback.textContent = 'Your email app should open with a draft. Review it and press Send there; nothing has been sent from this page.';
     window.location.href = href;
   });
@@ -43,6 +44,7 @@
     try {
       if (!navigator.clipboard?.writeText) throw new Error('No clipboard API');
       await navigator.clipboard.writeText(value);
+      window.siteAnalytics?.track('projectBriefCopied', { actionId: 'copyBrief', actionLocation: 'projectBriefForm', formId: 'projectBrief' });
       feedback.textContent = 'Copied. Paste the brief into an email addressed to me@mayoracek.com.';
     } catch {
       const area = document.createElement('textarea');
@@ -53,6 +55,7 @@
       area.select();
       const copied = document.execCommand('copy');
       area.remove();
+      if (copied) window.siteAnalytics?.track('projectBriefCopied', { actionId: 'copyBrief', actionLocation: 'projectBriefForm', formId: 'projectBrief' });
       feedback.textContent = copied
         ? 'Copied. Paste the brief into an email addressed to me@mayoracek.com.'
         : 'Copy was unavailable. Please open an email to me@mayoracek.com and describe the goal.';
