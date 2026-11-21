@@ -536,3 +536,56 @@ body{background:#101317;color:var(--ink)}
   .hero-visual .portrait{width:123%;right:-16px}
   .hero-actions .btn{flex-basis:100%}
 }
+
+
+/* Phone hero: grid ensures portrait and headline share one row.
+   The full-width description begins only after both have finished. */
+.headline-mobile{display:none}
+@media(max-width:600px){
+  .hero-grid{
+    display:grid;grid-template-columns:minmax(0,.58fr) minmax(0,.42fr);
+    grid-template-rows:auto auto auto auto auto;align-items:start;
+    column-gap:0;min-height:unset
+  }
+  .hero-copy{display:contents}
+  .hero-copy .eyebrow{
+    grid-column:1/-1;grid-row:1;margin:29px 0 0;
+    max-width:100%;line-height:1.5
+  }
+  .hero h1{
+    grid-column:1;grid-row:2;width:100%;max-width:100%;min-height:0;
+    margin:22px 0 0;font-size:clamp(30px,8.1vw,40px);
+    line-height:1.12;letter-spacing:-.042em;align-self:center
+  }
+  .headline-desktop{display:none}
+  .headline-mobile{display:block}
+  .hero-visual{
+    grid-column:2;grid-row:2;position:relative;top:auto;right:auto;
+    left:auto;bottom:auto;height:clamp(229px,65vw,320px);
+    width:100%;max-width:none;margin:0;align-self:end;overflow:visible
+  }
+  .hero-visual .portrait{
+    position:absolute;width:120%;height:100%;max-width:none;max-height:none;
+    bottom:0;right:-18px;object-fit:contain;object-position:right bottom
+  }
+  .hero-intro{
+    grid-column:1/-1;grid-row:3;max-width:100%;
+    margin:8px 0 0;font-size:15.5px;line-height:1.62
+  }
+  .hero-actions{
+    grid-column:1/-1;grid-row:4;margin:24px 0 0;
+    display:flex;flex-wrap:wrap;gap:10px
+  }
+  .hero-signoff{grid-column:1/-1;grid-row:5;margin:25px 0 40px}
+  .hero-bottom-fade{height:35px}
+}
+@media(max-width:390px){
+  .hero h1{font-size:clamp(29px,8.3vw,33px)}
+  .hero-visual{height:clamp(226px,68vw,266px)}
+  .hero-visual .portrait{width:123%;right:-17px}
+}
+@media(max-width:350px){
+  .hero h1{font-size:28px;min-height:0;max-width:100%}
+  .hero-visual{height:229px}
+  .hero-visual .portrait{width:124%;right:-15px}
+}
