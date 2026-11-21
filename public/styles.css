@@ -589,3 +589,54 @@ body{background:#101317;color:var(--ink)}
   .hero-visual{height:229px}
   .hero-visual .portrait{width:124%;right:-15px}
 }
+
+
+
+/* Business portfolio refinement: resume, measurement architecture and restrained navigation. */
+:root{--accent-warm:#e7c7a0}
+@media(min-width:761px){.site-nav{gap:clamp(11px,1.5vw,24px)}.nav-link{font-size:13px}.nav-contact{padding:10px 13px}}
+.framework-section{background:linear-gradient(160deg,#1b1d21,#131518);border-top:1px solid rgba(234,217,197,.13);border-bottom:1px solid rgba(234,217,197,.13)}
+.framework-intro{max-width:800px}
+.framework-intro h2{font-size:clamp(30px,3vw,42px);margin:14px 0 16px;max-width:740px}
+.framework-intro p{font-size:16px;line-height:1.75;color:#c7c6c5}
+.framework-steps{list-style:none;margin:38px 0 22px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:none}
+.framework-step{position:relative;display:flex;flex-direction:column;min-height:144px;gap:10px;padding:23px 22px;border:1px solid rgba(226,213,198,.2);border-radius:14px;background:rgba(255,255,255,.025)}
+.framework-step:after{content:'→';position:absolute;right:17px;top:15px;font-size:19px;color:#c1ac92}
+.framework-step:last-child:after{content:'✓'}
+.framework-n,.resume-tag{font-size:11px;letter-spacing:.16em;color:#debfa0;font-weight:760}
+.framework-step strong{font-size:18px;color:#f4f2ee;line-height:1.2}
+.framework-step>span:last-child{font-size:13px;line-height:1.6;color:#c5c4c2}
+.framework-note{font-size:14px;line-height:1.8;max-width:980px;color:#bfbbb5}
+.framework-note strong{color:#e5d3bd}
+.resume-hero p{max-width:760px}
+.resume-intro{max-width:790px;margin-bottom:34px}
+.resume-intro h2{font-size:clamp(29px,3.2vw,42px);margin:12px 0}
+.resume-intro p{font-size:17px;line-height:1.72}
+.resume-expertise{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.resume-expertise>div{padding:26px;border:1px solid rgba(226,215,201,.19);background:linear-gradient(145deg,rgba(44,43,43,.49),rgba(20,22,24,.7));border-radius:16px}
+.resume-expertise h3{font-size:20px;margin:18px 0 12px}
+.resume-expertise p{font-size:14px;line-height:1.65;margin:0}
+.resume-timeline{display:grid;gap:0;max-width:1000px}
+.resume-timeline article{display:grid;grid-template-columns:190px 1fr;gap:30px;padding:26px 0;border-top:1px solid rgba(231,222,208,.17)}
+.resume-timeline time{font-size:13px;font-weight:740;color:#dec3a2}
+.resume-timeline h3{font-size:20px;margin:0 0 8px}
+.resume-timeline p{font-size:15px;line-height:1.72;margin:0}
+.resume-last{display:grid;grid-template-columns:1fr minmax(290px,.75fr);gap:44px;align-items:start}
+.resume-last h2{font-size:clamp(29px,3vw,39px);margin:15px 0}
+.resume-last p{font-size:16px;line-height:1.72}
+.resume-download{padding:26px;border:1px solid rgba(227,213,193,.2);border-radius:17px;background:rgba(242,219,184,.035)}
+.resume-download h3{font-size:22px;margin:0 0 12px}
+.resume-download .btn{margin-top:9px}
+@media(min-width:761px) and (max-width:1020px){.site-nav{gap:10px}.nav-link{font-size:12px}.nav-contact{font-size:12px;padding:9px 11px}}
+@media(max-width:760px){
+ .site-nav{background:#191b1f!important}
+ .framework-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .resume-expertise{grid-template-columns:1fr}
+ .resume-timeline article{grid-template-columns:1fr;gap:7px;padding:21px 0}
+ .resume-last{grid-template-columns:1fr;gap:22px}
+ .resume-download{padding:23px}
+}
+@media(max-width:430px){
+ .framework-steps{grid-template-columns:1fr}
+ .framework-step{min-height:unset}
+}
