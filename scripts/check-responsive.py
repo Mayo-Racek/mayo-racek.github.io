@@ -1,148 +1,104 @@
-"""Real-browser checks for home first screen and interactive lifecycle.
-
-Runs on the generated Astro dist after npm run build. Uses a temporary
-localhost server, no public network dependency, and saves review screenshots.
-"""
+"""Browser UAT for blog-first mayoracek.com. No public-network dependency."""
 from __future__ import annotations
-import contextlib
 import functools
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import threading
 from playwright.sync_api import sync_playwright
 
-ROOT = Path(__file__).resolve().parents[1]
-DIST = ROOT / "dist"
-ARTIFACTS = ROOT / "artifacts" / "layout"
-ARTIFACTS.mkdir(parents=True, exist_ok=True)
-Handler = functools.partial(SimpleHTTPRequestHandler, directory=str(DIST))
-server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
-thread = threading.Thread(target=server.serve_forever, daemon=True)
-thread.start()
-URL = f"http://127.0.0.1:{server.server_address[1]}/"
-viewports = [(320, 568), (360, 740), (390, 844), (430, 932),
-             (768, 1024), (1024, 768), (1366, 768), (1920, 1080)]
-errors = []
-
+ROOT=Path(__file__).resolve().parents[1]
+DIST=ROOT/"dist"
+SHOTS=ROOT/"artifacts"/"layout"
+SHOTS.mkdir(parents=True,exist_ok=True)
+Handler=functools.partial(SimpleHTTPRequestHandler,directory=str(DIST))
+server=ThreadingHTTPServer(("127.0.0.1",0),Handler)
+threading.Thread(target=server.serve_forever,daemon=True).start()
+url=f"http://127.0.0.1:{server.server_address[1]}/"
+sizes=[(320,568),(360,740),(390,844),(430,932),(768,1024),(1024,768),(1366,768),(1920,1080)]
+errors=[]
 try:
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True, args=["--no-sandbox"])
-        for width, height in viewports:
-            page = browser.new_page(viewport={"width": width, "height": height},
-                                    device_scale_factor=1)
-            page.goto(URL, wait_until="networkidle")
-            hero = page.locator(".hero").bounding_box()
-            life = page.locator("#data-lifecycle").bounding_box()
-            if not hero or not life:
-                errors.append(f"{width}x{height}: Missing home hero or lifecycle")
-                page.close()
-                continue
+ with sync_playwright() as pw:
+  browser=pw.chromium.launch(headless=True,args=["--no-sandbox"])
+  for width,height in sizes:
+   page=browser.new_page(viewport={"width":width,"height":height},device_scale_factor=1)
+   page.goto(url,wait_until="networkidle")
+   hero=page.locator(".hero").bounding_box()
+   writing=page.locator(".home-writing").bounding_box()
+   if not hero or not writing:
+    errors.append(f"{width}x{height}: hero or latest writing missing")
+    page.close()
+    continue
+   if writing["y"] < height-3:
+    errors.append(f"{width}x{height}: latest writing enters first screen")
+   if page.locator("#data-lifecycle,.service-grid,.contact-band").count():
+    errors.append(f"{width}x{height}: retired consultancy UI still displayed")
+   if width<=600:
+    portrait=page.locator(".hero-visual").bounding_box()
+    title=page.locator(".hero h1").bounding_box()
+    intro=page.locator(".hero-intro").bounding_box()
+    if not all([portrait,title,intro]):
+     errors.append(f"{width}x{height}: portrait or text missing")
+    else:
+     if portrait["x"] < title["x"]+title["width"]-3:
+      errors.append(f"{width}x{height}: portrait and title overlap")
+     if portrait["y"]+portrait["height"]>intro["y"]+4:
+      errors.append(f"{width}x{height}: portrait overlaps intro")
+   scroll_width=page.evaluate("Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)")
+   if scroll_width>width+5:
+    errors.append(f"{width}x{height}: horizontal overflow {scroll_width}")
+   for label in ("Read the Blog","About Me"):
+    rect=page.get_by_role("link",name=label,exact=True).first.bounding_box()
+    if not rect:
+     errors.append(f"{width}x{height}: {label} CTA missing")
+    elif width>=390 and height>=740 and rect["y"]+rect["height"]>height+3:
+     errors.append(f"{width}x{height}: {label} CTA outside first screen")
+   if page.evaluate("window.dataLayer.filter(x=>x.event==='pageViewed').length")!=1:
+    errors.append(f"{width}x{height}: incorrect pageViewed count")
+   if width in (390,1366):
+    page.screenshot(path=str(SHOTS/f"blog-home-{width}.png"),full_page=True)
+   page.close()
 
-            # Test readable composition, not an artificially forced full-screen hero.
-            if width <= 600:
-                portrait = page.locator(".hero-visual").bounding_box()
-                title = page.locator(".hero h1").bounding_box()
-                intro = page.locator(".hero-intro").bounding_box()
-                if not portrait or not title or not intro:
-                    errors.append(f"{width}x{height}: Hero portrait, title or intro missing")
-                else:
-                    if portrait["x"] < title["x"] + title["width"] - 3:
-                        errors.append(f"{width}x{height}: Portrait horizontally overlaps title")
-                    if portrait["y"] + portrait["height"] > intro["y"] + 4:
-                        errors.append(f"{width}x{height}: Portrait vertically overlaps introduction")
-                    if intro["y"] <= title["y"]:
-                        errors.append(f"{width}x{height}: Intro starts before headline")
-            if life["y"] < height - 3:
-                errors.append(f"{width}x{height}: Lifecycle begins before the first viewport")
-            if width >= 390 and width <= 600:
-                signoff = page.locator(".hero-signoff").bounding_box()
-                if signoff and height >= 740 and signoff["y"] + signoff["height"] < height * 0.76:
-                    errors.append(f"{width}x{height}: Unbalanced empty space below hero content")
-            print(f"layout {width}x{height}: hero bottom {hero['y']+hero['height']:.0f}, lifecycle starts {life['y']:.0f}")
-            horizontal = page.evaluate("Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
-            if horizontal > width + 5:
-                errors.append(f"{width}x{height}: Horizontal overflow {horizontal}px")
-            if width >= 390 and height >= 740:
-                first = page.get_by_role("link", name="Explore Services").bounding_box()
-                second = page.get_by_role("link", name="Read My Blog").bounding_box()
-                for label, rect in [("Explore Services", first), ("Read My Blog", second)]:
-                    if not rect or rect["y"] + rect["height"] > height + 3:
-                        errors.append(f"{width}x{height}: Primary CTA outside the first viewport: {label}")
-            page.screenshot(path=str(ARTIFACTS / f"hero-{width}x{height}.png"), full_page=False)
-            if width == 390:
-                page.locator("#data-lifecycle").screenshot(
-                    path=str(ARTIFACTS / "lifecycle-390.png"))
-            page.close()
-
-        page = browser.new_page(viewport={"width": 390, "height": 844})
-        page.goto(URL, wait_until="networkidle")
-        steps = ["collect", "connect", "transform", "analyze", "activate", "automate"]
-        for step in steps:
-            button = page.locator(f'[data-life-step="{step}"]')
-            button.click()
-            selected = button.get_attribute("aria-pressed")
-            panel = page.locator(f'[data-life-panel="{step}"]')
-            if selected != "true" or not panel.is_visible():
-                errors.append(f"Lifecycle selection failed: {step}")
-            if panel.locator(".life-viz svg").count() != 1:
-                errors.append(f"Stage illustration missing: {step}")
-            if panel.locator('a[href^="/services/"]').count() != 1:
-                errors.append(f"Stage service link missing: {step}")
-        events = page.evaluate("window.dataLayer.filter(e => e.event === 'lifecycleStepSelected').map(e => e.interaction.actionId)")
-        if events != steps:
-            errors.append(f"Lifecycle event sequence mismatch: {events}")
-        page.locator('[data-life-step="collect"]').focus()
-        page.keyboard.press("ArrowRight")
-        if page.locator('[data-life-step="connect"]').get_attribute("aria-pressed") != "true":
-            errors.append("Arrow-key navigation did not advance to Connect")
-        if page.evaluate("window.dataLayer.filter(e => e.event === 'pageViewed').length") != 1:
-            errors.append("Page view emitted more than once")
-
-        # Service pages must be clear and readable at phone, tablet and desktop sizes.
-        service_pages = [
-            ("services/", None),
-            ("services/measurement-architecture/", "Measurement Strategy & Implementation"),
-            ("services/cloud-data-products/", "Data Engineering & Analytics"),
-            ("services/applied-ai-systems/", "Data Activation & Intelligent Automation")
-        ]
-        for width, height in [(390, 844), (768, 1024), (1366, 768)]:
-            service_browser = browser.new_page(viewport={"width": width, "height": height})
-            for route, expected_name in service_pages:
-                service_browser.goto(URL + route, wait_until="networkidle")
-                page_width = service_browser.evaluate(
-                    "Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
-                if page_width > width + 5:
-                    errors.append(f"{route} {width}x{height}: Horizontal overflow {page_width}px")
-                if expected_name:
-                    h1 = service_browser.locator("h1").inner_text()
-                    if not h1:
-                        errors.append(f"{route}: Missing service heading")
-                    if service_browser.locator(".service-question").count() != 3:
-                        errors.append(f"{route}: Expected three manager questions")
-                    if service_browser.locator(".capability-card").count() != 3:
-                        errors.append(f"{route}: Expected three tangible deliverables")
-                    if service_browser.locator(".process-step").count() != 4:
-                        errors.append(f"{route}: Expected four delivery steps")
-                else:
-                    if service_browser.locator(".service-card-question").count() != 3:
-                        errors.append(f"{route}: Expected one example question per service")
-                if width == 390:
-                    shot = "services" if expected_name is None else route.strip("/").split("/")[-1]
-                    service_browser.screenshot(
-                        path=str(ARTIFACTS / f"{shot}-390.png"), full_page=True)
-            service_browser.close()
-
-        reduced = browser.new_page(viewport={"width": 390, "height": 844}, reduced_motion="reduce")
-        reduced.goto(URL, wait_until="networkidle")
-        trace = reduced.locator(".life-detail:not([hidden]) .life-trace").first
-        if trace.count() and trace.evaluate("(el) => getComputedStyle(el).animationName") != "none":
-            errors.append("Reduced-motion preference not respected")
-        reduced.close()
-        page.close()
-        browser.close()
+  page=browser.new_page(viewport={"width":390,"height":844})
+  for route,heading in [
+   ("blog/","Writing about the"),
+   ("blog/start-with-the-problem/","Start with the problem"),
+   ("about/","Hi, I'm Mayo"),
+   ("resume/","Mayo Racek"),
+   ("contact/","Let's talk")
+  ]:
+   page.goto(url+route,wait_until="networkidle")
+   if not page.locator("h1").count() or heading.lower() not in page.locator("h1").first.inner_text().lower():
+    errors.append("Wrong heading on "+route)
+   if page.evaluate("window.dataLayer.filter(x=>x.event==='pageViewed').length")!=1:
+    errors.append("Missing/duplicated pageViewed on "+route)
+   if page.evaluate("document.documentElement.scrollWidth")>390+5:
+    errors.append("Mobile horizontal overflow: "+route)
+   if route in ("blog/","about/"):
+    page.screenshot(path=str(SHOTS/("blog-listing.png" if route=="blog/" else "blog-about.png")),full_page=True)
+  page.goto(url+"blog/",wait_until="networkidle")
+  if page.locator(".post-card").count()!=1:
+   errors.append("Expected one complete blog article")
+  else:
+   page.locator(".post-card").first.click()
+   if "start-with-the-problem" not in page.url:
+    errors.append("Article card did not navigate")
+  page.goto(url+"about/",wait_until="networkidle")
+  cv=page.get_by_role("link",name="Download My CV")
+  if cv.count()!=1 or "Mayo_Racek_CV.pdf" not in cv.get_attribute("href"):
+   errors.append("About CV link missing")
+  page.goto(url+"contact/",wait_until="networkidle")
+  page.locator("#brief-need").select_option("other")
+  events=page.evaluate("window.dataLayer.filter(x=>x.event==='projectBriefNeedSelected').map(x=>x.interaction.actionId)")
+  if events!=["other"]:
+   errors.append(f"Other topic data-layer contract changed: {events}")
+  for dead in ("services/","projects/","lab/aria/","start/"):
+   resp=page.request.get(url+dead)
+   if resp.status==200:
+    errors.append("Removed page still publicly generated: "+dead)
+  page.close()
+  browser.close()
 finally:
-    server.shutdown()
-
+ server.shutdown()
 if errors:
-    raise SystemExit("\n".join(errors))
-print(f"Responsive lifecycle checks passed for {len(viewports)} viewports; interactions, keyboard, reduced motion and telemetry.")
+ raise SystemExit("\n".join(errors))
+print(f"Blog browser QA passed across {len(sizes)} viewports: hero, articles, About/CV, contact, data layer, old routes.")
