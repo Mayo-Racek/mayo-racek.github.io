@@ -62,7 +62,7 @@ try:
   for route,heading in [
    ("blog/","Writing about the"),
    ("blog/start-with-the-problem/","Start with the problem"),
-   ("about/","Hi, I'm Mayo"),
+   ("about/","Hi, I’m Mayo"),
    ("resume/","Mayo Racek"),
    ("contact/","Let's talk")
   ]:
