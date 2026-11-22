@@ -7,7 +7,7 @@
 (() => {
   'use strict';
 
-  const schemaVersion = '1.0.0';
+  const schemaVersion = '1.1.0';
   const supportedEvents = new Set([
     'navigationClicked',
     'navigationMenuOpened',
@@ -21,7 +21,9 @@
     'projectBriefStarted',
     'projectBriefNeedSelected',
     'projectBriefEmailPrepared',
-    'projectBriefCopied'
+    'projectBriefCopied',
+    'lifecycleStepSelected',
+    'resumeDownloadClicked'
   ]);
 
   // Never allow free-text inputs (such as brief details, company name or email)
@@ -143,13 +145,11 @@
     });
     form.addEventListener('change', event => {
       const input = event.target;
-      if (!(input instanceof HTMLInputElement) ||
-          input.type !== 'radio' || input.name !== 'need') return;
-      const choices = Array.from(form.querySelectorAll('input[name="need"]'));
-      const index = choices.indexOf(input);
-      if (index === -1) return;
+      if (!(input instanceof HTMLSelectElement) || input.name !== 'need') return;
+      const allowed = new Set(['collect', 'connect', 'activate', 'unsure', 'other']);
+      if (!allowed.has(input.value)) return;
       track('projectBriefNeedSelected', {
-        actionId: 'needOption' + (index + 1),
+        actionId: input.value,
         actionLocation: 'projectBriefForm',
         formId: 'projectBrief'
       });
