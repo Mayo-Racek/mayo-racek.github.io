@@ -16,238 +16,76 @@ export const services = [
     "slug": "measurement-architecture",
     "number": "01",
     "icon": "measure",
-    "name": "Data Collection & Measurement",
-    "short": "Create a dependable view of customer and product activity across your digital channels.",
-    "teaser": "Design consent-aware events, data layers and first-party collection that give your teams a reliable starting point for analytics and activation.",
-    "eyebrow": "Turn customer activity into meaningful, trustworthy data",
-    "headline": "Collect the right data. Build confidence from day one.",
-    "intro": "Good decisions start with reliable information. I design measurement architectures for websites, apps and digital products, with clear event standards, consent-aware collection and a direct path to analytics and data platforms. From the first data layer event to controlled server-side collection, the architecture is designed to be understandable, maintainable and useful.",
-    "problemTitle": "What this makes possible",
-    "problems": [
-      [
-        "A shared understanding",
-        "Product, marketing and data teams work from consistent event definitions, business goals and measurement requirements."
-      ],
-      [
-        "Dependable collection",
-        "Important journeys are instrumented and tested, with consent and data-quality checks built into delivery."
-      ],
-      [
-        "A foundation for what comes next",
-        "Collected data is ready for approved reporting, analysis and downstream integration, not trapped in individual tags."
-      ]
-    ],
-    "helpTitle": "What I design and deliver",
+    "name": "Collect & Measure",
+    "short": "Capture reliable web and app data with clear measurement, consent and quality standards.",
+    "teaser": "Data collection, event architecture, GA4, GTM and server-side tagging built around the questions your business needs to answer.",
+    "headline": "Collect the data that matters.",
+    "intro": "Design reliable web and app measurement from the beginning. I define what to measure, implement first-party collection where appropriate, and validate events and consent rules so teams can trust the information they use.",
     "offerings": [
       [
-        "Measurement strategy and event taxonomy",
-        "Translate business decisions and customer journeys into clear events, parameters, success measures and acceptance criteria."
+        "Measurement design",
+        "Business goals, event taxonomy and data layer specifications."
       ],
       [
-        "Data layer and SDK design",
-        "Create consistent web and app event contracts that developers and analysts can implement and maintain."
+        "Implementation",
+        "Web and app collection, GTM, GA4 and server-side tagging where appropriate."
       ],
       [
-        "Client-side and server-side collection",
-        "Use GTM, server-side GTM and GA4 where appropriate, with validated routing and purpose-specific destinations."
-      ],
-      [
-        "Enterprise measurement governance",
-        "Build reusable event standards across products and markets, with clear ownership and controlled local variations."
-      ],
-      [
-        "Privacy and consent integration",
-        "Document purpose and legal-basis requirements, integrate consent rules and minimize unnecessary collection or transmission."
-      ],
-      [
-        "Testing, quality and handover",
-        "Validate journeys and requests, reconcile data and provide readable documentation and ownership."
+        "Quality & privacy",
+        "Consent-aware delivery, QA, monitoring and maintainable documentation."
       ]
     ],
-    "process": [
-      [
-        "Define the decisions",
-        "Understand the business questions and the customer actions needed to answer them."
-      ],
-      [
-        "Design the contract",
-        "Specify event names, properties, identity constraints, consent rules and test scenarios."
-      ],
-      [
-        "Implement the collection",
-        "Connect applications, data layers, tag managers and destinations through the simplest suitable architecture."
-      ],
-      [
-        "Verify and maintain",
-        "Perform QA and UAT, document exceptions, and establish a process for change control."
-      ]
-    ],
-    "deliverables": [
-      "Measurement strategy and event catalogue",
-      "Web and app data-layer or SDK specification",
-      "Approved GTM/GA4 and server-side collection architecture",
-      "Consent and destination mapping",
-      "Reproducible QA/UAT evidence and handover"
-    ],
-    "fit": "For teams launching, scaling or improving digital experiences that need measurable, trustworthy customer activity."
+    "fit": "Product and marketing teams seeking dependable digital measurement."
   },
   {
     "slug": "cloud-data-products",
     "number": "02",
     "icon": "cloud",
-    "name": "Cloud Data Engineering & Analytics",
-    "short": "Connect, transform and activate data so teams can make confident decisions and take action.",
-    "teaser": "Build dependable ingestion, cloud data platforms, transformations, analysis, visualization and approved activation on the tools that fit your business.",
-    "eyebrow": "From connected data to insights and action",
-    "headline": "Make data useful across your business.",
-    "intro": "I engineer the journey from source systems to useful information: ingestion, transformation, modelling, quality checks, analysis, visualization and activation. Whether you use Google Cloud, BigQuery and Dataform or a different stack, the goal is a reliable data foundation with definitions people agree on and outputs that support real decisions.",
-    "problemTitle": "What your data can enable",
-    "problems": [
-      [
-        "A connected picture",
-        "Bring web, app, CRM, product and operational data into a consistent, documented model."
-      ],
-      [
-        "Clarity you can trust",
-        "Give teams shared metrics, tested transformations and reports that are easier to explain."
-      ],
-      [
-        "Data that drives action",
-        "Deliver approved segments and attributes to dashboards, CRM, marketing and operational workflows."
-      ]
-    ],
-    "helpTitle": "What I design and deliver",
+    "name": "Connect & Analyze",
+    "short": "Connect your systems, engineer trustworthy data and turn it into decisions and insights.",
+    "teaser": "From APIs and ingestion to BigQuery, transformations, analytics and dashboards that teams can use confidently.",
+    "headline": "Connect your data. See the bigger picture.",
+    "intro": "Bring digital, customer and operational data into a governed cloud foundation. I build data pipelines, reusable models and clear analytics that connect source systems to business decisions.",
     "offerings": [
       [
-        "Data ingestion and integration",
-        "Bring together events, APIs, operational systems and exports with suitable ingestion and orchestration patterns."
+        "Connect & ingest",
+        "Integrate APIs, events and business systems into a cloud data platform."
       ],
       [
-        "Cloud warehouse architecture",
-        "Design BigQuery data structures, access controls, partitioning, scheduling and predictable query costs."
+        "Transform & govern",
+        "BigQuery and Dataform models, shared metrics and data quality checks."
       ],
       [
-        "Transformation and modelling",
-        "Use Dataform, SQL and tested ELT patterns to turn raw data into reusable, clearly defined data products."
-      ],
-      [
-        "Analytics and visualization",
-        "Design useful metrics, business analysis and Looker Studio or other BI reporting for specific decisions."
-      ],
-      [
-        "Data activation and reverse ETL",
-        "Connect eligible data to tools such as Customer.io, Google Ads or CRM systems, with permission and purpose checks."
-      ],
-      [
-        "Data reliability and cost management",
-        "Build freshness checks, reconciliation, observability and cost controls into everyday operations."
+        "Analyze & visualize",
+        "Reporting, Looker Studio dashboards and analysis built for decisions."
       ]
     ],
-    "process": [
-      [
-        "Start with decisions",
-        "Define who needs the data, what decisions it supports and the acceptable latency and quality."
-      ],
-      [
-        "Connect and govern",
-        "Inventory sources, access, retention, lawful use and reliability requirements."
-      ],
-      [
-        "Model and deliver",
-        "Build the ingestion paths, transformations, reports and approved activation integrations."
-      ],
-      [
-        "Test and transfer ownership",
-        "Reconcile sources to outputs, document assumptions and establish monitoring and support."
-      ]
-    ],
-    "deliverables": [
-      "Source-to-target architecture and ingestion plan",
-      "Documented, tested cloud data models and pipelines",
-      "Shared metrics and analytics-ready datasets",
-      "Dashboards or governed activation feeds as required",
-      "Data-quality checks, monitoring and operating documentation"
-    ],
-    "fit": "For businesses that want reliable information for analytics, reporting, customer activation and responsible future AI use."
+    "fit": "Teams wanting one trustworthy view across previously disconnected sources."
   },
   {
     "slug": "applied-ai-systems",
     "number": "03",
     "icon": "spark",
-    "name": "AI-Ready Data & Intelligent Automation",
-    "short": "Prepare trusted data for AI and build controlled workflows that create useful business outcomes.",
-    "teaser": "Bring data readiness, secure access, AI use-case design, agentic engineering, evaluation and cost visibility together in practical systems.",
-    "eyebrow": "Build on a trustworthy data foundation",
-    "headline": "Make your data ready for intelligent action.",
-    "intro": "AI becomes useful when it can work with the right information under the right controls. I help teams assess AI readiness, organize governed access to trusted data and design practical automation and agent-assisted workflows. Security, measurable outcomes, human oversight, observability and cost are part of the architecture, not an afterthought.",
-    "problemTitle": "Where intelligent systems can add value",
-    "problems": [
+    "name": "Activate & Automate",
+    "short": "Put trusted data to work in business tools and carefully designed AI-powered workflows.",
+    "teaser": "Data activation, AI-ready foundations and controlled automation grounded in governance, evaluation and human oversight.",
+    "headline": "Turn trusted data into useful action.",
+    "intro": "Data becomes more valuable when it reaches the right tools and workflows. I connect approved data to business systems and design practical automation, including AI-assisted workflows where they offer a clear benefit and can be evaluated safely.",
+    "offerings": [
       [
-        "AI-ready information",
-        "Structure and document trusted data so approved applications can retrieve and interpret it."
+        "Data activation",
+        "Share permitted data with CRM, customer engagement and operational platforms."
+      ],
+      [
+        "AI-ready foundations",
+        "Prepare documented, permissioned data for retrieval and AI applications."
       ],
       [
         "Practical automation",
-        "Identify repeatable, bounded workflows where models, tools or deterministic services improve daily work."
-      ],
-      [
-        "Controlled decisions",
-        "Keep agent actions observable and reviewable, with permissions, evaluation cases and human approval when needed."
+        "Design bounded agent workflows with testing, human review, observability and cost controls."
       ]
     ],
-    "helpTitle": "What I can help you build",
-    "offerings": [
-      [
-        "AI readiness and data access",
-        "Assess data quality, metadata, access paths, classification, permitted retrieval and governance gaps."
-      ],
-      [
-        "Workflow and agent design",
-        "Select practical use cases and connect model reasoning, APIs, tools and deterministic business rules."
-      ],
-      [
-        "Secure AI architecture",
-        "Design least-privilege access, approved data boundaries, secrets management and human-in-the-loop actions."
-      ],
-      [
-        "Evaluation and guardrails",
-        "Define acceptance criteria, run representative and failure-path tests, and control high-impact actions."
-      ],
-      [
-        "Observability and AI FinOps",
-        "Plan execution traces, quality monitoring, token or service cost visibility and cost per accepted outcome."
-      ],
-      [
-        "Operational rollout",
-        "Document ownership, escalation, rollback and release controls before treating a prototype as production."
-      ]
-    ],
-    "process": [
-      [
-        "Identify the opportunity",
-        "Find an outcome where trusted data and automation can deliver measurable value."
-      ],
-      [
-        "Assess readiness",
-        "Check the necessary data, integration surfaces, access permissions and risks."
-      ],
-      [
-        "Build a bounded workflow",
-        "Implement the smallest viable flow with validation, evaluation and human fallback."
-      ],
-      [
-        "Prove usefulness",
-        "Test accuracy and reliability, measure operational cost and expand only when results justify it."
-      ]
-    ],
-    "deliverables": [
-      "AI-readiness and use-case assessment",
-      "Governed data-access and integration design",
-      "Limited-scope workflow or agent prototype as agreed",
-      "Evaluation cases, human review and safety boundaries",
-      "Observability, FinOps and operational handover plan"
-    ],
-    "fit": "For teams exploring trustworthy AI applications and automation without sacrificing data quality, security or control."
+    "fit": "Teams ready to use governed data for activation and practical automation."
   }
 ];
 
@@ -301,74 +139,69 @@ const icon=(id)=> {
 };
 const path=(s,base='/')=>{const clean=String(s).replace(/^\//,''); const offline=base!=='/'; const target=offline&&(clean===''||clean.endsWith('/'))?clean+'index.html':clean; return base.replace(/\/$/,'')+'/'+target;};
 const navLink=(href,name,active,base)=>`<a class="nav-link ${active===name.toLowerCase()?'is-active':''}" data-track-event="navigationClicked" data-track-location="header" data-track-id="${esc(name.toLowerCase())}" href="${path(href,base)}">${name}</a>`;
-function header(active,base){return `<header class="site-header"><div class="site-container header-inner"><a href="${path('',base)}" class="brand" aria-label="Mayo Racek, home"><strong>Mayo Racek</strong></a><nav class="site-nav" id="primary-navigation" aria-label="Main navigation">${navLink('', 'Home',active,base)}${navLink('services/','Services',active,base)}${navLink('projects/','Work',active,base)}${navLink('blog/','Blog',active,base)}${navLink('about/','About',active,base)}${navLink('resume/','Resume',active,base)}<a class="nav-contact" href="${path('start/',base)}">Share a challenge <span aria-hidden="true">↗</span></a></nav><button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button></div></header>`;}
-function footer(base){return `<footer class="site-footer"><div class="site-container footer-top"><div><a class="brand" href="${path('',base)}"><strong>Mayo Racek</strong></a><p>Reliable data systems and practical AI for real-world problems.</p></div><div class="footer-links"><a href="${path('services/',base)}">Services</a><a href="${path('projects/',base)}">Work</a><a href="${path('blog/',base)}">Blog</a><a href="${path('about/',base)}">About</a><a href="${path('resume/',base)}">Resume</a><a href="${path('contact/',base)}">Contact</a></div><div class="footer-social">${external(profile.linkedin,'LinkedIn ↗')}${external(profile.github,'GitHub ↗')}${external(profile.x,'X ↗')}</div></div><div class="site-container footer-bottom"><span>© ${new Date().getFullYear()} Mayo Racek · Made with care, not clutter.</span><span>Based in Slovakia · Working internationally</span></div></footer>`;}
-function contactCta(base,{compact=false}={}){return `<section class="contact-band ${compact?'compact':''}" id="contact"><div class="site-container contact-band-inner"><div><span class="kicker">LET’S MAKE IT USEFUL</span><h2>Ready to move your data further?</h2><p>Share the outcome you want to achieve. I can help identify the right combination of measurement, connected data and practical automation.</p></div><a class="btn btn-primary" href="${path('start/',base)}">Share Your Goal <span aria-hidden="true">↗</span></a></div></section>`;}
+function header(active,base){return '<header class="site-header"><div class="site-container header-inner"><a href="'+path('',base)+'" class="brand" aria-label="Mayo Racek, homepage"><strong>Mayo Racek</strong></a><nav class="site-nav" id="primary-navigation" aria-label="Main navigation">'+navLink('services/','Services',active,base)+navLink('blog/','Blog',active,base)+navLink('about/','About',active,base)+navLink('contact/','Contact',active,base)+'</nav><button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button></div></header>';}
+function footer(base){return '<footer class="site-footer"><div class="site-container footer-top"><div><a class="brand" href="'+path('',base)+'"><strong>Mayo Racek</strong></a><p>Data engineering, analytics and practical AI.</p></div><div class="footer-links"><a href="'+path('services/',base)+'">Services</a><a href="'+path('blog/',base)+'">Blog</a><a href="'+path('about/',base)+'">About</a><a href="'+path('resume/',base)+'">Resume</a><a href="'+path('contact/',base)+'">Contact</a></div><div class="footer-social">'+external(profile.linkedin,'LinkedIn ↗')+external(profile.github,'GitHub ↗')+external(profile.x,'X ↗')+'</div></div><div class="site-container footer-bottom"><span>© '+new Date().getFullYear()+' Mayo Racek</span><span>Based in Slovakia · Working internationally</span></div></footer>';}
+function contactCta(base,{compact=false}={}){return '<section class="contact-band '+(compact?'compact':'')+'" id="contact"><div class="site-container contact-band-inner"><div><span class="kicker">LET US BUILD SOMETHING USEFUL</span><h2>What is your next goal?</h2><p>Tell me what you want to achieve with your data.</p></div><a class="btn btn-primary" href="'+path('start/',base)+'">Share Your Goal <span aria-hidden="true">↗</span></a></div></section>';}
 function shell({title,description,body,active='home',base='/',canonical='',og='website'}){
   const fullTitle= title==='Home'?'Mayo Racek | Data & AI Solutions Architect':`${title} | Mayo Racek`;
   const metaDesc=description||'Cloud data engineering, measurement architecture and governed AI automation. Solutions designed around real problems.';
   const fullUrl=`https://mayoracek.com${title==='Page not found'?'/404/':canonical||'/'}`;
-  const noindex = title==='Page not found' || /^\/projects\/[^/]+\/$/.test(canonical);
+  const noindex = title==='Page not found' || canonical==='/projects/' || canonical==='/lab/aria/' || /^\/projects\/[^/]+\/$/.test(canonical);
   const pagePath = title==='Page not found'?'/404/':canonical||'/';
   const segments = pagePath.split('/').filter(Boolean);
   const pageType = title==='Page not found' ? 'notFound' : !segments.length ? 'home' : segments[0] === 'services' && segments.length > 1 ? 'serviceDetail' : segments[0] === 'blog' && segments.length > 1 ? 'article' : segments[0] === 'lab' ? 'labProject' : segments[0];
   const pageEvent = {event:'pageViewed',schemaVersion:'1.0.0',page:{pageType,pagePath,pageTitle:title,language:'en',canonicalUrl:fullUrl}};
   // Data layer messages remain local until a separately governed collection integration is added.
   const dataLayerInit = '<script>window.dataLayer=window.dataLayer||[];window.dataLayer.push('+JSON.stringify(pageEvent).replace(/</g,'\\u003c')+');</script>';
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="color-scheme" content="dark"/><meta name="theme-color" content="#071325"/><meta name="description" content="${esc(metaDesc)}"/>${noindex?'<meta name="robots" content="noindex, follow"/>':''}<meta property="og:type" content="${esc(og)}"/><meta property="og:title" content="${esc(fullTitle)}"/><meta property="og:description" content="${esc(metaDesc)}"/><meta property="og:url" content="${esc(fullUrl)}"/><link rel="canonical" href="${esc(fullUrl)}"/>${dataLayerInit}<link rel="icon" href="${path('favicon.svg',base)}" type="image/svg+xml"/><link rel="stylesheet" href="${path('styles.css',base)}"/><title>${esc(fullTitle)}</title></head><body>${header(active,base)}<main id="main-content">${body}</main>${footer(base)}<script defer src="${path('site-analytics.js',base)}"></script><script>(function(){const b=document.querySelector('.menu-toggle');const n=document.querySelector('.site-nav');if(b&&n){const close=()=>{b.setAttribute('aria-expanded','false');n.classList.remove('open')};b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));n.classList.toggle('open',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();b.focus()}});document.addEventListener('click',e=>{if(!b.contains(e.target)&&!n.contains(e.target))close()})}})();</script></body></html>`;
-}
-function serviceCard(s,base){return `<a class="service-card" data-track-event="serviceSelected" data-track-location="servicesGrid" data-track-id="${esc(s.slug)}" href="${path(`services/${s.slug}/`,base)}"><div class="service-icon">${icon(s.icon)}</div><div class="service-number">${s.number}</div><h3>${esc(s.name)}</h3><p>${esc(s.short)}</p><span class="card-link">Explore this service <span aria-hidden="true">↗</span></span></a>`;}
-function projectCard(p,base){return `<a class="project-card" href="${path(`projects/${p.slug}/`,base)}"><div class="project-art art-${p.theme}"><span class="art-serial">${p.number} / WORK</span><span class="art-glyph" aria-hidden="true">${p.theme==='cyan'?'◌':p.theme==='blue'?'▧':'✳'}</span><span class="project-category">${esc(p.category)}</span></div><div class="project-card-body"><span class="status-label">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><span class="card-link">See what’s planned <span aria-hidden="true">↗</span></span></div></a>`;}
-function postCard(p,base){return `<a class="post-card" data-track-event="articleSelected" data-track-location="blogGrid" data-track-id="${esc(p.slug)}" href="${path(`blog/${p.slug}/`,base)}"><div class="post-topline"><span>${esc(p.category)}</span><span class="status-label">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><span class="card-link">See the outline <span aria-hidden="true">↗</span></span></a>`;}
-function sectionHead(kicker,title,sub='',link='',linkText='',base='/'){return `<div class="section-head"><div><span class="kicker">${esc(kicker)}</span><h2>${title}</h2>${sub?`<p>${esc(sub)}</p>`:''}</div>${link?`<a class="section-link" href="${path(link,base)}">${esc(linkText)} <span aria-hidden="true">↗</span></a>`:''}</div>`;}
-function dataLifecycle(){
-  const stages=[
-    ['01','Collect','Web, app and business events'],
-    ['02','Ingest','APIs, exports and pipelines'],
-    ['03','Transform','Models, quality and governance'],
-    ['04','Analyze','Trusted metrics and exploration'],
-    ['05','Visualize','Reports that support decisions'],
-    ['06','Activate','CRM, operations and approved tools']
-  ];
-  return `<section class="section lifecycle-section" aria-labelledby="data-lifecycle-title"><div class="site-container"><div class="section-head"><div><span class="kicker">FROM DATA TO ACTION</span><h2 id="data-lifecycle-title">One connected data journey.</h2><p>Bring information together, make it trustworthy and put it to work. Each stage is designed for your goals, not a fixed technology stack.</p></div></div><ol class="lifecycle-track">${stages.map(([n,name,description])=>`<li class="lifecycle-stage"><span class="lifecycle-number">${n}</span><strong>${name}</strong><span>${description}</span></li>`).join('')}</ol><div class="lifecycle-ai"><div><span class="kicker">READY FOR WHAT'S NEXT</span><h3>Build on the same foundation with AI and automation.</h3><p>Trusted data, governed access and reliable operations support practical agents, intelligent workflows and new business applications.</p></div><span class="lifecycle-chip">AI readiness · Security · Quality · FinOps</span></div><p class="lifecycle-note">Privacy, consent, governance, monitoring and cost control apply across the lifecycle. The data path and destinations depend on the use case and permitted purpose.</p></div></section>`;
-}
+  const homeUrl='https://mayoracek.com/';
+  const personId=homeUrl+'#person';
+  const structured=[{
+    '@type':'Person','@id':personId,name:profile.name,url:homeUrl,jobTitle:profile.role,
+    sameAs:[profile.linkedin,profile.github,profile.x],
+    knowsAbout:['Data engineering','Digital measurement','BigQuery','Analytics engineering','Artificial intelligence','Agentic automation']
+  }];
+  if(canonical==='/' || canonical==='')structured.push({'@type':'WebSite','@id':homeUrl+'#website',url:homeUrl,name:'Mayo Racek',inLanguage:'en'});
+  const service=services.find(item=>canonical==='/services/'+item.slug+'/');
+  if(service){
+    structured.push({'@type':'Service','@id':fullUrl+'#service',name:service.name,description:service.teaser,url:fullUrl,provider:{'@id':personId}});
+    structured.push({'@type':'BreadcrumbList',itemListElement:[
+      {'@type':'ListItem',position:1,name:'Home',item:homeUrl},
+      {'@type':'ListItem',position:2,name:'Services',item:homeUrl+'services/'},
+      {'@type':'ListItem',position:3,name:service.name,item:fullUrl}
+    ]});
+  }
+  const article=posts.find(item=>canonical==='/blog/'+item.slug+'/');
+  if(article){
+    structured.push({'@type':'Article',headline:article.title,description:article.excerpt,mainEntityOfPage:fullUrl,
+      inLanguage:'en',author:{'@id':personId},publisher:{'@id':personId}});
+    structured.push({'@type':'BreadcrumbList',itemListElement:[
+      {'@type':'ListItem',position:1,name:'Home',item:homeUrl},
+      {'@type':'ListItem',position:2,name:'Blog',item:homeUrl+'blog/'},
+      {'@type':'ListItem',position:3,name:article.title,item:fullUrl}
+    ]});
+  }
+  const jsonLd='<script type="application/ld+json">'+JSON.stringify({'@context':'https://schema.org','@graph':structured}).replace(/</g,'\\u003c')+'</script>';
 
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="color-scheme" content="dark"/><meta name="theme-color" content="#071325"/><meta name="description" content="${esc(metaDesc)}"/>${noindex?'<meta name="robots" content="noindex, follow"/>':''}<meta property="og:type" content="${esc(og)}"/><meta property="og:title" content="${esc(fullTitle)}"/><meta property="og:description" content="${esc(metaDesc)}"/><meta property="og:url" content="${esc(fullUrl)}"/><link rel="canonical" href="${esc(fullUrl)}"/><meta name="twitter:card" content="summary"/><meta name="twitter:creator" content="@MayoRacek"/>${jsonLd}${dataLayerInit}<link rel="icon" href="${path('favicon.svg',base)}" type="image/svg+xml"/><link rel="stylesheet" href="${path('styles.css',base)}"/><title>${esc(fullTitle)}</title></head><body><a class="skip-link" href="#main-content">Skip to content</a>${header(active,base)}<main id="main-content">${body}</main>${footer(base)}<script defer src="${path('site-analytics.js',base)}"></script><script>(function(){const b=document.querySelector('.menu-toggle');const n=document.querySelector('.site-nav');if(b&&n){const close=()=>{b.setAttribute('aria-expanded','false');n.classList.remove('open')};b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));n.classList.toggle('open',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();b.focus()}});document.addEventListener('click',e=>{if(!b.contains(e.target)&&!n.contains(e.target))close()})}})();</script></body></html>`;
+}
+function serviceCard(s,base){return `<a class="service-card" data-track-event="serviceSelected" data-track-location="servicesGrid" data-track-id="${esc(s.slug)}" href="${path(`services/${s.slug}/`,base)}"><div class="service-icon">${icon(s.icon)}</div><div class="service-number">${s.number}</div><h3>${esc(s.name)}</h3><p>${esc(s.short)}</p><span class="card-link">Explore ${esc(s.name)} <span aria-hidden="true">↗</span></span></a>`;}
+function projectCard(p,base){return `<a class="project-card" href="${path(`projects/${p.slug}/`,base)}"><div class="project-art art-${p.theme}"><span class="art-serial">${p.number} / WORK</span><span class="art-glyph" aria-hidden="true">${p.theme==='cyan'?'◌':p.theme==='blue'?'▧':'✳'}</span><span class="project-category">${esc(p.category)}</span></div><div class="project-card-body"><span class="status-label">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><span class="card-link">See what’s planned <span aria-hidden="true">↗</span></span></div></a>`;}
+function postCard(p,base){return `<a class="post-card" data-track-event="articleSelected" data-track-location="blogGrid" data-track-id="${esc(p.slug)}" href="${path(`blog/${p.slug}/`,base)}"><div class="post-topline"><span>${esc(p.category)}</span><span class="status-label">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><span class="card-link">Read the article <span aria-hidden="true">↗</span></span></a>`;}
+function sectionHead(kicker,title,sub='',link='',linkText='',base='/'){return `<div class="section-head"><div><span class="kicker">${esc(kicker)}</span><h2>${title}</h2>${sub?`<p>${esc(sub)}</p>`:''}</div>${link?`<a class="section-link" href="${path(link,base)}">${esc(linkText)} <span aria-hidden="true">↗</span></a>`:''}</div>`;}
 export function renderHome(base='/'){
- const body=`<section class="hero"><div class="hero-shine hero-shine-a"></div><div class="hero-shine hero-shine-b"></div><div class="site-container hero-grid"><div class="hero-copy"><div class="eyebrow"><span class="eyebrow-rule"></span>DATA ENGINEERING <span class="mid-dot">·</span> CLOUD <span class="mid-dot">·</span> AGENTIC AI</div><h1><span class="headline-desktop">Designing data solutions that <em>move businesses forward.</em></span><span class="headline-mobile">Data solutions that <em>move businesses forward.</em></span></h1><p class="hero-intro">I design and build intelligent data solutions, connecting digital measurement, cloud engineering and AI automation to help businesses make better decisions, unlock opportunities and grow.</p><div class="hero-actions"><a class="btn btn-primary" data-track-event="ctaClicked" data-track-id="heroExploreServices" data-track-location="hero" href="${path('services/',base)}">Explore Services <span aria-hidden="true">↗</span></a><a class="btn btn-outline" data-track-event="ctaClicked" data-track-id="heroReadBlog" data-track-location="hero" href="${path('blog/',base)}">Read My Blog <span aria-hidden="true">↗</span></a></div><div class="hero-signoff"><span class="little-line"></span><p>More than 17 years turning measurement, analytics and complex data into systems teams can rely on.</p></div></div><div class="hero-visual" aria-label="Portrait of Mayo Racek"><div class="orb orb-a"></div><div class="orb orb-b"></div><div class="portrait-orbit orbit-one"></div><div class="portrait-orbit orbit-two"></div><div class="portrait-floor"></div><img class="portrait" src="${path('mayo-portrait-cropped.webp',base)}" width="415" height="643" alt="Mayo Racek, portrait"/></div></div><div class="hero-bottom-fade"></div></section>
- <section class="section services-section" id="services"><div class="site-container">${sectionHead('HOW I CAN HELP','What do you want to achieve?','Build a reliable data foundation, unlock insights and put information to work with intelligent automation.','services/','Explore all services',base)}<div class="service-grid">${services.map(s=>serviceCard(s,base)).join('')}</div><div class="intake-teaser"><div><span class="kicker">START WITH YOUR GOAL</span><p>Tell me what you want to achieve. A few sentences are enough.</p></div><a class="text-link" href="${path('start/',base)}">Share Your Goal <span aria-hidden="true">↗</span></a></div></div></section>
- ${dataLifecycle()}<section class="section work-section"><div class="site-container"><div class="section-head"><div><span class="kicker">CURRENTLY BUILDING</span><h2>Aria: removing repetitive work from GTM operations.</h2><p>An engineering initiative exploring controlled AI assistance for audits, reviews and validation. Not a finished client deployment.</p></div></div><a class="lab-feature" data-track-event="labProjectSelected" data-track-id="aria" data-track-location="homeLab" href="${path('lab/aria/',base)}"><div><span class="status-label">In development · engineering lab</span><h3>Aria — Agent-assisted GTM operations</h3><p>Explore the problem, design boundaries and the evidence required before a production claim.</p></div><span class="card-link">Read the engineering brief <span aria-hidden="true">↗</span></span></a></div></section>
- <section class="section approach-section"><div class="site-container approach-grid"><div><span class="kicker">HOW I WORK</span><h2>Understand the real need. Build the simplest solution <em>that actually works.</em></h2></div><div class="approach-copy"><p>First, understand the decision the team needs to make, the data they already have, and the time currently wasted on workarounds.</p><p>Then build for that specific need. Make it useful, testable and simple enough to maintain.</p><a class="text-link" href="${path('about/',base)}">A bit more about my approach <span aria-hidden="true">↗</span></a></div></div></section>
- <section class="section blog-section"><div class="site-container">${sectionHead('FROM THE BLOG','Notes on decisions, architecture and quality.','Working principles behind measurement, cloud data and responsible AI engineering.','blog/','Visit the blog',base)}<div class="post-grid">${posts.map(p=>postCard(p,base)).join('')}</div></div></section>${contactCta(base)}`;
- return shell({title:'Home',description:'Mayo Racek designs intelligent data solutions, connecting measurement, cloud engineering and AI automation to help businesses move forward.',body,active:'home',base});
+ const hero="<section class=\"hero\"><div class=\"hero-shine hero-shine-a\"></div><div class=\"hero-shine hero-shine-b\"></div><div class=\"site-container hero-grid\"><div class=\"hero-copy\"><div class=\"eyebrow\"><span class=\"eyebrow-rule\"></span>DATA ENGINEERING <span class=\"mid-dot\">·</span> ANALYTICS <span class=\"mid-dot\">·</span> AI</div><h1><span class=\"headline-desktop\">Designing data solutions to <em>empower your goals.</em></span><span class=\"headline-mobile\">Data solutions to <em>empower your goals.</em></span></h1><p class=\"hero-intro\">From data collection and cloud engineering to analytics and intelligent automation. I design connected solutions that help you turn information into action.</p><div class=\"hero-actions\"><a class=\"btn btn-primary\" data-track-event=\"ctaClicked\" data-track-id=\"heroExploreServices\" data-track-location=\"hero\" href=\"__SERVICES_URL__\">Explore Services <span aria-hidden=\"true\">↗</span></a><a class=\"btn btn-outline\" data-track-event=\"ctaClicked\" data-track-id=\"heroReadBlog\" data-track-location=\"hero\" href=\"__BLOG_URL__\">Read My Blog <span aria-hidden=\"true\">↗</span></a></div><div class=\"hero-signoff\"><span class=\"little-line\"></span><p>17+ years in data and analytics engineering.</p></div></div><div class=\"hero-visual\" aria-label=\"Portrait of Mayo Racek\"><div class=\"orb orb-a\"></div><div class=\"orb orb-b\"></div><div class=\"portrait-orbit orbit-one\"></div><div class=\"portrait-orbit orbit-two\"></div><div class=\"portrait-floor\"></div><img class=\"portrait\" src=\"__PORTRAIT__\" width=\"415\" height=\"643\" alt=\"Mayo Racek, data and AI solutions architect\"/></div></div><div class=\"hero-bottom-fade\"></div></section>".replaceAll('__SERVICES_URL__',path('services/',base)).replaceAll('__BLOG_URL__',path('blog/',base)).replaceAll('__PORTRAIT__',path('mayo-portrait-cropped.webp',base));
+ const content="<section class=\"section services-section\" id=\"services\"><div class=\"site-container\"><div class=\"section-head\"><div><span class=\"kicker\">WHAT I DO</span><h2>From data to action.</h2><p>Collect, connect, analyze and activate your data. Build for AI when it adds value.</p></div></div><div class=\"service-grid\">__CARDS__</div></div></section>".replaceAll('__CARDS__',services.map(s=>serviceCard(s,base)).join(''));
+ return shell({title:'Home',description:'Mayo Racek designs connected data solutions, from collection and analytics to AI-ready data and practical automation.',body:hero+content+contactCta(base,{compact:true}),active:'home',base});
 }
 export function renderServices(base='/'){
- const body=`<section class="page-hero small-hero"><div class="site-container"><span class="kicker">SERVICES</span><h1>Build your data foundation. <em>Unlock what comes next.</em></h1><p>From data collection and ingestion to transformation, analytics, activation and AI, I design reliable solutions around the outcomes you want to achieve.</p></div></section>${dataLifecycle()}<section class="section"><div class="site-container"><div class="service-grid">${services.map(s=>serviceCard(s,base)).join('')}</div><div class="service-detail-previews">${services.map(s=>`<article class="service-preview"><div><span class="eyebrow-mini">${s.number} / ${esc(s.name)}</span><h2>${esc(s.short)}</h2><p>${esc(s.teaser)}</p></div><div><span class="preview-label">Typical work</span><ul class="compact-list">${s.offerings.map(x=>`<li>${esc(x[0])}</li>`).join('')}</ul><a class="text-link" href="${path('services/'+s.slug+'/',base)}">How I approach this <span aria-hidden="true">↗</span></a></div></article>`).join('')}</div></div></section>${contactCta(base)}`;
- return shell({title:'Services',description:'Explore end-to-end data collection, cloud data engineering, analytics, activation, AI-ready foundations and intelligent automation by Mayo Racek.',body,active:'services',base,canonical:'/services/'});
+ const intro="<section class=\"page-hero small-hero\"><div class=\"site-container\"><span class=\"kicker\">SERVICES</span><h1>From collection to <em>action.</em></h1><p>Three connected ways to make your data more useful, from reliable measurement to analytics and intelligent automation.</p></div></section>";
+ const list="<section class=\"section services-landing\"><div class=\"site-container\"><div class=\"service-grid\">__CARDS__</div><p class=\"service-foundation\">Every solution is built around quality, privacy, security and clear ownership.</p></div></section>".replaceAll('__CARDS__',services.map(s=>serviceCard(s,base)).join(''));
+ return shell({title:'Data & AI Services',description:'Data collection, cloud data engineering, analytics, activation and intelligent automation services by Mayo Racek.',body:intro+list+contactCta(base,{compact:true}),active:'services',base,canonical:'/services/'});
 }
-
-function measurementFramework(){
- const steps=[
-  ['01','Define','Business questions, KPIs and consent requirements'],
-  ['02','Instrument','Web & App events, data layer and GTM'],
-  ['03','Collect','Server-side GTM when appropriate, then GA4'],
-  ['04','Export','GA4 data in BigQuery'],
-  ['05','Model','Dataform transformations, tested data products'],
-  ['06','Use','Dashboards, governed conversational analytics and activation']
- ];
- return '<section class="section framework-section" aria-labelledby="measurement-flow-title"><div class="site-container"><span class="kicker">EXAMPLE ARCHITECTURE</span><div class="framework-intro"><div><h2 id="measurement-flow-title">From customer activity to something your team can use.</h2><p>An enterprise framework should connect the whole measurement journey, not just a few tags. The stages below are illustrative and adapt to your stack and privacy requirements.</p></div></div><ol class="framework-steps">'+steps.map(([n,title,sub])=>'<li class="framework-step"><span class="framework-n">'+n+'</span><strong>'+title+'</strong><span>'+sub+'</span></li>').join('')+'</ol><p class="framework-note"><strong>Built-in controls:</strong> consent, identity, data quality, monitoring and clear ownership. Marketing destinations may connect directly at collection time; reporting and conversational analysis use governed, validated data. Server-side GTM is used only where suitable.</p></div></section>';
-}
-
-function responsibleDataBlock(){
- return '<section class="section responsibility-section"><div class="site-container responsibility-layout"><div><span class="kicker">PRIVACY & SECURITY BY DESIGN</span><h2>Use data with purpose. Respect the people behind it.</h2></div><div><p>Collection and activation should have a documented purpose, a lawful basis and clear controls. I design around consent where it is required, data minimisation, approved destinations, access permissions and verifiable changes.</p><p>For AI, the same care extends to sensitive information, limited tool access, human review and auditability. The specific legal and security requirements are assessed for each project.</p></div></div></section>';
-}
-
-function dataActivationJourney(){
- return '<section class="section activation-section" aria-labelledby="activation-title"><div class="site-container"><span class="kicker">BEYOND REPORTING</span><div class="activation-heading"><h2 id="activation-title">One trusted foundation. Several useful outcomes.</h2><p>Keep collection, definitions and permissions consistent. Choose the destinations that match your business, rather than designing your data around a single vendor.</p></div><div class="activation-flow"><div class="activation-step"><span class="activation-no">01 / INPUTS</span><h3>Connect your sources</h3><p>Web & App, sales, product, CRM and operational records.</p></div><div class="activation-step"><span class="activation-no">02 / FOUNDATION</span><h3>Model and validate</h3><p>Reliable pipelines, shared definitions, data quality and governed access.</p></div><div class="activation-step activation-uses"><span class="activation-no">03 / USE THE DATA</span><div class="activation-options"><div><strong>Reporting & analysis</strong><span>Dashboards, metrics and questions answered with trusted data</span></div><div><strong>Data activation</strong><span>Customer.io, Google Ads, CRM or other approved tools</span></div><div><strong>AI & automation</strong><span>Permissioned retrieval, conversational analytics and controlled workflows</span></div></div></div></div><p class="activation-note">Destinations, identities and access are selected for the use case and permitted purpose. No automatic sharing with advertising tools or AI models.</p></div></section>';
-}
-
 export function renderService(slug,base='/'){
- const s=services.find(x=>x.slug===slug);if(!s)throw new Error('Unknown service '+slug);
- const body=`<section class="page-hero service-page-hero"><div class="site-container"><a class="back-link" href="${path('services/',base)}">← All services</a><span class="kicker">${s.number} / ${esc(s.name.toUpperCase())}</span><h1>${esc(s.headline)}</h1><p>${esc(s.intro)}</p><div class="hero-actions"><a class="btn btn-primary" href="${path('start/',base)}">Share Your Goal <span aria-hidden="true">↗</span></a></div></div></section><section class="section"><div class="site-container">${sectionHead('WHAT YOU CAN ACHIEVE',esc(s.problemTitle))}<div class="problem-grid">${s.problems.map(([t,d],i)=>`<div class="problem-item"><span class="tiny-number">0${i+1}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div></div></section><section class="section section-muted"><div class="site-container">${sectionHead('THE SERVICES',esc(s.helpTitle),'Specific capabilities and testable deliverables, chosen for the outcome you need.')}<div class="offer-grid">${s.offerings.map(([t,d])=>`<div class="offer-item"><span class="bullet-glow"></span><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div></div></section>${s.slug==='measurement-architecture'?measurementFramework():''}${s.slug==='cloud-data-products'?dataActivationJourney():''}<section class="section"><div class="site-container">${sectionHead('HOW I WORK','From your goal to a validated solution.','Clear requirements, thoughtful engineering, verification and handover.')}<div class="steps-grid">${s.process.map(([t,d],i)=>`<div class="step"><div class="step-no">0${i+1}</div><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join('')}</div></div></section><section class="section section-muted"><div class="site-container deliverable-grid"><div><span class="kicker">WHAT YOU GET</span><h2>Something your team can own.</h2><p>${esc(s.fit)}</p></div><ul class="check-list">${s.deliverables.map(x=>`<li><span aria-hidden="true">✓</span> ${esc(x)}</li>`).join('')}</ul></div></section>${responsibleDataBlock()}${contactCta(base,{compact:true})}`;
+ const s=services.find(item=>item.slug===slug); if(!s)throw new Error('Unknown service '+slug);
+ const offeringHtml=s.offerings.map(([name,description])=>'<li><strong>'+esc(name)+'</strong><span>'+esc(description)+'</span></li>').join('');
+ const body="<section class=\"page-hero service-page-hero simple-service-hero\"><div class=\"site-container\"><a class=\"back-link\" href=\"__BACK__\">← All services</a><span class=\"kicker\">__NAME__</span><h1>__HEADLINE__</h1><p>__INTRO__</p></div></section><section class=\"section simple-service-section\"><div class=\"site-container\"><div class=\"simple-service-layout\"><div><span class=\"kicker\">HOW I HELP</span><h2>What I deliver</h2><p class=\"simple-service-fit\"><strong>Best for:</strong> __FIT__</p></div><ul class=\"simple-offerings\">__OFFERINGS__</ul></div><div class=\"service-action\"><p>Start with your goal. We can agree on the right scope, technology and acceptance criteria.</p><a class=\"btn btn-primary\" href=\"__START__\">Share Your Goal <span aria-hidden=\"true\">↗</span></a></div></div></section>".replaceAll('__BACK__',path('services/',base)).replaceAll('__NAME__',esc(s.name)).replaceAll('__HEADLINE__',esc(s.headline)).replaceAll('__INTRO__',esc(s.intro)).replaceAll('__FIT__',esc(s.fit)).replaceAll('__OFFERINGS__',offeringHtml).replaceAll('__START__',path('start/',base));
  return shell({title:s.name,description:s.teaser,body,active:'services',base,canonical:'/services/'+slug+'/'});
 }
 export function renderProjects(base='/'){

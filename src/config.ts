@@ -3,7 +3,7 @@
 export const SITE_TITLE = "Mayo Racek | Data & AI Solutions Architect";
 
 export const SITE_DESCRIPTION =
-  "Designing intelligent data solutions that connect digital measurement, cloud engineering and AI automation to move businesses forward.";
+  "Designing data solutions to empower your goals. Collection, cloud data engineering, analytics and responsible automation.";
 
 export const GENERATE_SLUG_FROM_TITLE = true;
 
