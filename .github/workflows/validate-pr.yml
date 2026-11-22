@@ -44,7 +44,7 @@ jobs:
         run: |
           python3 -m pip install playwright==1.56.0
           python3 -m playwright install --with-deps chromium
-      - name: Check hero viewport and lifecycle interaction
+      - name: Check blog layouts and first-party interactions
         run: python3 scripts/check-responsive.py
       - name: Upload mobile and desktop QA screenshots
         if: always()
