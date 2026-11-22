@@ -1,43 +1,50 @@
-# Website intent map — concise release, November 2026
+# Website intent map — final navigation and visitor journey
 
-## Positioning
-**Mayo Racek — Data & AI Solutions Architect**
+## Homepage
 
-**Headline:** Designing data solutions to empower your goals.
+**Main message:** Designing data solutions to empower your goals.
 
-**Supporting copy:** From data collection and cloud engineering to analytics and intelligent automation. I design connected solutions that help you turn information into action.
+The hero introduces the engineering promise and provides two choices: **Explore Services** and **Read My Blog**. The homepage does **not** duplicate the service cards. Instead it contains one interactive full data lifecycle followed by one invitation to describe an opportunity.
 
-The website is a focused engineering consultancy portfolio, not a product catalog. It communicates a single proposition, three services and one clear contact action. No fabricated outcomes, completed projects or unearned credentials.
+### Full data lifecycle
 
-## Three service pathways
+The curved path is the information architecture: Collect → Connect → Transform → Analyze → Activate → Automate. Each real button selects a self-contained, static HTML explanation with a descriptive link to an existing service page.
 
-| Service | Customer outcome | Stable URL | Main capabilities |
-| --- | --- | --- | --- |
-| Collect & Measure | Trustworthy web and app activity | /services/measurement-architecture/ | Measurement plans, event design, GTM/GA4/server-side tagging, consent and QA |
-| Connect & Analyze | Connected and understandable data | /services/cloud-data-products/ | Ingestion, BigQuery, Dataform, BI and data quality |
-| Activate & Automate | Data used by approved business systems | /services/applied-ai-systems/ | Reverse ETL, AI-readiness, controlled automation and evaluation |
+| Stage | Visitor understanding | Link destination |
+| --- | --- | --- |
+| Collect | Consent-aware measurement and useful events | Collect & Measure |
+| Connect | Integrate applications, APIs and business data | Connect & Analyze |
+| Transform | Govern and test data models | Connect & Analyze |
+| Analyze | Produce decision-oriented insights | Connect & Analyze |
+| Activate | Feed approved data into business workflows | Activate & Automate |
+| Automate | Build evaluated, controlled AI-assisted workflows | Activate & Automate |
 
-Each service page has one H1, one concise explanation, three capability groups, an ideal-customer statement and a single next action. The content is server-rendered HTML. Do not invent pricing, industry specialisation, quantitative outcomes or completed AI deployments.
+The lifecycle communicates how data becomes useful. The three service pages communicate what Mayo can actually deliver. Do not put another copy of all three services on the homepage.
 
-## Homepage: element by element
+## Services
 
-| Element | Reason to exist | Expected user action | Data-layer event |
-| --- | --- | --- | --- |
-| Brand / portrait | Identify the individual engineer | Recognize the provider | pageViewed |
-| Hero message | Explain the promise quickly | Understand value | pageViewed |
-| Explore Services | Understand the offer | Open /services/ | ctaClicked, heroExploreServices |
-| Read My Blog | Evaluate engineering thinking | Open /blog/ | ctaClicked, heroReadBlog |
-| Three service cards | Select the relevant capability | Open service detail | serviceSelected |
-| Final CTA | Share an outcome to explore | Open /start/ | ctaClicked |
-| Footer | Find personal/contact details | Follow selected link | navigationClicked or socialLinkClicked |
+Each service page explains its distinct delivery process using a short four-stage timeline, three capabilities, and one CTA: **Start a Conversation**, linking to the enquiry section of Contact. Do not insert "best suited for" or similar audience restrictions. Do not publish invented success metrics.
 
-The six-stage infographic, duplicate homepage blog showcase, and in-development project feature were removed to keep the homepage short. Finished case studies must pass QA, UAT and editorial approval before being presented as completed work.
+## About Me
 
-## Navigation and evidence
-Main navigation: Services, Blog, About and Contact; the brand links Home. Resume remains accessible from About and the footer. Work and Aria routes remain available but have noindex directives until verified content exists; Aria clearly states its in-development status.
+Warm, credible first-person introduction about data engineering, AI, continuous learning, knowledge-sharing, family and football. Visitors can download the PDF CV immediately or open the detailed Resume page. About Me is a people/identity page, not another services list.
 
-## SEO / GEO baseline
-Static Astro HTML; descriptive titles and meta descriptions; canonical URLs; robots and sitemap; factual Person/WebSite, Service, Article and BreadcrumbList JSON-LD with no fabricated reviews, dates or pricing. True author identity and real blog/article content are more valuable than artificial keyword repetitions. Verify indexability and metadata after deployment.
+## Contact
 
-## Data and consent
-Event schema remains unchanged (camelCase data-layer messages, version 1.0.0). No GTM/GA4 vendor transmission is introduced, and no visitor information from the project brief is sent to the data layer. Confirm browser behavior and consent before adding a destination.
+Contact includes a topic dropdown (Collect & Measure, Connect & Analyze, Activation/AI, Not sure yet, Other) and one required short description. Visitors can prepare an email draft or copy it. The form has **no backend**. Never call a prepared draft a submitted lead.
+
+The legacy /start/ route reuses the same interface but has a noindex directive; canonical contact is /contact/. Any future direct submission requires a deployed and secured backend, spam protection, privacy terms, acknowledgement/receipt handling and an updated tracking event.
+
+## Resume
+
+The Resume page keeps verified career history and displays a link to the professionally designed two-page PDF. No unearned certification badges or unverified outcomes.
+
+## Blog and Work
+
+The blog is for original, published, complete technical articles with clear attribution and defensible content. Work remains unindexed until case studies are truly completed, tested and publication-approved. Aria is an openly labelled in-development lab initiative, not a finished product.
+
+## Tracking and SEO
+
+Data-layer v1.1.0: pageViewed; CTA/content/service navigation; lifecycleStepSelected; resumeDownloadClicked; meaningful contact-intent events. No free-text form values enter event payloads. GTM/GA4 forwarding is not yet deployed.
+
+SEO/GEO: static HTML content, canonical URLs, sitemap filtering, robots directives, profile/service/article/breadcrumb structured data, and direct internal links. Verify external indexing, browser interactions, mobile layout, real publication dates and social-preview assets as separate QA activities.
