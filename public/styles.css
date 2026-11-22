@@ -892,7 +892,7 @@ body{background:#101317;color:var(--ink)}
  .service-hero-v2{padding:45px 0 42px}
  .service-hero-v2 h1{font-size:clamp(34px,8vw,48px)}
  .service-hero-v2 p{font-size:16px}
- .resume-v2-hero-inner{display:flex;flex-direction:column-reverse;gap:0;align-items:stretch}
+ .resume-v2-hero-inner{display:flex;flex-direction:column;gap:0;align-items:stretch}
  .resume-v2-photo{order:2;height:220px;max-width:260px;margin:0 auto 0}
  .resume-v2-copy{order:1;padding:34px 0 18px}
  .resume-v2-copy h1{font-size:54px}
