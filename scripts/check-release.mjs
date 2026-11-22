@@ -43,6 +43,16 @@ const aria = page('lab/aria/');
 const article = page('blog/start-with-the-problem/');
 
 has(home, 'Designing data solutions', 'Hero');
+has(home, 'From data to action'.toUpperCase(), 'Data lifecycle section');
+has(home, 'lifecycle-track', 'Data lifecycle visualization');
+has(home, 'Build on the same foundation with AI and automation.', 'AI-readiness continuation');
+const servicesPage=page('services/');
+has(servicesPage, 'lifecycle-track', 'Services lifecycle visualization');
+for(const title of ['Data Collection &amp; Measurement', 'Cloud Data Engineering &amp; Analytics', 'AI-Ready Data &amp; Intelligent Automation']){
+  if(!home.includes(title)) problems.push('Service card missing: '+title);
+  if(!servicesPage.includes(title)) problems.push('Services overview missing: '+title);
+}
+if(home.includes('Discuss your project')||home.includes('What problem are we solving?')) problems.push('Outdated homepage copy');
 has(home, 'Explore Services', 'First hero CTA');
 has(home, 'Read My Blog', 'Second hero CTA');
 has(home, 'data-track-id="heroExploreServices"', 'Explicit CTA ID');
@@ -55,7 +65,9 @@ has(measure, 'Dataform', 'Data lifecycle');
 has(measure, 'legal-basis', 'Consent');
 has(cloud, 'Customer.io', 'Activation');
 has(cloud, 'Google Ads', 'Activation');
-has(cloud, 'AI-ready data foundations', 'AI-ready data');
+has(cloud, 'Data ingestion and integration', 'Data ingestion');
+has(cloud, 'Analytics and visualization', 'Visualization');
+has(ai, 'AI readiness and data access', 'AI-ready data and access');
 has(ai, 'least-privilege', 'Agent security');
 has(aria, 'IN DEVELOPMENT', 'Aria status');
 has(aria, 'QUALITY GATES', 'Aria validation plan');
