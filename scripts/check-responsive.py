@@ -52,6 +52,12 @@ try:
                         errors.append(f"{width}x{height}: Portrait vertically overlaps introduction")
                     if intro["y"] <= title["y"]:
                         errors.append(f"{width}x{height}: Intro starts before headline")
+            if width <= 600 and height >= 740 and life["y"] < height - 3:
+                errors.append(f"{width}x{height}: Lifecycle title enters initial viewport")
+            if width >= 390 and width <= 600:
+                signoff = page.locator(".hero-signoff").bounding_box()
+                if signoff and height >= 740 and signoff["y"] + signoff["height"] < height * 0.76:
+                    errors.append(f"{width}x{height}: Unbalanced empty space below hero content")
             print(f"layout {width}x{height}: hero bottom {hero['y']+hero['height']:.0f}, lifecycle starts {life['y']:.0f}")
             horizontal = page.evaluate("Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
             if horizontal > width + 5:
