@@ -69,7 +69,7 @@ for (const route of ['services/measurement-architecture/','services/cloud-data-p
 }
 must(measure,'GTM','Measurement scope');
 must(cloud,'BigQuery','Cloud engineering scope');
-must(ai,'AI-ready foundations','AI readiness scope');
+must(ai,'AI agents &amp; automation','Agentic automation scope');
 must(lab,'IN DEVELOPMENT','Aria status');
 must(lab,'QUALITY GATES','Aria verification conditions');
 must(work,'name="robots" content="noindex, follow"','Unfinished work noindex');
