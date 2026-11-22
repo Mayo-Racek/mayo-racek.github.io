@@ -48,6 +48,16 @@ must(home,'empower your goals','Homepage promise');
 must(home,'Explore Services','Hero action');
 must(home,'Read My Blog','Hero action');
 must(home,'heroExploreServices','CTA ID');
+must(home,'name="theme-color" content="#191B1F"','Browser theme color');
+must(home,'favicon.svg?v=2','Updated browser favicon');
+const favicon=path.join(dist,'favicon.svg');
+if(!fs.existsSync(favicon))errors.push('Favicon missing');
+else{
+ const icon=read(favicon);
+ if(!icon.includes('#191B1F')||!icon.includes('#E4C8A0'))errors.push('Favicon colors do not match theme');
+ if(/#3F89FD|#29E1DD|#946FFF/i.test(icon))errors.push('Outdated blue favicon still present');
+}
+
 must(home,'heroReadBlog','CTA ID');
 must(home,'life-steps','Interactive lifecycle');
 must(home,'life-path-desktop','Curved lifecycle SVG');
