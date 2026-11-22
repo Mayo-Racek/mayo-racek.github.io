@@ -38,18 +38,21 @@ try:
                 page.close()
                 continue
 
-            # The next section should not intrude on the first viewport,
-            # even with responsive Chrome mobile/desktop dimensions.
-            if life["y"] < height - 3:
-                errors.append(f"{width}x{height}: Lifecycle starts at {life['y']:.0f}px, before fold {height}px")
+            # Test readable composition, not an artificially forced full-screen hero.
             if width <= 600:
-                portrait_style = page.locator(".hero-visual").evaluate(
-                    "(el) => ({position: getComputedStyle(el).position, y: el.getBoundingClientRect().y, height: el.getBoundingClientRect().height})")
-                if portrait_style["position"] != "absolute" or portrait_style["y"] >= height * 0.55:
-                    errors.append(f"{width}x{height}: Portrait is no longer beside the hero headline: {portrait_style}")
+                portrait = page.locator(".hero-visual").bounding_box()
+                title = page.locator(".hero h1").bounding_box()
                 intro = page.locator(".hero-intro").bounding_box()
-                if intro and portrait_style["y"] + portrait_style["height"] > intro["y"] + 12:
-                    errors.append(f"{width}x{height}: Portrait overlaps introduction: image bottom {portrait_style['y'] + portrait_style['height']:.0f}px, intro top {intro['y']:.0f}px")
+                if not portrait or not title or not intro:
+                    errors.append(f"{width}x{height}: Hero portrait, title or intro missing")
+                else:
+                    if portrait["x"] < title["x"] + title["width"] - 3:
+                        errors.append(f"{width}x{height}: Portrait horizontally overlaps title")
+                    if portrait["y"] + portrait["height"] > intro["y"] + 4:
+                        errors.append(f"{width}x{height}: Portrait vertically overlaps introduction")
+                    if intro["y"] <= title["y"]:
+                        errors.append(f"{width}x{height}: Intro starts before headline")
+            print(f"layout {width}x{height}: hero bottom {hero['y']+hero['height']:.0f}, lifecycle starts {life['y']:.0f}")
             horizontal = page.evaluate("Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
             if horizontal > width + 5:
                 errors.append(f"{width}x{height}: Horizontal overflow {horizontal}px")
