@@ -28,6 +28,12 @@ jobs:
         with:
           node-version: 20
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CV PDF renderer
+        run: python3 -m pip install weasyprint==68.0
       - name: Install dependencies
         run: npm install
 
