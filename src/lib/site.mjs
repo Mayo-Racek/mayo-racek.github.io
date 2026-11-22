@@ -200,7 +200,7 @@ function shell({title,description,body,active='home',base='/',canonical='',og='w
   const fullTitle= title==='Home'?'Mayo Racek | Data & AI Solutions Architect':`${title} | Mayo Racek`;
   const metaDesc=description||'Cloud data engineering, measurement architecture and governed AI automation. Solutions designed around real problems.';
   const fullUrl=`https://mayoracek.com${title==='Page not found'?'/404/':canonical||'/'}`;
-  const noindex = title==='Page not found' || canonical==='/projects/' || canonical==='/lab/aria/' || /^\/projects\/[^/]+\/$/.test(canonical);
+  const noindex = title==='Page not found' || canonical==='/projects/' || canonical==='/lab/aria/' || canonical==='/start/' || /^\/projects\/[^/]+\/$/.test(canonical);
   const pagePath = title==='Page not found'?'/404/':canonical||'/';
   const segments = pagePath.split('/').filter(Boolean);
   const pageType = title==='Page not found' ? 'notFound' : !segments.length ? 'home' : segments[0] === 'services' && segments.length > 1 ? 'serviceDetail' : segments[0] === 'blog' && segments.length > 1 ? 'article' : segments[0] === 'lab' ? 'labProject' : segments[0];
@@ -284,7 +284,7 @@ export function renderBlog(base='/'){
 }
 export function renderPost(slug,base='/'){
  const p=posts.find(x=>x.slug===slug);if(!p)throw new Error('Unknown post '+slug);
- const body=`<section class="page-hero small-hero"><div class="site-container"><a class="back-link" href="${path('blog/',base)}">← All writing</a><span class="kicker">${esc(p.category.toUpperCase())} / FIELD NOTE</span><h1>${esc(p.title)}</h1><p>${esc(p.excerpt)}</p></div></section><section class="section"><div class="site-container article-shell"><p class="article-intro">A practical engineering perspective. No confidential client details or unsupported performance claims.</p>${p.sections.map(([t,d],i)=>`<section class="article-outline"><span class="tiny-number">SECTION 0${i+1}</span><h2>${esc(t)}</h2><p>${esc(d)}</p></section>`).join('')}<a class="text-link" href="${path('blog/',base)}">← Return to the blog</a></div></section>${contactCta(base,{compact:true})}`;
+ const body=`<section class="page-hero small-hero"><div class="site-container"><a class="back-link" href="${path('blog/',base)}">← All writing</a><span class="kicker">${esc(p.category.toUpperCase())} / FIELD NOTE</span><h1>${esc(p.title)}</h1><p>${esc(p.excerpt)}</p></div></section><section class="section"><div class="site-container article-shell"><p class="article-byline">By Mayo Racek · Engineering field note</p><p class="article-intro">A practical engineering perspective. No confidential client details or unsupported performance claims.</p>${p.sections.map(([t,d],i)=>`<section class="article-outline"><span class="tiny-number">SECTION 0${i+1}</span><h2>${esc(t)}</h2><p>${esc(d)}</p></section>`).join('')}<a class="text-link" href="${path('blog/',base)}">← Return to the blog</a></div></section>${contactCta(base,{compact:true})}`;
  return shell({title:p.title,description:p.excerpt,body,active:'blog',base,canonical:'/blog/'+slug+'/',og:'article'});
 }
 export function renderAbout(base='/'){
