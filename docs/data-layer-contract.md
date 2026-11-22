@@ -1,8 +1,8 @@
 # First-party data layer — mayoracek.com
 
 **Schema version:** 1.1.0  
-**Status:** Implemented in GitHub source; browser UAT still required. No external analytics forwarding is configured.  
-**Implementation:** \`src/lib/site.mjs\`, \`public/site-analytics.js\`, \`public/lifecycle.js\`, \`public/intake.js\`.  
+**Status:** Active on the personal blog, unchanged schema 1.1.0. Some previous UI event types are dormant following the removal of service, lifecycle and lab pages. No external analytics forwarding is configured.  
+**Implementation:** \`src/lib/site.mjs\`, \`public/site-analytics.js\`, \`public/intake.js\`.  
 **Owner:** Mayo Racek.
 
 ## Why it exists
@@ -50,6 +50,8 @@ window.dataLayer.push({
 ~~~
 
 All six interaction fields are always present; irrelevant fields are null. Do not reuse GTM variables without event-scope guards, since earlier values may linger in data layer state.
+
+**Compatibility note:** The event names `serviceSelected`, `lifecycleStepSelected` and `labProjectSelected` remain supported by the browser tracker and are not renamed or reassigned. They do not currently fire because the corresponding UI was retired. Historical page-type values likewise remain documented for continuity; current routes are Home, Blog, Article, About, Resume and Contact.
 
 ## Event dictionary
 
