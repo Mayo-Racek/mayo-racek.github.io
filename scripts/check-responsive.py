@@ -52,8 +52,8 @@ try:
                         errors.append(f"{width}x{height}: Portrait vertically overlaps introduction")
                     if intro["y"] <= title["y"]:
                         errors.append(f"{width}x{height}: Intro starts before headline")
-            if width <= 600 and height >= 740 and life["y"] < height - 3:
-                errors.append(f"{width}x{height}: Lifecycle title enters initial viewport")
+            if life["y"] < height - 3:
+                errors.append(f"{width}x{height}: Lifecycle begins before the first viewport")
             if width >= 390 and width <= 600:
                 signoff = page.locator(".hero-signoff").bounding_box()
                 if signoff and height >= 740 and signoff["y"] + signoff["height"] < height * 0.76:
