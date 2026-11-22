@@ -1,50 +1,36 @@
-# Publishing and tracking roadmap for mayoracek.com
+# Blog publishing and tracking guide — mayoracek.com
 
-## Site structure and editorial purpose
+## Current public site
+- **Home:** personal portrait, specific engineering headline, two purposeful links (Blog and About), latest article.
+- **Blog:** a small collection of complete technical articles.
+- **About:** professional background, interests, family, knowledge sharing and downloadable CV.
+- **Resume:** verifiable career history and the same generated PDF.
+- **Contact:** two-field topic/message form. The website does not send enquiries: it prepares a mailto draft or allows copying text.
 
-- **Home**: single promise plus interactive six-stage full data lifecycle, leading to the appropriate service.
-- **Services**: three commercial offers—Measurement Strategy & Implementation, Data Engineering & Analytics, Data Activation & Intelligent Automation. Each service detail explains its own four-step delivery path.
-- **About Me**: who Mayo is, why he enjoys the work, family, football, knowledge sharing and a direct public CV download.
-- **Resume**: more detailed verified career experience, and the same generated two-page PDF.
-- **Blog**: only complete, reviewed and original technical articles.
-- **Work**: only completed projects with demonstrable implementation and UAT. Aria remains in development and unindexed until verified.
-- **Contact**: two-field enquiry; a visitor chooses a topic, including Other, and describes the goal. For now, a static-site mailto draft or clipboard copy is used. **There is no server submission**.
+No Services, Work, Aria lab or duplicate Start pages are published. This does **not** prevent adding tested products, case studies or an offer at a later date.
 
-## Writing a blog article
+## Publishing an article
+1. Write an original technical article with a clear problem, relevant context, design decisions, trade-offs, and evidence where available.
+2. Check technical details, code samples, assumptions, security/privacy, any client disclosures and factual claims.
+3. Add a complete object to `posts` in `src/lib/site.mjs` with a stable slug, category, title, excerpt and reviewed sections. Never publish a placeholder just to fill the grid.
+4. Keep headings and passages understandable independently. Link to related writing only when genuinely useful.
+5. Show the actual author. Add genuine publication/updated dates only when they can be verified; don't invent dates.
+6. Verify the generated page, HTML article schema, canonical, internal navigation, mobile layout and data-layer events before merge.
+7. Merge only after the build, browser and full-history secrets scan passes.
 
-1. Add a new object to the exported \`posts\` array in \`src/lib/site.mjs\`.
-2. Set an accurate, stable \`slug\`, \`category\`, \`title\`, \`excerpt\`, \`status\` and fully developed \`sections\`.
-3. Keep each section standalone, technically precise, and honest about what was observed versus proposed.
-4. Include an author byline. Add real publication/modification timestamps only after an approved editorial publish (never guess).
-5. Verify \`src/pages/blog/[slug].astro\` generates the route, and link the article to the most relevant service when genuinely useful.
-6. Validate actual cited references, code snippets, claims and privacy before merge.
+Possible topics from ongoing professional learning: measurement QA, BigQuery/Dataform, operational data quality, data activation, agent boundaries, evaluation, governance, security, inference/token cost and observable outcomes.
 
-Good future topics **when the articles are written**: measurable AI agent outcomes, governance and permissions, agent safety, AI observability and evaluation, model/token cost versus business value, and measurement of AI-driven operations. Do not create thin placeholder posts just to fill the page.
+## Optional future case studies
+Only publish completed, tested and disclosure-approved implementations. Distinguish the business problem, architecture, what was implemented, QA/UAT evidence, measured outcome and limitations. An active AI agent prototype is **in development**, not a proven production product.
 
-## Publishing a completed case study
+## Data layer 1.1.0 — unchanged contract
+The browser queues one `pageViewed` event per full HTML load. Meaningful link, article, navigation, CV-download and contact-intent interactions use the original camelCase first-party `window.dataLayer` contract.
 
-1. Record the customer/business problem, accepted scope, constraints and architecture.
-2. Document what was actually implemented, the QA plan, acceptance criteria, UAT evidence and observed outcome; get necessary disclosure permission or anonymize.
-3. Only after verification, add the case-study object to \`projects\` in \`src/lib/site.mjs\` and confirm its route and links.
-4. Do not label Aria as a completed deployed product until release gates, safe tool permissions, failure and refusal evaluations, rollback and agreed UAT have passed.
-5. Review headings, SEO metadata, factual structured data and internal links.
+`serviceSelected`, `lifecycleStepSelected` and `labProjectSelected` remain recognized by `public/site-analytics.js` for compatibility, but no current page emits them. Do not remove, rename or repurpose these events without a planned contract version change.
 
-## Data layer 1.1.0
+The contact form never adds free-text messages to the data layer. `projectBriefEmailPrepared` is an email-draft event, **not** a submitted lead. No GA4, GTM or server endpoint forwards events yet.
 
-- Every HTML page queues exactly one \`pageViewed\` event.
-- Curved lifecycle buttons queue \`lifecycleStepSelected\` with a **stable stage ID**, never free text.
-- The lifecycle detail link produces \`serviceSelected\`.
-- The About Me CV button queues \`resumeDownloadClicked\` (click intent, not proof of download completion).
-- The contact form queues \`projectBriefStarted\` and \`projectBriefNeedSelected\`. Its selected values are strictly \`collect\`, \`connect\`, \`activate\`, \`unsure\` and \`other\`.
-- \`projectBriefEmailPrepared\` only means a mailto draft was prepared; \`projectBriefCopied\` only means a clipboard copy succeeded.
-- No names, free-text messages, credentials, email subjects or bodies enter the data-layer events.
-- No analytics service or backend currently receives these first-party events.
+## SEO and safety
+Static HTML, canonical URLs, a filtered XML sitemap, honest personal/author structured data and well-written articles are the foundations. Verify external indexing in Search Console/Bing separately. A public GitHub repository must never contain secrets; CI blocks deployment if a full-history or generated-site secrets scan fails.
 
-See \`docs/data-layer-contract.md\` for the complete contract.
-
-## Next technical prerequisites
-
-- Configure a real contact backend (e.g. authenticated Cloud Run endpoint, spam protection, secure notification, retention rules and documented consent) **before** claiming successful submitted leads. Avoid third-party endpoints without an approved privacy review.
-- Select the consent manager and define a compliant GTM/GA4 event mapping. Do not map both automatic and manual page views.
-- Verify sitemap, Search Console and Bing indexing, and validate structured data against visible content.
-- When publishing new content, keep the home page concise. Do not add duplicate services, project teasers or article grids without a concrete visitor purpose.
+Keep the homepage short. Improving article quality takes priority over adding visuals, sales modules or unnecessary schema.
