@@ -35,7 +35,25 @@ export const services = [
         "Consent-aware delivery, QA, monitoring and maintainable documentation."
       ]
     ],
-    "fit": "Product and marketing teams seeking dependable digital measurement."
+    "fit": "Product and marketing teams seeking dependable digital measurement.",
+    "process": [
+      [
+        "Define",
+        "Agree on the business questions, customer journeys and permitted data."
+      ],
+      [
+        "Design",
+        "Specify events, parameters, consent rules and acceptance criteria."
+      ],
+      [
+        "Implement",
+        "Build suitable web, app and server-side collection paths."
+      ],
+      [
+        "Validate",
+        "QA real journeys, reconcile delivery and document ownership."
+      ]
+    ]
   },
   {
     "slug": "cloud-data-products",
@@ -60,32 +78,68 @@ export const services = [
         "Reporting, Looker Studio dashboards and analysis built for decisions."
       ]
     ],
-    "fit": "Teams wanting one trustworthy view across previously disconnected sources."
+    "fit": "Teams wanting one trustworthy view across previously disconnected sources.",
+    "process": [
+      [
+        "Discover",
+        "Understand the sources, business questions and data quality."
+      ],
+      [
+        "Connect",
+        "Ingest data securely from events, APIs and business systems."
+      ],
+      [
+        "Model",
+        "Create tested transformations, metrics and reliable data products."
+      ],
+      [
+        "Deliver",
+        "Enable analysis, visualization and governed activation."
+      ]
+    ]
   },
   {
     "slug": "applied-ai-systems",
     "number": "03",
     "icon": "spark",
     "name": "Activate & Automate",
-    "short": "Put trusted data to work in business tools and carefully designed AI-powered workflows.",
+    "short": "Turn trusted data into business action with activation, responsible AI agents and automation.",
     "teaser": "Data activation, AI-ready foundations and controlled automation grounded in governance, evaluation and human oversight.",
     "headline": "Turn trusted data into useful action.",
-    "intro": "Data becomes more valuable when it reaches the right tools and workflows. I connect approved data to business systems and design practical automation, including AI-assisted workflows where they offer a clear benefit and can be evaluated safely.",
+    "intro": "Make your data useful beyond dashboards. I connect approved data to operational tools and design purposeful AI-assisted workflows, with permissions, evaluation, human oversight and cost controls considered from the start. The scope is defined and validated for each engagement.",
     "offerings": [
       [
         "Data activation",
-        "Share permitted data with CRM, customer engagement and operational platforms."
+        "Deliver permitted data to CRM, customer engagement and business systems."
       ],
       [
-        "AI-ready foundations",
-        "Prepare documented, permissioned data for retrieval and AI applications."
+        "AI agents & automation",
+        "Design bounded agent workflows and tools around real operational use cases."
       ],
       [
-        "Practical automation",
-        "Design bounded agent workflows with testing, human review, observability and cost controls."
+        "Trust, evaluation & cost",
+        "Plan governance, safety controls, human approval, monitoring and token or inference cost."
       ]
     ],
-    "fit": "Teams ready to use governed data for activation and practical automation."
+    "fit": "Teams ready to use governed data for activation and practical automation.",
+    "process": [
+      [
+        "Identify",
+        "Select a useful outcome and the right automation boundary."
+      ],
+      [
+        "Prepare",
+        "Validate data, permissions and safe tool access for AI."
+      ],
+      [
+        "Build",
+        "Combine structured workflows and AI agents where appropriate."
+      ],
+      [
+        "Evaluate",
+        "Check quality, safety, human review, observability and cost."
+      ]
+    ]
   }
 ];
 
@@ -141,7 +195,7 @@ const path=(s,base='/')=>{const clean=String(s).replace(/^\//,''); const offline
 const navLink=(href,name,active,base)=>`<a class="nav-link ${active===name.toLowerCase()?'is-active':''}" data-track-event="navigationClicked" data-track-location="header" data-track-id="${esc(name.toLowerCase())}" href="${path(href,base)}">${name}</a>`;
 function header(active,base){return '<header class="site-header"><div class="site-container header-inner"><a href="'+path('',base)+'" class="brand" aria-label="Mayo Racek, homepage"><strong>Mayo Racek</strong></a><nav class="site-nav" id="primary-navigation" aria-label="Main navigation">'+navLink('services/','Services',active,base)+navLink('blog/','Blog',active,base)+navLink('about/','About',active,base)+navLink('contact/','Contact',active,base)+'</nav><button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span><span></span></button></div></header>';}
 function footer(base){return '<footer class="site-footer"><div class="site-container footer-top"><div><a class="brand" href="'+path('',base)+'"><strong>Mayo Racek</strong></a><p>Data engineering, analytics and practical AI.</p></div><div class="footer-links"><a href="'+path('services/',base)+'">Services</a><a href="'+path('blog/',base)+'">Blog</a><a href="'+path('about/',base)+'">About</a><a href="'+path('resume/',base)+'">Resume</a><a href="'+path('contact/',base)+'">Contact</a></div><div class="footer-social">'+external(profile.linkedin,'LinkedIn ↗')+external(profile.github,'GitHub ↗')+external(profile.x,'X ↗')+'</div></div><div class="site-container footer-bottom"><span>© '+new Date().getFullYear()+' Mayo Racek</span><span>Based in Slovakia · Working internationally</span></div></footer>';}
-function contactCta(base,{compact=false}={}){return '<section class="contact-band '+(compact?'compact':'')+'" id="contact"><div class="site-container contact-band-inner"><div><span class="kicker">LET US BUILD SOMETHING USEFUL</span><h2>What is your next goal?</h2><p>Tell me what you want to achieve with your data.</p></div><a class="btn btn-primary" href="'+path('start/',base)+'">Share Your Goal <span aria-hidden="true">↗</span></a></div></section>';}
+function contactCta(base,{compact=false}={}){return '<section class="contact-band '+(compact?'compact':'')+'" id="contact"><div class="site-container contact-band-inner"><div><span class="kicker">NEXT STEP</span><h2>Have something in mind?</h2><p>Tell me about the opportunity. I am happy to explore what would make sense.</p></div><a class="btn btn-primary" href="'+path('contact/',base)+'">Get in Touch <span aria-hidden="true">↗</span></a></div></section>';}
 function shell({title,description,body,active='home',base='/',canonical='',og='website'}){
   const fullTitle= title==='Home'?'Mayo Racek | Data & AI Solutions Architect':`${title} | Mayo Racek`;
   const metaDesc=description||'Cloud data engineering, measurement architecture and governed AI automation. Solutions designed around real problems.';
@@ -188,10 +242,18 @@ function serviceCard(s,base){return `<a class="service-card" data-track-event="s
 function projectCard(p,base){return `<a class="project-card" href="${path(`projects/${p.slug}/`,base)}"><div class="project-art art-${p.theme}"><span class="art-serial">${p.number} / WORK</span><span class="art-glyph" aria-hidden="true">${p.theme==='cyan'?'◌':p.theme==='blue'?'▧':'✳'}</span><span class="project-category">${esc(p.category)}</span></div><div class="project-card-body"><span class="status-label">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><span class="card-link">See what’s planned <span aria-hidden="true">↗</span></span></div></a>`;}
 function postCard(p,base){return `<a class="post-card" data-track-event="articleSelected" data-track-location="blogGrid" data-track-id="${esc(p.slug)}" href="${path(`blog/${p.slug}/`,base)}"><div class="post-topline"><span>${esc(p.category)}</span><span class="status-label">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><span class="card-link">Read the article <span aria-hidden="true">↗</span></span></a>`;}
 function sectionHead(kicker,title,sub='',link='',linkText='',base='/'){return `<div class="section-head"><div><span class="kicker">${esc(kicker)}</span><h2>${title}</h2>${sub?`<p>${esc(sub)}</p>`:''}</div>${link?`<a class="section-link" href="${path(link,base)}">${esc(linkText)} <span aria-hidden="true">↗</span></a>`:''}</div>`;}
+function dataJourney(){
+ const stages=[
+  ['Collect','Digital events'],['Connect','Systems and APIs'],['Transform','Reliable models'],
+  ['Analyze','Trusted insights'],['Activate','Business tools'],['Automate','AI and workflows']
+ ];
+ return '<section class="data-journey" aria-labelledby="data-journey-title"><div class="site-container"><div class="journey-heading"><div><span class="kicker">END-TO-END DATA</span><h2 id="data-journey-title">From data to intelligent action.</h2></div><p>One connected lifecycle, with quality, privacy and governance throughout.</p></div><ol class="journey-rail">'+stages.map(([name,detail],i)=>'<li><span class="journey-index">'+String(i+1).padStart(2,'0')+'</span><strong>'+name+'</strong><span class="journey-caption">'+detail+'</span></li>').join('')+'</ol><p class="journey-footnote">AI agents and automation sit on top of trustworthy data, with evaluation, human oversight, security and cost visibility designed in.</p></div></section>';
+}
+
 export function renderHome(base='/'){
  const hero="<section class=\"hero\"><div class=\"hero-shine hero-shine-a\"></div><div class=\"hero-shine hero-shine-b\"></div><div class=\"site-container hero-grid\"><div class=\"hero-copy\"><div class=\"eyebrow\"><span class=\"eyebrow-rule\"></span>DATA ENGINEERING <span class=\"mid-dot\">·</span> ANALYTICS <span class=\"mid-dot\">·</span> AI</div><h1><span class=\"headline-desktop\">Designing data solutions to <em>empower your goals.</em></span><span class=\"headline-mobile\">Data solutions to <em>empower your goals.</em></span></h1><p class=\"hero-intro\">From data collection and cloud engineering to analytics and intelligent automation. I design connected solutions that help you turn information into action.</p><div class=\"hero-actions\"><a class=\"btn btn-primary\" data-track-event=\"ctaClicked\" data-track-id=\"heroExploreServices\" data-track-location=\"hero\" href=\"__SERVICES_URL__\">Explore Services <span aria-hidden=\"true\">↗</span></a><a class=\"btn btn-outline\" data-track-event=\"ctaClicked\" data-track-id=\"heroReadBlog\" data-track-location=\"hero\" href=\"__BLOG_URL__\">Read My Blog <span aria-hidden=\"true\">↗</span></a></div><div class=\"hero-signoff\"><span class=\"little-line\"></span><p>17+ years in data and analytics engineering.</p></div></div><div class=\"hero-visual\" aria-label=\"Portrait of Mayo Racek\"><div class=\"orb orb-a\"></div><div class=\"orb orb-b\"></div><div class=\"portrait-orbit orbit-one\"></div><div class=\"portrait-orbit orbit-two\"></div><div class=\"portrait-floor\"></div><img class=\"portrait\" src=\"__PORTRAIT__\" width=\"415\" height=\"643\" alt=\"Mayo Racek, data and AI solutions architect\"/></div></div><div class=\"hero-bottom-fade\"></div></section>".replaceAll('__SERVICES_URL__',path('services/',base)).replaceAll('__BLOG_URL__',path('blog/',base)).replaceAll('__PORTRAIT__',path('mayo-portrait-cropped.webp',base));
  const content="<section class=\"section services-section\" id=\"services\"><div class=\"site-container\"><div class=\"section-head\"><div><span class=\"kicker\">WHAT I DO</span><h2>From data to action.</h2><p>Collect, connect, analyze and activate your data. Build for AI when it adds value.</p></div></div><div class=\"service-grid\">__CARDS__</div></div></section>".replaceAll('__CARDS__',services.map(s=>serviceCard(s,base)).join(''));
- return shell({title:'Home',description:'Mayo Racek designs connected data solutions, from collection and analytics to AI-ready data and practical automation.',body:hero+content+contactCta(base,{compact:true}),active:'home',base});
+ return shell({title:'Home',description:'Mayo Racek designs connected data solutions, from collection and analytics to AI-ready data and practical automation.',body:hero+dataJourney()+content+contactCta(base,{compact:true}),active:'home',base});
 }
 export function renderServices(base='/'){
  const intro="<section class=\"page-hero small-hero\"><div class=\"site-container\"><span class=\"kicker\">SERVICES</span><h1>From collection to <em>action.</em></h1><p>Three connected ways to make your data more useful, from reliable measurement to analytics and intelligent automation.</p></div></section>";
@@ -200,9 +262,12 @@ export function renderServices(base='/'){
 }
 export function renderService(slug,base='/'){
  const s=services.find(item=>item.slug===slug); if(!s)throw new Error('Unknown service '+slug);
- const offeringHtml=s.offerings.map(([name,description])=>'<li><strong>'+esc(name)+'</strong><span>'+esc(description)+'</span></li>').join('');
- const body="<section class=\"page-hero service-page-hero simple-service-hero\"><div class=\"site-container\"><a class=\"back-link\" href=\"__BACK__\">← All services</a><span class=\"kicker\">__NAME__</span><h1>__HEADLINE__</h1><p>__INTRO__</p></div></section><section class=\"section simple-service-section\"><div class=\"site-container\"><div class=\"simple-service-layout\"><div><span class=\"kicker\">HOW I HELP</span><h2>What I deliver</h2><p class=\"simple-service-fit\"><strong>Best for:</strong> __FIT__</p></div><ul class=\"simple-offerings\">__OFFERINGS__</ul></div><div class=\"service-action\"><p>Start with your goal. We can agree on the right scope, technology and acceptance criteria.</p><a class=\"btn btn-primary\" href=\"__START__\">Share Your Goal <span aria-hidden=\"true\">↗</span></a></div></div></section>".replaceAll('__BACK__',path('services/',base)).replaceAll('__NAME__',esc(s.name)).replaceAll('__HEADLINE__',esc(s.headline)).replaceAll('__INTRO__',esc(s.intro)).replaceAll('__FIT__',esc(s.fit)).replaceAll('__OFFERINGS__',offeringHtml).replaceAll('__START__',path('start/',base));
- return shell({title:s.name,description:s.teaser,body,active:'services',base,canonical:'/services/'+slug+'/'});
+ const steps=s.process.map(([heading,description],i)=>'<li class="process-step"><span class="process-number">'+String(i+1).padStart(2,'0')+'</span><div><h3>'+esc(heading)+'</h3><p>'+esc(description)+'</p></div></li>').join('');
+ const outputs=s.offerings.map(([heading,description],i)=>'<article class="capability-card"><span class="capability-number">0'+(i+1)+'</span><h3>'+esc(heading)+'</h3><p>'+esc(description)+'</p></article>').join('');
+ const hero='<section class="page-hero service-page-hero service-hero-v2"><div class="site-container"><a class="back-link" href="'+path('services/',base)+'">← Services</a><span class="kicker">'+esc(s.name.toUpperCase())+'</span><h1>'+esc(s.headline)+'</h1><p>'+esc(s.intro)+'</p></div></section>';
+ const method='<section class="section service-method"><div class="site-container"><div class="journey-heading"><div><span class="kicker">HOW IT COMES TOGETHER</span><h2>A clear path from idea to delivery.</h2></div><p>A practical engineering process, adapted to the goal rather than a fixed platform.</p></div><ol class="process-timeline">'+steps+'</ol></div></section>';
+ const capabilities='<section class="section service-capabilities"><div class="site-container"><div class="section-head"><div><span class="kicker">WHAT I CAN DELIVER</span><h2>Engineering that has a purpose.</h2></div></div><div class="capability-grid">'+outputs+'</div><div class="service-next"><p><strong>Best suited for:</strong> '+esc(s.fit)+'</p><a class="btn btn-primary" href="'+path('contact/',base)+'">Get in Touch <span aria-hidden="true">↗</span></a></div></div></section>';
+ return shell({title:s.name,description:s.teaser,body:hero+method+capabilities,active:'services',base,canonical:'/services/'+slug+'/'});
 }
 export function renderProjects(base='/'){
  const body="<section class=\"page-hero small-hero\"><div class=\"site-container\"><span class=\"kicker\">SELECTED WORK</span><h1>Useful work deserves <em>real evidence.</em></h1><p>I publish completed case studies only when implementation, QA, UAT and shareable evidence support the story. No placeholder projects or invented outcomes.</p></div></section><section class=\"section\"><div class=\"site-container\"><div class=\"placeholder-note\"><strong>Case studies are being validated for publication.</strong><p>Each will explain the operational problem, design trade-offs, what was built, the tests performed and what was actually achieved.</p></div><div class=\"section-head\"><div><span class=\"kicker\">ENGINEERING LAB</span><h2>What I am building now</h2></div></div><a class=\"lab-feature\" data-track-event=\"labProjectSelected\" data-track-id=\"aria\" data-track-location=\"projectsPage\" href=\"__ARIA__\"><div><span class=\"status-label\">In development</span><h3>Aria — Agent-assisted GTM operations</h3><p>A problem-led experiment in reducing repetitive audits, review effort and release risk with governed AI workflows.</p></div><span class=\"card-link\">Explore Aria's approach <span aria-hidden=\"true\">↗</span></span></a></div></section>".replaceAll('__ARIA__',path('lab/aria/',base));
@@ -228,15 +293,29 @@ export function renderAbout(base='/'){
 }
 
 export function renderResume(base='/'){
- const body='<section class="page-hero resume-hero"><div class="site-container"><span class="kicker">RESUME</span><h1>Experienced in the details. <em>Focused on the outcome.</em></h1><p>I have spent more than 17 years working across digital measurement, data engineering and analytics. My focus is building systems teams can understand, trust and use.</p><div class="hero-actions"><a class="btn btn-primary" href="'+path('Mayo_Racek_CV.pdf',base)+'" download="Mayo_Racek_CV.pdf">Download CV (PDF) <span aria-hidden="true">↓</span></a><a class="btn btn-outline" href="'+profile.linkedin+'" target="_blank" rel="noopener noreferrer">View LinkedIn <span aria-hidden="true">↗</span></a></div></div></section>'+
- '<section class="section resume-summary"><div class="site-container"><div class="resume-intro"><span class="kicker">WHAT I BRING</span><h2>Measurement, data engineering and practical delivery.</h2><p>I work between business teams, developers and analysts. That includes defining a measurement strategy, improving collection quality, building cloud data products and making technical decisions easy to explain.</p></div><div class="resume-expertise"><div><span class="resume-tag">01 / MEASUREMENT</span><h3>Web & App architecture</h3><p>Event frameworks, GA4, GTM, server-side tagging, consent and enterprise QA.</p></div><div><span class="resume-tag">02 / ENGINEERING</span><h3>Cloud data products</h3><p>BigQuery, Dataform, reusable models, validation, reliability and cost awareness.</p></div><div><span class="resume-tag">03 / APPLICATION</span><h3>Analytics and automation</h3><p>Business KPIs, analysis, reporting and bounded AI workflows.</p></div></div></div></section>'+
- '<section class="section section-muted"><div class="site-container"><div class="section-head"><div><span class="kicker">EXPERIENCE</span><h2>Selected professional experience.</h2><p>Roles and responsibilities summarised from my professional CV. Client-specific implementation details are intentionally excluded.</p></div></div><div class="resume-timeline"><article><time>2023 - Present</time><div><h3>Founder & Senior Data Consultant</h3><p>Independent consulting through Powerful Data s.r.o., supporting measurement, cloud data engineering, attribution, analytics and reporting projects.</p></div></article><article><time>2021 - Present</time><div><h3>Senior Technical Data Analyst & Analytics Lead</h3><p>International consulting engagement spanning measurement frameworks, consent-aware collection, validation, BigQuery models and cross-functional delivery.</p></div></article><article><time>2020 - 2021</time><div><h3>Senior Technical Analyst</h3><p>Enterprise analytics implementation, tracking quality assurance and reporting.</p></div></article><article><time>2016 - 2020</time><div><h3>Digital Analytics Consultant</h3><p>Measurement frameworks, experimentation, dashboarding and stakeholder workshops.</p></div></article><article><time>2010 - 2016</time><div><h3>Digital Marketing & Analytics Roles</h3><p>Analytics, SEO, conversion measurement and digital marketing advisory work.</p></div></article></div></div></section>'+
- '<section class="section resume-bottom"><div class="site-container resume-last"><div><span class="kicker">EDUCATION & WORKING MODEL</span><h2>Business context matters as much as the stack.</h2><p>MBA in Marketing, City University of Seattle. Business administration and management background. Based in Slovakia, collaborating remotely with international teams in CET.</p></div><div class="resume-download"><h3>Want the full background?</h3><p>Download a public version of my CV, or send a message about a specific role or project.</p><a class="btn btn-primary" href="'+path('Mayo_Racek_CV.pdf',base)+'" download="Mayo_Racek_CV.pdf">Download CV (PDF) <span aria-hidden="true">↓</span></a></div></div></section>'+contactCta(base,{compact:true});
- return shell({title:'Resume',description:'Professional experience of Mayo Racek in enterprise Web & App measurement, cloud data engineering and analytics.',body,active:'resume',base,canonical:'/resume/'});
+ const experiences=[
+  ['2023 - Present','Founder & Senior Data Consultant','Powerful Data s.r.o.','Independent consultancy across measurement architecture, cloud data engineering, attribution, analytics and reporting.'],
+  ['2021 - Present','Senior Technical Data Analyst & Analytics Lead','International consulting','Enterprise data collection frameworks, consent controls, QA, analytical models and cross-team technical delivery.'],
+  ['2020 - 2021','Senior Technical Analyst','Enterprise analytics','Implementation, measurement quality assurance, audits and reporting.'],
+  ['2016 - 2020','Digital Analytics Consultant','Data and measurement consulting','Measurement frameworks, KPIs, experimentation and stakeholder workshops.'],
+  ['2014 - 2016','Digital Analytics & Marketing Specialist','Digital analytics','Digital performance reporting, marketing and conversion measurement.'],
+  ['2010 - 2014','Independent Digital Marketing Consultant','Small and mid-sized businesses','SEO, website analytics, conversion improvement and advisory work.']
+ ];
+ const capabilities=[
+  ['Measurement Architecture','GA4, GTM, web & server-side tracking, event design, data layer, consent and QA.'],
+  ['Cloud Data Engineering','BigQuery, Dataform, SQL modelling, pipelines, data quality and monitoring.'],
+  ['Analytics & Activation','Business KPIs, Looker Studio, Tableau, customer data integration and operational insights.'],
+  ['AI & Automation','Python, APIs, Google Cloud, agent workflows, evaluation, governance and cost awareness.']
+ ];
+ const hero='<section class="resume-v2-hero"><div class="site-container resume-v2-hero-inner"><div class="resume-v2-copy"><span class="kicker">PROFESSIONAL RESUME</span><h1>Mayo Racek</h1><p class="resume-v2-role">Data &amp; AI Solutions Architect</p><p class="resume-v2-intro">Designing and delivering reliable data solutions, from digital measurement and cloud data platforms to analytics and practical AI automation.</p><div class="resume-v2-meta"><span>17+ years in data and analytics</span><span>Slovakia · International collaboration</span></div><div class="hero-actions"><a class="btn btn-primary" href="'+path('Mayo_Racek_CV.pdf',base)+'" download="Mayo_Racek_CV.pdf">Download Resume (PDF) <span aria-hidden="true">↓</span></a><a class="btn btn-outline" href="'+profile.linkedin+'" target="_blank" rel="noopener noreferrer">LinkedIn Profile <span aria-hidden="true">↗</span></a></div></div><div class="resume-v2-photo"><img src="'+path('mayo-portrait-cropped.webp',base)+'" alt="Portrait of Mayo Racek" width="415" height="643"/></div></div></section>';
+ const intro='<section class="section resume-v2-section"><div class="site-container"><div class="section-head"><div><span class="kicker">EXPERTISE</span><h2>From architecture to implementation.</h2><p>I work across business goals, engineering decisions and operational quality. The tools support the solution, not the other way around.</p></div></div><div class="resume-v2-expertise">'+capabilities.map(([name,description],i)=>'<article><span class="resume-v2-id">0'+(i+1)+'</span><h3>'+esc(name)+'</h3><p>'+esc(description)+'</p></article>').join('')+'</div></div></section>';
+ const experience='<section class="section resume-v2-experience"><div class="site-container"><div class="section-head"><div><span class="kicker">CAREER</span><h2>Professional experience.</h2><p>Selected roles and responsibilities. Confidential client-specific implementation details are intentionally omitted.</p></div></div><ol class="career-timeline">'+experiences.map(([period,role,org,description])=>'<li><span class="career-date">'+esc(period)+'</span><div class="career-content"><h3>'+esc(role)+'</h3><span class="career-company">'+esc(org)+'</span><p>'+esc(description)+'</p></div></li>').join('')+'</ol></div></section>';
+ const last='<section class="section resume-v2-education"><div class="site-container resume-education-grid"><div><span class="kicker">EDUCATION</span><h2>Business context and engineering depth.</h2><p><strong>MBA in Marketing</strong> · City University of Seattle (2010–2012)</p><p>Bachelor degree in Business Administration and Management (2006–2009)</p></div><div class="resume-education-action"><span class="kicker">DOWNLOAD</span><h3>Take the complete CV with you.</h3><p>A concise two-page PDF with the same career history and technical focus.</p><a class="btn btn-primary" href="'+path('Mayo_Racek_CV.pdf',base)+'" download="Mayo_Racek_CV.pdf">Download Resume (PDF) <span aria-hidden="true">↓</span></a></div></div></section>';
+ return shell({title:'Resume',description:'Mayo Racek: Data and AI Solutions Architect with more than 17 years in measurement, BigQuery, data engineering, analytics and automation.',body:hero+intro+experience+last,active:'resume',base,canonical:'/resume/'});
 }
 
 export function renderContact(base='/'){
- const body=`<section class="page-hero contact-hero"><div class="site-container"><span class="kicker">CONTACT</span><h1>Tell me what you want to <em>achieve.</em></h1><p>Starting something new? Trying to understand your customers, improve reporting or reduce manual work? You do not need a technical brief. Tell me what you want to change and we can discuss the options.</p><div class="hero-actions"><a class="btn btn-primary" href="${path('start/',base)}">Share a short project brief <span aria-hidden="true">↗</span></a></div><div class="contact-options"><a class="contact-option" href="${esc(profile.linkedin)}" target="_blank" rel="noopener noreferrer"><span>BEST PLACE TO REACH ME</span><strong>Message me on LinkedIn</strong><span class="option-arrow">↗</span></a><a class="contact-option" href="${esc(profile.github)}" target="_blank" rel="noopener noreferrer"><span>SEE MY CODE</span><strong>Find me on GitHub</strong><span class="option-arrow">↗</span></a><a class="contact-option" href="${path('resume/',base)}"><span>PROFESSIONAL BACKGROUND</span><strong>View resume and download CV</strong><span class="option-arrow">↗</span></a></div><p class="contact-footnote">Based in Slovakia. Happy to discuss remote collaboration with teams elsewhere.</p></div></section>`;
+ const body=`<section class="page-hero contact-hero"><div class="site-container"><span class="kicker">CONTACT</span><h1>Tell me what you want to <em>achieve.</em></h1><p>Starting something new? Trying to understand your customers, improve reporting or reduce manual work? You do not need a technical brief. Tell me what you want to change and we can discuss the options.</p><div class="hero-actions"><a class="btn btn-primary" href="mailto:me@mayoracek.com">Email Me <span aria-hidden="true">↗</span></a></div><div class="contact-options"><a class="contact-option" href="${esc(profile.linkedin)}" target="_blank" rel="noopener noreferrer"><span>BEST PLACE TO REACH ME</span><strong>Message me on LinkedIn</strong><span class="option-arrow">↗</span></a><a class="contact-option" href="${esc(profile.github)}" target="_blank" rel="noopener noreferrer"><span>SEE MY CODE</span><strong>Find me on GitHub</strong><span class="option-arrow">↗</span></a><a class="contact-option" href="${path('resume/',base)}"><span>PROFESSIONAL BACKGROUND</span><strong>View resume and download CV</strong><span class="option-arrow">↗</span></a></div><p class="contact-footnote">Based in Slovakia. Happy to discuss remote collaboration with teams elsewhere.</p></div></section>`;
  return shell({title:'Contact',description:'Start a conversation with Mayo Racek about a real measurement, data engineering or AI automation problem.',body,active:'contact',base,canonical:'/contact/'});
 }
 export function renderStart(base='/'){

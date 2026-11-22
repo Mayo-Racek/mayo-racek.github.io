@@ -788,3 +788,131 @@ body{background:#101317;color:var(--ink)}
  .service-action .btn{margin-top:18px}
  .contact-band.compact{padding:33px 0}
 }
+
+/* Compact data lifecycle - a guide, not six unnecessary landing-page features. */
+.data-journey{padding:50px 0 45px;background:linear-gradient(180deg,#17191c,#14171a);border-block:1px solid rgba(228,200,160,.13)}
+.journey-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:24px}
+.journey-heading h2{font-size:clamp(26px,2.8vw,37px);margin:9px 0 0}
+.journey-heading>p{max-width:365px;font-size:14px;line-height:1.7;margin:0}
+.journey-rail{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin:0;padding:0;gap:0}
+.journey-rail li{position:relative;padding:18px 12px 18px 15px;border-top:2px solid rgba(222,196,154,.45);display:flex;flex-direction:column;min-width:0;gap:7px}
+.journey-rail li:before{content:"";width:8px;height:8px;position:absolute;top:-5px;left:15px;border-radius:50%;background:#e4c8a0;box-shadow:0 0 0 5px #17191c}
+.journey-index{font-size:11px;color:#ddb98d;letter-spacing:.13em}
+.journey-rail strong{font-size:17px;line-height:1.2;letter-spacing:-.02em;color:#fff}
+.journey-caption{color:var(--muted);font-size:12px;line-height:1.5}
+.journey-footnote{font-size:13px;line-height:1.7;color:var(--dim);max-width:850px;margin:14px 0 0}
+.service-method{padding:58px 0 49px;background:#181a1d}
+.process-timeline{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:0;padding:0}
+.process-step{position:relative;min-width:0;padding:0 24px 0 0;display:flex;gap:14px;align-items:flex-start}
+.process-step:before{content:"";height:2px;position:absolute;top:16px;left:28px;right:0;background:rgba(229,199,157,.4)}
+.process-step:last-child:before{display:none}
+.process-number{position:relative;z-index:1;display:grid;place-items:center;flex-shrink:0;width:33px;height:33px;border-radius:50%;background:#e0c4a0;color:#1c1d1e;font-size:11px;font-weight:850;box-shadow:0 0 0 4px #181a1d}
+.process-step h3{font-size:19px;margin:4px 0 10px}
+.process-step p{font-size:14px;line-height:1.65;margin:0;max-width:235px}
+.service-capabilities{padding:54px 0 65px}
+.capability-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.capability-card{position:relative;padding:25px;border:1px solid rgba(226,218,205,.17);border-radius:17px;background:linear-gradient(135deg,rgba(46,48,51,.85),rgba(25,27,29,.8))}
+.capability-number{font-size:11px;color:#d9b98e;letter-spacing:.15em}
+.capability-card h3{font-size:19px;margin:15px 0 10px}
+.capability-card p{font-size:14px;line-height:1.7;margin:0}
+.service-next{border-top:1px solid rgba(226,218,205,.17);margin-top:34px;padding-top:26px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.service-next p{font-size:14px;line-height:1.6;max-width:690px;margin:0}
+.service-hero-v2{padding:65px 0 60px}
+.service-hero-v2 h1{font-size:clamp(38px,4.8vw,61px);margin:13px 0 20px}
+.service-hero-v2 p{font-size:17px;max-width:770px;line-height:1.75}
+
+/* Resume - concise and consistent with the downloadable charcoal/champagne PDF. */
+.resume-v2-hero{background:radial-gradient(ellipse at 80% 23%,rgba(202,179,142,.19),transparent 45%),linear-gradient(120deg,#17191b,#27292c);border-bottom:1px solid rgba(226,216,199,.13);overflow:hidden}
+.resume-v2-hero-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.6fr);min-height:425px;align-items:center;gap:18px}
+.resume-v2-copy{padding:59px 0 65px;position:relative;z-index:2}
+.resume-v2-copy h1{font-size:clamp(53px,6vw,81px);line-height:1.04;margin:14px 0 8px;letter-spacing:-.06em}
+.resume-v2-role{font-size:21px;color:#e4c8a0;font-weight:650;margin:0 0 20px}
+.resume-v2-intro{font-size:17px;line-height:1.68;max-width:690px;margin:0 0 18px}
+.resume-v2-meta{display:flex;gap:9px 21px;flex-wrap:wrap;margin:20px 0 0;font-size:12px;color:#e1d6c7}
+.resume-v2-meta span{position:relative;padding-left:12px}
+.resume-v2-meta span:before{content:"";background:#e3c39b;width:5px;height:5px;border-radius:50%;position:absolute;left:0;top:7px}
+.resume-v2-copy .hero-actions{margin-top:23px}
+.resume-v2-photo{height:400px;align-self:end;position:relative}
+.resume-v2-photo img{height:100%;width:100%;object-fit:contain;object-position:center bottom;mask-image:linear-gradient(180deg,#000 73%,transparent 100%)}
+.resume-v2-section{padding:65px 0}
+.resume-v2-expertise{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.resume-v2-expertise article{padding:23px 20px;border:1px solid rgba(218,201,177,.2);border-radius:16px;background:rgba(33,35,37,.75)}
+.resume-v2-id{font-size:11px;letter-spacing:.16em;color:#dcb98a}
+.resume-v2-expertise h3{font-size:19px;margin:14px 0 12px}
+.resume-v2-expertise p{font-size:14px;line-height:1.65;margin:0}
+.resume-v2-experience{background:#191b1e;padding:69px 0}
+.career-timeline{list-style:none;padding:0 0 0 26px;margin:0;border-left:2px solid rgba(220,185,141,.45)}
+.career-timeline li{position:relative;display:grid;grid-template-columns:150px minmax(0,1fr);gap:32px;padding:0 0 31px 26px}
+.career-timeline li:last-child{padding-bottom:0}
+.career-timeline li:before{content:"";position:absolute;left:-35px;top:8px;border:2px solid #d8b98f;background:#191b1e;border-radius:50%;width:14px;height:14px}
+.career-date{font-size:12px;font-weight:750;color:#e3c3a0;white-space:nowrap;padding-top:4px}
+.career-content{padding-bottom:21px;border-bottom:1px solid rgba(220,207,189,.13)}
+.career-timeline li:last-child .career-content{border-bottom:0}
+.career-content h3{font-size:21px;margin:0 0 8px}
+.career-company{display:block;font-size:13px;color:#e3c3a0;margin-bottom:9px}
+.career-content p{font-size:14px;line-height:1.7;max-width:730px;margin:0}
+.resume-v2-education{padding:70px 0}
+.resume-education-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.65fr);gap:30px;align-items:center}
+.resume-education-grid h2{font-size:clamp(28px,3vw,40px);margin:14px 0 21px}
+.resume-education-grid p{font-size:14px;line-height:1.7}
+.resume-education-action{padding:27px;border-radius:17px;border:1px solid rgba(226,210,190,.22);background:rgba(50,48,47,.48)}
+.resume-education-action h3{font-size:23px;margin:12px 0}
+.resume-education-action .btn{margin-top:9px}
+@media(max-width:950px){
+ .journey-rail{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:19px}
+ .process-timeline{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 20px}
+ .process-step:nth-child(2):before{display:none}
+ .capability-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .resume-v2-expertise{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .resume-v2-hero-inner{grid-template-columns:minmax(0,1fr) minmax(0,.6fr)}
+}
+@media(max-width:700px){
+ .data-journey{padding:40px 0 36px}
+ .journey-heading{display:block;margin-bottom:25px}
+ .journey-heading h2{font-size:28px}
+ .journey-heading>p{margin-top:12px}
+ .journey-rail{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 8px}
+ .journey-rail li{padding:12px 8px 6px 12px}
+ .journey-rail strong{font-size:16px}
+ .journey-caption{font-size:12px}
+ .journey-footnote{font-size:12px;margin-top:17px}
+ .service-method{padding:43px 0}
+ .service-method .journey-heading{margin-bottom:30px}
+ .process-timeline{grid-template-columns:1fr;gap:0;padding-left:6px;border-left:1px solid rgba(229,199,157,.28)}
+ .process-step{padding:0 0 26px 20px}
+ .process-step:before{display:none}
+ .process-number{width:32px;height:32px;margin-left:-36px}
+ .process-step h3{font-size:19px;margin-top:2px}
+ .process-step p{font-size:14px}
+ .service-capabilities{padding:46px 0}
+ .capability-grid{grid-template-columns:1fr;gap:12px}
+ .capability-card{padding:21px}
+ .service-next{display:block}
+ .service-next .btn{margin-top:16px}
+ .service-hero-v2{padding:45px 0 42px}
+ .service-hero-v2 h1{font-size:clamp(34px,8vw,48px)}
+ .service-hero-v2 p{font-size:16px}
+ .resume-v2-hero-inner{display:flex;flex-direction:column;gap:0;align-items:stretch}
+ .resume-v2-photo{order:2;height:220px;max-width:260px;margin:0 auto 0}
+ .resume-v2-copy{order:1;padding:34px 0 18px}
+ .resume-v2-copy h1{font-size:54px}
+ .resume-v2-role{font-size:19px}
+ .resume-v2-intro{font-size:15px}
+ .resume-v2-copy .hero-actions{display:grid;grid-template-columns:1fr 1fr}
+ .resume-v2-copy .btn{padding:12px 11px;font-size:12px}
+ .resume-v2-section,.resume-v2-experience,.resume-v2-education{padding:46px 0}
+ .resume-v2-expertise{grid-template-columns:1fr 1fr}
+ .resume-v2-expertise article{padding:19px 15px}
+ .resume-v2-expertise h3{font-size:17px}
+ .resume-v2-expertise p{font-size:13px}
+ .career-timeline{padding-left:19px}
+ .career-timeline li{display:block;padding-left:20px}
+ .career-timeline li:before{left:-28px}
+ .career-date{display:block;margin-bottom:8px}
+ .career-content h3{font-size:19px}
+ .resume-education-grid{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+ .resume-v2-expertise{grid-template-columns:1fr}
+ .resume-v2-copy .hero-actions{grid-template-columns:1fr}
+}

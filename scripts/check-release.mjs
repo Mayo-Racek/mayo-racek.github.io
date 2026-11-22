@@ -58,16 +58,18 @@ for (const service of ['Collect &amp; Measure','Connect &amp; Analyze','Activate
 }
 for (const route of ['services/measurement-architecture/','services/cloud-data-products/','services/applied-ai-systems/']) {
   const html=page(route);
-  must(html,'What I deliver','Service deliverables');
-  must(html,'Best for:','Service audience');
-  must(html,'Share Your Goal','Service action');
+  must(html,'A clear path from idea to delivery.','Service process heading');
+  must(html,'process-timeline','Service visual timeline');
+  must(html,'capability-grid','Service capability cards');
+  must(html,'Best suited for:','Service audience');
+  must(html,'Get in Touch','Service action');
   must(html,'"@type":"Service"','Service JSON-LD');
   must(html,'"@type":"BreadcrumbList"','Breadcrumb JSON-LD');
   absent(html,'problem-grid','Old long-form service');
 }
 must(measure,'GTM','Measurement scope');
 must(cloud,'BigQuery','Cloud engineering scope');
-must(ai,'AI-ready foundations','AI readiness scope');
+must(ai,'AI agents &amp; automation','Agentic automation scope');
 must(lab,'IN DEVELOPMENT','Aria status');
 must(lab,'QUALITY GATES','Aria verification conditions');
 must(work,'name="robots" content="noindex, follow"','Unfinished work noindex');
@@ -76,19 +78,27 @@ must(article,'"@type":"Article"','Article JSON-LD');
 must(article,'A request is not yet a problem statement','Substantive article');
 must(start,'id="project-brief"','Project brief');
 must(start,'Prepare email to Mayo','Mailto intake');
-must(resume,'Download CV (PDF)','CV download');
+must(resume,'Download Resume (PDF)','CV download');
+must(resume,'resume-v2-hero','Visual resume hero');
+must(resume,'career-timeline','Professional timeline');
+must(resume,'2023 - Present','Recent professional experience');
+must(resume,'Data &amp; AI Solutions Architect','Professional positioning');
+must(home,'journey-rail','Compact data lifecycle');
+must(home,'AI agents and automation','AI automation lifecycle context');
+absent(home,'Share Your Goal','Retired CTA');
 const cv=path.join(dist,'Mayo_Racek_CV.pdf');
 if(!fs.existsSync(cv))errors.push('Public CV PDF missing');
 else {
   const buffer=fs.readFileSync(cv);
   if(buffer.subarray(0,5).toString()!=='%PDF-')errors.push('Invalid CV PDF');
+  if(buffer.length < 12000)errors.push('CV PDF was not regenerated using the styled template');
   if(/\+421|Philip Morris|Merkle/.test(buffer.toString('latin1')))errors.push('Sensitive CV content');
 }
 const style=path.join(dist,'styles.css');
 if(!fs.existsSync(style))errors.push('CSS missing');
 else {
   const css=read(style);
-  for(const name of ['.simple-offerings','.skip-link','.service-grid','.resume-timeline','background:#191b1f!important'])must(css,name,'Stylesheet');
+  for(const name of ['.process-timeline','.capability-grid','.journey-rail','.resume-v2-hero','.career-timeline','.skip-link','.service-grid','background:#191b1f!important'])must(css,name,'Stylesheet');
 }
 for(const [route,html] of pages) {
   for(const m of html.matchAll(/\bhref="(\/[^"#?]*)"/g)) {
