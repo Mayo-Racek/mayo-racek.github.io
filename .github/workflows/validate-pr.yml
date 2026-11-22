@@ -1,0 +1,32 @@
+name: Validate website PR
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Check JavaScript syntax
+        run: |
+          node --check src/lib/site.mjs
+          node --check public/site-analytics.js
+          node --check public/intake.js
+          node --check scripts/check-release.mjs
+      - name: Build Astro
+        run: npm run build
+      - name: Verify generated routes, data layer and privacy
+        run: node scripts/check-release.mjs
