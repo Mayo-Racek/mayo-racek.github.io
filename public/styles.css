@@ -1164,3 +1164,35 @@ body{background:#101317;color:var(--ink)}
  .hero-grid{align-items:center}
  .hero-visual{align-self:center}
 }
+
+
+/* Manager-friendly, outcome-led service descriptions.
+   Questions are readable static HTML, not faux interactive cards or accordions. */
+.services-landing .service-card{display:flex;flex-direction:column;align-items:flex-start;min-height:322px}
+.services-landing .service-card h3{line-height:1.2;margin-bottom:9px}
+.services-landing .service-card>p{margin-bottom:13px}
+.service-card-question{border-top:1px solid rgba(226,205,182,.2);margin-top:5px;padding-top:13px;display:grid;gap:5px;width:100%}
+.service-card-question span{text-transform:uppercase;font-size:10px;font-weight:750;letter-spacing:.12em;color:#d9be9a}
+.service-card-question q{font-size:14px;line-height:1.48;font-weight:650;color:#eee6dc;quotes:none}
+.service-card-question q:before,.service-card-question q:after{content:none}
+.services-landing .service-card .card-link{margin-top:auto;padding-top:19px}
+.service-questions{padding:59px 0 59px;background:linear-gradient(160deg,#181a1c,#202124);border-block:1px solid rgba(226,205,182,.12)}
+.service-questions .section-head{margin-bottom:24px}
+.service-question-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.service-question{border:1px solid rgba(226,205,182,.18);border-radius:16px;background:rgba(43,45,46,.6);padding:23px 21px}
+.service-question h3{font-size:clamp(17px,1.75vw,21px);line-height:1.35;letter-spacing:-.025em;margin:0 0 13px;color:#f2ede5}
+.service-question p{font-size:14px;line-height:1.72;color:#c7c2bc;margin:0}
+@media(max-width:900px){
+ .service-question-grid{grid-template-columns:1fr;gap:12px}
+ .service-question{padding:21px}
+ .services-landing .service-card{min-height:300px}
+}
+@media(max-width:700px){
+ .service-questions{padding:43px 0}
+ .service-questions .section-head{margin-bottom:18px}
+ .service-question-grid{grid-template-columns:1fr}
+ .service-question h3{font-size:19px}
+ .service-question p{font-size:14px}
+ .services-landing .service-card{min-height:0}
+ .service-card-question{margin-top:3px}
+}

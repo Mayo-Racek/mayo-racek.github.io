@@ -12,18 +12,18 @@ The curved path is the information architecture: Collect → Connect → Transfo
 
 | Stage | Visitor understanding | Link destination |
 | --- | --- | --- |
-| Collect | Consent-aware measurement and useful events | Collect & Measure |
-| Connect | Integrate applications, APIs and business data | Connect & Analyze |
-| Transform | Govern and test data models | Connect & Analyze |
-| Analyze | Produce decision-oriented insights | Connect & Analyze |
-| Activate | Feed approved data into business workflows | Activate & Automate |
-| Automate | Build evaluated, controlled AI-assisted workflows | Activate & Automate |
+| Collect | Consent-aware measurement and useful events | Measurement Strategy & Implementation |
+| Connect | Integrate applications, APIs and business data | Data Engineering & Analytics |
+| Transform | Govern and test data models | Data Engineering & Analytics |
+| Analyze | Produce decision-oriented insights | Data Engineering & Analytics |
+| Activate | Feed approved data into business workflows | Data Activation & Intelligent Automation |
+| Automate | Build evaluated, controlled AI-assisted workflows | Data Activation & Intelligent Automation |
 
 The lifecycle communicates how data becomes useful. The three service pages communicate what Mayo can actually deliver. Do not put another copy of all three services on the homepage.
 
 ## Services
 
-Each service page explains its distinct delivery process using a short four-stage timeline, three capabilities, and one CTA: **Start a Conversation**, linking to the enquiry section of Contact. Do not insert "best suited for" or similar audience restrictions. Do not publish invented success metrics.
+Each service page first answers three indicative business questions, then explains three tangible deliverables and a short four-stage delivery timeline. The single CTA is **Start a Conversation**, linking to the enquiry section of Contact. The questions illustrate possible conversations; they are not testimonials, client quotes or guaranteed outcomes. Do not insert "best suited for" or similar audience restrictions. Do not publish invented success metrics.
 
 ## About Me
 
@@ -31,7 +31,7 @@ Warm, credible first-person introduction about data engineering, AI, continuous 
 
 ## Contact
 
-Contact includes a topic dropdown (Collect & Measure, Connect & Analyze, Activation/AI, Not sure yet, Other) and one required short description. Visitors can prepare an email draft or copy it. The form has **no backend**. Never call a prepared draft a submitted lead.
+Contact includes a topic dropdown (Measurement Strategy & Implementation, Data Engineering & Analytics, Activation/AI, Not sure yet, Other) and one required short description. Visitors can prepare an email draft or copy it. The form has **no backend**. Never call a prepared draft a submitted lead.
 
 The legacy /start/ route reuses the same interface but has a noindex directive; canonical contact is /contact/. Any future direct submission requires a deployed and secured backend, spam protection, privacy terms, acknowledgement/receipt handling and an updated tracking event.
 
