@@ -16,42 +16,55 @@ export const services = [
     "slug": "measurement-architecture",
     "number": "01",
     "icon": "measure",
-    "name": "Collect & Measure",
-    "short": "Capture reliable web and app data with clear measurement, consent and quality standards.",
-    "teaser": "Data collection, event architecture, GA4, GTM and server-side tagging built around the questions your business needs to answer.",
-    "headline": "Collect the data that matters.",
-    "intro": "Design reliable web and app measurement from the beginning. I define what to measure, implement first-party collection where appropriate, and validate events and consent rules so teams can trust the information they use.",
+    "name": "Measurement Strategy & Implementation",
+    "short": "A measurement framework built around your goals, with reliable tracking and evidence you can trust.",
+    "teaser": "Business-specific measurement frameworks, KPIs, event architecture, GA4 and GTM implementation, consent controls and verification.",
+    "headline": "A measurement framework designed around your business goals.",
+    "intro": "Every business measures success differently. I help define the outcomes that matter, design a clear measurement framework and implement the tracking needed to support reliable reporting. The result is a documented, consent-aware solution with measurable acceptance criteria, testing and handover.",
     "offerings": [
       [
-        "Measurement design",
-        "Business goals, event taxonomy and data layer specifications."
+        "Business measurement framework",
+        "Business objectives, KPIs, key journeys, measurement plan and shared definitions."
       ],
       [
-        "Implementation",
-        "Web and app collection, GTM, GA4 and server-side tagging where appropriate."
+        "Tracking architecture & implementation",
+        "Event taxonomy, data-layer specifications, web/app tracking, GTM and GA4, with server-side collection where appropriate."
       ],
       [
-        "Quality & privacy",
-        "Consent-aware delivery, QA, monitoring and maintainable documentation."
+        "Validation & handover",
+        "Consent controls, end-to-end QA, reconciliation, acceptance tests and clear documentation."
       ]
     ],
-    "fit": "Product and marketing teams seeking dependable digital measurement.",
     "process": [
       [
-        "Define",
-        "Agree on the business questions, customer journeys and permitted data."
+        "Understand",
+        "Agree on business goals, decision points, critical journeys and permitted data."
       ],
       [
         "Design",
-        "Specify events, parameters, consent rules and acceptance criteria."
+        "Define the KPI framework, event taxonomy, data-layer contract and acceptance criteria."
       ],
       [
         "Implement",
-        "Build suitable web, app and server-side collection paths."
+        "Build the measurement architecture and appropriate collection integrations."
       ],
       [
-        "Validate",
-        "QA real journeys, reconcile delivery and document ownership."
+        "Verify",
+        "QA real journeys, validate reporting and hand over clear documentation."
+      ]
+    ],
+    "questions": [
+      [
+        "Can we trust our conversion and performance numbers?",
+        "I can trace important customer journeys from collection to reports, identify gaps or duplicated events, and validate the corrected measurement."
+      ],
+      [
+        "What should we actually measure to understand success?",
+        "I connect business objectives to clear KPIs, events and a documented measurement plan before choosing tools."
+      ],
+      [
+        "Can we improve tracking while protecting customer privacy?",
+        "I design purpose-specific collection and test consent-dependent behavior and data delivery."
       ]
     ]
   },
@@ -59,42 +72,55 @@ export const services = [
     "slug": "cloud-data-products",
     "number": "02",
     "icon": "cloud",
-    "name": "Connect & Analyze",
-    "short": "Connect your systems, engineer trustworthy data and turn it into decisions and insights.",
-    "teaser": "From APIs and ingestion to BigQuery, transformations, analytics and dashboards that teams can use confidently.",
-    "headline": "Connect your data. See the bigger picture.",
-    "intro": "Bring digital, customer and operational data into a governed cloud foundation. I build data pipelines, reusable models and clear analytics that connect source systems to business decisions.",
+    "name": "Data Engineering & Analytics",
+    "short": "Connect your business systems, create reliable data models and turn information into usable insights.",
+    "teaser": "Data integration, BigQuery and Dataform engineering, business metrics, reporting, quality checks and dashboards.",
+    "headline": "Connect your data. Understand your business.",
+    "intro": "When information lives in separate platforms, it becomes difficult to trust reports or see the full picture. I connect data sources, engineer dependable pipelines and models, and turn the results into analysis and reporting your teams can use to make decisions.",
     "offerings": [
       [
-        "Connect & ingest",
-        "Integrate APIs, events and business systems into a cloud data platform."
+        "Data integration & pipelines",
+        "Connect website, CRM, product and operational sources through APIs, ingestion and reliable cloud pipelines."
       ],
       [
-        "Transform & govern",
-        "BigQuery and Dataform models, shared metrics and data quality checks."
+        "Trusted business metrics",
+        "Create tested BigQuery and Dataform models, consistent definitions, data-quality checks and clear ownership."
       ],
       [
-        "Analyze & visualize",
-        "Reporting, Looker Studio dashboards and analysis built for decisions."
+        "Decision-ready analytics",
+        "Deliver fit-for-purpose analysis, Looker Studio or other BI dashboards, and documented reporting outputs."
       ]
     ],
-    "fit": "Teams wanting one trustworthy view across previously disconnected sources.",
     "process": [
       [
         "Discover",
-        "Understand the sources, business questions and data quality."
+        "Define decisions, data sources, metric ownership and freshness needs."
       ],
       [
         "Connect",
-        "Ingest data securely from events, APIs and business systems."
+        "Integrate approved source systems into a secure cloud data foundation."
       ],
       [
         "Model",
-        "Create tested transformations, metrics and reliable data products."
+        "Build tested transformations, business metrics and quality controls."
       ],
       [
         "Deliver",
-        "Enable analysis, visualization and governed activation."
+        "Provide analysis, dashboards, documentation and operational monitoring."
+      ]
+    ],
+    "questions": [
+      [
+        "Why do sales, marketing and product reports show different figures?",
+        "I reconcile sources and definitions, then build a shared metric model with checks that make discrepancies visible."
+      ],
+      [
+        "Can we connect data from our website, CRM and business systems?",
+        "I design and build source integrations, pipelines and warehouse models appropriate to your existing technology."
+      ],
+      [
+        "Can we replace manual spreadsheets with reporting we trust?",
+        "I help establish tested data models and decision-oriented dashboards with explicit freshness and ownership."
       ]
     ]
   },
@@ -102,42 +128,55 @@ export const services = [
     "slug": "applied-ai-systems",
     "number": "03",
     "icon": "spark",
-    "name": "Activate & Automate",
-    "short": "Turn trusted data into business action with activation, responsible AI agents and automation.",
-    "teaser": "Data activation, AI-ready foundations and controlled automation grounded in governance, evaluation and human oversight.",
-    "headline": "Turn trusted data into useful action.",
-    "intro": "Make your data useful beyond dashboards. I connect approved data to operational tools and design purposeful AI-assisted workflows, with permissions, evaluation, human oversight and cost controls considered from the start. The scope is defined and validated for each engagement.",
+    "name": "Data Activation & Intelligent Automation",
+    "short": "Move trusted data into business tools and design controlled automation where it brings measurable value.",
+    "teaser": "Governed data activation, AI-ready data, practical workflow automation, AI agent evaluation and cost visibility.",
+    "headline": "Put your data to work.",
+    "intro": "Useful data should support actions, not only dashboards. I help connect approved information to customer and operational systems, assess opportunities for automation and design practical AI-assisted workflows where they make sense. Governance, permissions, evaluation, human oversight and cost are part of the design.",
     "offerings": [
       [
-        "Data activation",
-        "Deliver permitted data to CRM, customer engagement and business systems."
+        "Data activation & integrations",
+        "Deliver permitted data to CRM, customer engagement, marketing or operational workflows, with ownership and controls."
       ],
       [
         "AI agents & automation",
-        "Design bounded agent workflows and tools around real operational use cases."
+        "Identify repeatable tasks and design scoped workflows or agent-assisted solutions with explicit boundaries."
       ],
       [
-        "Trust, evaluation & cost",
-        "Plan governance, safety controls, human approval, monitoring and token or inference cost."
+        "Governance, evaluation & value",
+        "Define safe access, human approvals, quality testing, observability and token or inference cost per useful outcome."
       ]
     ],
-    "fit": "Teams ready to use governed data for activation and practical automation.",
     "process": [
       [
         "Identify",
-        "Select a useful outcome and the right automation boundary."
+        "Choose an operational outcome and define how value will be assessed."
       ],
       [
         "Prepare",
-        "Validate data, permissions and safe tool access for AI."
+        "Check data quality, permitted integrations, access and operational risks."
       ],
       [
         "Build",
-        "Combine structured workflows and AI agents where appropriate."
+        "Develop a scoped integration, automated workflow or evaluated agent pilot."
       ],
       [
         "Evaluate",
-        "Check quality, safety, human review, observability and cost."
+        "Test reliability, approval boundaries, monitoring, cost and handover."
+      ]
+    ],
+    "questions": [
+      [
+        "Can our customer data reach the teams and tools that need it?",
+        "I can connect eligible data to CRM and operational platforms, with clear rules about how it may be used."
+      ],
+      [
+        "Which repetitive tasks are worth automating?",
+        "I assess the time, error and process impact before recommending a deterministic workflow or an AI-assisted solution."
+      ],
+      [
+        "How can we test an AI agent safely before real use?",
+        "I design bounded pilots with tool permissions, evaluations, human review, security and cost controls before wider rollout."
       ]
     ]
   }
@@ -240,7 +279,7 @@ function shell({title,description,body,active='home',base='/',canonical='',og='w
 
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="color-scheme" content="dark"/><meta name="theme-color" content="#191B1F"/><meta name="description" content="${esc(metaDesc)}"/>${noindex?'<meta name="robots" content="noindex, follow"/>':''}<meta property="og:type" content="${esc(og)}"/><meta property="og:title" content="${esc(fullTitle)}"/><meta property="og:description" content="${esc(metaDesc)}"/><meta property="og:url" content="${esc(fullUrl)}"/><link rel="canonical" href="${esc(fullUrl)}"/>${heroImagePreload}<meta name="twitter:card" content="summary"/><meta name="twitter:creator" content="@MayoRacek"/>${jsonLd}${dataLayerInit}<link rel="icon" href="${path('favicon.svg',base)}?v=2" type="image/svg+xml"/><link rel="stylesheet" href="${path('styles.css',base)}"/><title>${esc(fullTitle)}</title></head><body><a class="skip-link" href="#main-content">Skip to content</a>${header(active,base)}<main id="main-content">${body}</main>${footer(base)}<script defer src="${path('site-analytics.js',base)}"></script><script>(function(){const b=document.querySelector('.menu-toggle');const n=document.querySelector('.site-nav');if(b&&n){const close=()=>{b.setAttribute('aria-expanded','false');n.classList.remove('open')};b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(open));n.classList.toggle('open',open)});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();b.focus()}});document.addEventListener('click',e=>{if(!b.contains(e.target)&&!n.contains(e.target))close()})}})();</script></body></html>`;
 }
-function serviceCard(s,base){return `<a class="service-card" data-track-event="serviceSelected" data-track-location="servicesGrid" data-track-id="${esc(s.slug)}" href="${path(`services/${s.slug}/`,base)}"><div class="service-icon">${icon(s.icon)}</div><div class="service-number">${s.number}</div><h3>${esc(s.name)}</h3><p>${esc(s.short)}</p><span class="card-link">Explore ${esc(s.name)} <span aria-hidden="true">↗</span></span></a>`;}
+function serviceCard(s,base){return `<a class="service-card" data-track-event="serviceSelected" data-track-location="servicesGrid" data-track-id="${esc(s.slug)}" href="${path(`services/${s.slug}/`,base)}"><div class="service-icon">${icon(s.icon)}</div><div class="service-number">${s.number}</div><h3>${esc(s.name)}</h3><p>${esc(s.short)}</p><div class="service-card-question"><span>For example</span><q>${esc(s.questions[0][0])}</q></div><span class="card-link">Explore ${esc(s.name)} <span aria-hidden="true">↗</span></span></a>`;}
 function projectCard(p,base){return `<a class="project-card" href="${path(`projects/${p.slug}/`,base)}"><div class="project-art art-${p.theme}"><span class="art-serial">${p.number} / WORK</span><span class="art-glyph" aria-hidden="true">${p.theme==='cyan'?'◌':p.theme==='blue'?'▧':'✳'}</span><span class="project-category">${esc(p.category)}</span></div><div class="project-card-body"><span class="status-label">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.summary)}</p><span class="card-link">See what’s planned <span aria-hidden="true">↗</span></span></div></a>`;}
 function postCard(p,base){return `<a class="post-card" data-track-event="articleSelected" data-track-location="blogGrid" data-track-id="${esc(p.slug)}" href="${path(`blog/${p.slug}/`,base)}"><div class="post-topline"><span>${esc(p.category)}</span><span class="status-label">${esc(p.status)}</span></div><h3>${esc(p.title)}</h3><p>${esc(p.excerpt)}</p><span class="card-link">Read the article <span aria-hidden="true">↗</span></span></a>`;}
 function sectionHead(kicker,title,sub='',link='',linkText='',base='/'){return `<div class="section-head"><div><span class="kicker">${esc(kicker)}</span><h2>${title}</h2>${sub?`<p>${esc(sub)}</p>`:''}</div>${link?`<a class="section-link" href="${path(link,base)}">${esc(linkText)} <span aria-hidden="true">↗</span></a>`:''}</div>`;}
@@ -250,7 +289,7 @@ function lifeVisual(stage){
  return '<div class="life-viz life-viz--'+stage+'" aria-hidden="true"><svg viewBox="0 0 400 116" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">'+svg+'</svg></div>';
 }
 function dataJourney(base='/'){
- const stages=[{"id":"collect","number":"01","label":"Collect","mini":"Digital measurement","heading":"Capture the right information.","description":"Create a reliable starting point with clear events, first-party measurement, consent-aware collection and validation.","service":"measurement-architecture","serviceName":"Collect & Measure","x":8,"y":61,"mx":25,"my":8},{"id":"connect","number":"02","label":"Connect","mini":"Systems and APIs","heading":"Bring your data together.","description":"Connect websites, applications and operational tools through purposeful ingestion and integration.","service":"cloud-data-products","serviceName":"Connect & Analyze","x":25,"y":34,"mx":75,"my":25},{"id":"transform","number":"03","label":"Transform","mini":"Trusted models","heading":"Make data consistent and trustworthy.","description":"Build documented models, shared definitions and automated quality checks that teams can rely on.","service":"cloud-data-products","serviceName":"Connect & Analyze","x":42,"y":69,"mx":25,"my":42},{"id":"analyze","number":"04","label":"Analyze","mini":"Decisions and insights","heading":"Understand what the data means.","description":"Connect analysis and visualization to the questions that matter to your team and the decisions you want to make.","service":"cloud-data-products","serviceName":"Connect & Analyze","x":59,"y":27,"mx":75,"my":59},{"id":"activate","number":"05","label":"Activate","mini":"Business action","heading":"Put insights into action.","description":"Make approved data available to CRM, marketing and operational systems with clear rules and ownership.","service":"applied-ai-systems","serviceName":"Activate & Automate","x":76,"y":69,"mx":25,"my":76},{"id":"automate","number":"06","label":"Automate","mini":"AI and workflows","heading":"Make useful work happen automatically.","description":"Design practical automation and bounded AI-agent workflows with evaluation, human oversight, security and cost visibility.","service":"applied-ai-systems","serviceName":"Activate & Automate","x":93,"y":32,"mx":75,"my":93}];
+ const stages=[{"id":"collect","number":"01","label":"Collect","mini":"Digital measurement","heading":"Capture the right information.","description":"Create a reliable starting point with clear events, first-party measurement, consent-aware collection and validation.","service":"measurement-architecture","serviceName":"Measurement Strategy & Implementation","x":8,"y":61,"mx":25,"my":8},{"id":"connect","number":"02","label":"Connect","mini":"Systems and APIs","heading":"Bring your data together.","description":"Connect websites, applications and operational tools through purposeful ingestion and integration.","service":"cloud-data-products","serviceName":"Data Engineering & Analytics","x":25,"y":34,"mx":75,"my":25},{"id":"transform","number":"03","label":"Transform","mini":"Trusted models","heading":"Make data consistent and trustworthy.","description":"Build documented models, shared definitions and automated quality checks that teams can rely on.","service":"cloud-data-products","serviceName":"Data Engineering & Analytics","x":42,"y":69,"mx":25,"my":42},{"id":"analyze","number":"04","label":"Analyze","mini":"Decisions and insights","heading":"Understand what the data means.","description":"Connect analysis and visualization to the questions that matter to your team and the decisions you want to make.","service":"cloud-data-products","serviceName":"Data Engineering & Analytics","x":59,"y":27,"mx":75,"my":59},{"id":"activate","number":"05","label":"Activate","mini":"Business action","heading":"Put insights into action.","description":"Make approved data available to CRM, marketing and operational systems with clear rules and ownership.","service":"applied-ai-systems","serviceName":"Data Activation & Intelligent Automation","x":76,"y":69,"mx":25,"my":76},{"id":"automate","number":"06","label":"Automate","mini":"AI and workflows","heading":"Make useful work happen automatically.","description":"Design practical automation and bounded AI-agent workflows with evaluation, human oversight, security and cost visibility.","service":"applied-ai-systems","serviceName":"Data Activation & Intelligent Automation","x":93,"y":32,"mx":75,"my":93}];
  const desktopSvg="<svg class=\"life-path life-path-desktop\" viewBox=\"0 0 1000 310\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M 80 190 C 162 190 156 105 250 105 S 344 214 420 214 S 510 84 590 84 S 678 214 760 214 S 850 100 930 100\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg>";
  const mobileSvg="<svg class=\"life-path life-path-mobile\" viewBox=\"0 0 360 610\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path d=\"M 88 48 C 88 107 270 110 270 152 S 90 220 90 256 S 270 313 270 360 S 90 420 90 464 S 270 540 270 569\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg>";
  const dots=stages.map((st,i)=>'<li class="life-stage" style="--step-x:'+st.x+'%;--step-y:'+st.y+'%;--mobile-x:'+st.mx+'%;--mobile-y:'+st.my+'%"><button type="button" class="life-step" data-life-step="'+st.id+'" aria-pressed="'+(i===0?'true':'false')+'" aria-controls="life-detail-'+st.id+'"><span class="life-step-number">'+st.number+'</span><strong>'+st.label+'</strong><span class="life-step-mini">'+st.mini+'</span></button></li>').join('');
@@ -262,18 +301,19 @@ export function renderHome(base='/'){
  return shell({title:'Home',description:'Mayo Racek designs connected data solutions, from collection and analytics to AI-ready data and practical automation.',body:hero+dataJourney(base)+contactCta(base,{compact:true})+'<script defer src="'+path('lifecycle.js',base)+'"></script>',active:'home',base});
 }
 export function renderServices(base='/'){
- const intro="<section class=\"page-hero small-hero\"><div class=\"site-container\"><span class=\"kicker\">SERVICES</span><h1>From collection to <em>action.</em></h1><p>Three connected ways to make your data more useful, from reliable measurement to analytics and intelligent automation.</p></div></section>";
+ const intro="<section class=\"page-hero small-hero\"><div class=\"site-container\"><span class=\"kicker\">SERVICES</span><h1>Solutions designed around <em>what you need.</em></h1><p>Whether you need trustworthy measurement, connected reporting or practical automation, start with the business goal. The technology follows.</p></div></section>";
  const list="<section class=\"section services-landing\"><div class=\"site-container\"><div class=\"service-grid\">__CARDS__</div><p class=\"service-foundation\">Every solution is built around quality, privacy, security and clear ownership.</p></div></section>".replaceAll('__CARDS__',services.map(s=>serviceCard(s,base)).join(''));
- return shell({title:'Data & AI Services',description:'Data collection, cloud data engineering, analytics, activation and intelligent automation services by Mayo Racek.',body:intro+list+contactCta(base,{compact:true}),active:'services',base,canonical:'/services/'});
+ return shell({title:'Data & AI Services',description:'Measurement strategy and implementation, data engineering and analytics, and data activation with responsible automation tailored to business needs.',body:intro+list+contactCta(base,{compact:true}),active:'services',base,canonical:'/services/'});
 }
 export function renderService(slug,base='/'){
  const s=services.find(item=>item.slug===slug); if(!s)throw new Error('Unknown service '+slug);
  const steps=s.process.map(([heading,description],i)=>'<li class="process-step"><span class="process-number">'+String(i+1).padStart(2,'0')+'</span><div><h3>'+esc(heading)+'</h3><p>'+esc(description)+'</p></div></li>').join('');
  const outputs=s.offerings.map(([heading,description],i)=>'<article class="capability-card"><span class="capability-number">0'+(i+1)+'</span><h3>'+esc(heading)+'</h3><p>'+esc(description)+'</p></article>').join('');
  const hero='<section class="page-hero service-page-hero service-hero-v2"><div class="site-container"><a class="back-link" href="'+path('services/',base)+'">← Services</a><span class="kicker">'+esc(s.name.toUpperCase())+'</span><h1>'+esc(s.headline)+'</h1><p>'+esc(s.intro)+'</p></div></section>';
+ const questions='<section class="section service-questions" aria-labelledby="service-questions-title"><div class="site-container"><div class="section-head"><div><span class="kicker">BUSINESS QUESTIONS</span><h2 id="service-questions-title">Questions I can help you answer.</h2></div></div><div class="service-question-grid">'+s.questions.map(([question,answer])=>'<article class="service-question"><h3>'+esc(question)+'</h3><p>'+esc(answer)+'</p></article>').join('')+'</div></div></section>';
  const method='<section class="section service-method"><div class="site-container"><div class="journey-heading"><div><span class="kicker">HOW IT COMES TOGETHER</span><h2>A clear path from idea to delivery.</h2></div><p>A practical engineering process, adapted to the goal rather than a fixed platform.</p></div><ol class="process-timeline">'+steps+'</ol></div></section>';
  const capabilities='<section class="section service-capabilities"><div class="site-container"><div class="section-head"><div><span class="kicker">WHAT I CAN DELIVER</span><h2>Engineering that has a purpose.</h2></div></div><div class="capability-grid">'+outputs+'</div><div class="service-next"><p>Every engagement starts with your goal. Tell me what you have in mind and we can work out the best approach.</p><a class="btn btn-primary" data-track-event="ctaClicked" data-track-id="serviceStartConversation" data-track-location="serviceNext" href="'+path('contact/',base)+'#enquiry">Start a Conversation <span aria-hidden="true">↗</span></a></div></div></section>';
- return shell({title:s.name,description:s.teaser,body:hero+method+capabilities,active:'services',base,canonical:'/services/'+slug+'/'});
+ return shell({title:s.name,description:s.teaser,body:hero+questions+capabilities+method,active:'services',base,canonical:'/services/'+slug+'/'});
 }
 export function renderProjects(base='/'){
  const body="<section class=\"page-hero small-hero\"><div class=\"site-container\"><span class=\"kicker\">SELECTED WORK</span><h1>Useful work deserves <em>real evidence.</em></h1><p>I publish completed case studies only when implementation, QA, UAT and shareable evidence support the story. No placeholder projects or invented outcomes.</p></div></section><section class=\"section\"><div class=\"site-container\"><div class=\"placeholder-note\"><strong>Case studies are being validated for publication.</strong><p>Each will explain the operational problem, design trade-offs, what was built, the tests performed and what was actually achieved.</p></div><div class=\"section-head\"><div><span class=\"kicker\">ENGINEERING LAB</span><h2>What I am building now</h2></div></div><a class=\"lab-feature\" data-track-event=\"labProjectSelected\" data-track-id=\"aria\" data-track-location=\"projectsPage\" href=\"__ARIA__\"><div><span class=\"status-label\">In development</span><h3>Aria — Agent-assisted GTM operations</h3><p>A problem-led experiment in reducing repetitive audits, review effort and release risk with governed AI workflows.</p></div><span class=\"card-link\">Explore Aria's approach <span aria-hidden=\"true\">↗</span></span></a></div></section>".replaceAll('__ARIA__',path('lab/aria/',base));
