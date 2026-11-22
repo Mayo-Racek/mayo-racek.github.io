@@ -42,6 +42,11 @@ try:
             # even with responsive Chrome mobile/desktop dimensions.
             if life["y"] < height - 3:
                 errors.append(f"{width}x{height}: Lifecycle starts at {life['y']:.0f}px, before fold {height}px")
+            if width <= 600:
+                portrait_style = page.locator(".hero-visual").evaluate(
+                    "(el) => ({position: getComputedStyle(el).position, y: el.getBoundingClientRect().y})")
+                if portrait_style["position"] != "absolute" or portrait_style["y"] >= height * 0.55:
+                    errors.append(f"{width}x{height}: Portrait is no longer beside the hero headline: {portrait_style}")
             horizontal = page.evaluate("Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
             if horizontal > width + 5:
                 errors.append(f"{width}x{height}: Horizontal overflow {horizontal}px")
