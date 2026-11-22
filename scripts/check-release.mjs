@@ -42,7 +42,7 @@ const start = page('start/');
 const aria = page('lab/aria/');
 const article = page('blog/start-with-the-problem/');
 
-has(home, 'Engineering data solutions', 'Hero');
+has(home, 'Designing data solutions', 'Hero');
 has(home, 'Explore Services', 'First hero CTA');
 has(home, 'Read My Blog', 'Second hero CTA');
 has(home, 'data-track-id="heroExploreServices"', 'Explicit CTA ID');
