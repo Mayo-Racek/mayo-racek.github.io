@@ -6,7 +6,6 @@ deployment includes a CV that matches the latest resume page.
 from pathlib import Path
 
 from weasyprint import HTML
-from weasyprint.pdf import PDF
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "scripts" / "cv-print.html"
