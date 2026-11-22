@@ -98,6 +98,40 @@ try:
         if page.evaluate("window.dataLayer.filter(e => e.event === 'pageViewed').length") != 1:
             errors.append("Page view emitted more than once")
 
+        # Service pages must be clear and readable at phone, tablet and desktop sizes.
+        service_pages = [
+            ("services/", None),
+            ("services/measurement-architecture/", "Measurement Strategy & Implementation"),
+            ("services/cloud-data-products/", "Data Engineering & Analytics"),
+            ("services/applied-ai-systems/", "Data Activation & Intelligent Automation")
+        ]
+        for width, height in [(390, 844), (768, 1024), (1366, 768)]:
+            service_browser = browser.new_page(viewport={"width": width, "height": height})
+            for route, expected_name in service_pages:
+                service_browser.goto(URL + route, wait_until="networkidle")
+                page_width = service_browser.evaluate(
+                    "Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
+                if page_width > width + 5:
+                    errors.append(f"{route} {width}x{height}: Horizontal overflow {page_width}px")
+                if expected_name:
+                    h1 = service_browser.locator("h1").inner_text()
+                    if not h1:
+                        errors.append(f"{route}: Missing service heading")
+                    if service_browser.locator(".service-question").count() != 3:
+                        errors.append(f"{route}: Expected three manager questions")
+                    if service_browser.locator(".capability-card").count() != 3:
+                        errors.append(f"{route}: Expected three tangible deliverables")
+                    if service_browser.locator(".process-step").count() != 4:
+                        errors.append(f"{route}: Expected four delivery steps")
+                else:
+                    if service_browser.locator(".service-card-question").count() != 3:
+                        errors.append(f"{route}: Expected one example question per service")
+                if width == 390:
+                    shot = "services" if expected_name is None else route.strip("/").split("/")[-1]
+                    service_browser.screenshot(
+                        path=str(ARTIFACTS / f"{shot}-390.png"), full_page=True)
+            service_browser.close()
+
         reduced = browser.new_page(viewport={"width": 390, "height": 844}, reduced_motion="reduce")
         reduced.goto(URL, wait_until="networkidle")
         trace = reduced.locator(".life-detail:not([hidden]) .life-trace").first
