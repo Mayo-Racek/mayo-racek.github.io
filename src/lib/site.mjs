@@ -35,7 +35,25 @@ export const services = [
         "Consent-aware delivery, QA, monitoring and maintainable documentation."
       ]
     ],
-    "fit": "Product and marketing teams seeking dependable digital measurement."
+    "fit": "Product and marketing teams seeking dependable digital measurement.",
+    "process": [
+      [
+        "Define",
+        "Agree on the business questions, customer journeys and permitted data."
+      ],
+      [
+        "Design",
+        "Specify events, parameters, consent rules and acceptance criteria."
+      ],
+      [
+        "Implement",
+        "Build suitable web, app and server-side collection paths."
+      ],
+      [
+        "Validate",
+        "QA real journeys, reconcile delivery and document ownership."
+      ]
+    ]
   },
   {
     "slug": "cloud-data-products",
@@ -60,32 +78,68 @@ export const services = [
         "Reporting, Looker Studio dashboards and analysis built for decisions."
       ]
     ],
-    "fit": "Teams wanting one trustworthy view across previously disconnected sources."
+    "fit": "Teams wanting one trustworthy view across previously disconnected sources.",
+    "process": [
+      [
+        "Discover",
+        "Understand the sources, business questions and data quality."
+      ],
+      [
+        "Connect",
+        "Ingest data securely from events, APIs and business systems."
+      ],
+      [
+        "Model",
+        "Create tested transformations, metrics and reliable data products."
+      ],
+      [
+        "Deliver",
+        "Enable analysis, visualization and governed activation."
+      ]
+    ]
   },
   {
     "slug": "applied-ai-systems",
     "number": "03",
     "icon": "spark",
     "name": "Activate & Automate",
-    "short": "Put trusted data to work in business tools and carefully designed AI-powered workflows.",
+    "short": "Turn trusted data into business action with activation, responsible AI agents and automation.",
     "teaser": "Data activation, AI-ready foundations and controlled automation grounded in governance, evaluation and human oversight.",
     "headline": "Turn trusted data into useful action.",
-    "intro": "Data becomes more valuable when it reaches the right tools and workflows. I connect approved data to business systems and design practical automation, including AI-assisted workflows where they offer a clear benefit and can be evaluated safely.",
+    "intro": "Make your data useful beyond dashboards. I connect approved data to operational tools and design purposeful AI-assisted workflows, with permissions, evaluation, human oversight and cost controls considered from the start. The scope is defined and validated for each engagement.",
     "offerings": [
       [
         "Data activation",
-        "Share permitted data with CRM, customer engagement and operational platforms."
+        "Deliver permitted data to CRM, customer engagement and business systems."
       ],
       [
-        "AI-ready foundations",
-        "Prepare documented, permissioned data for retrieval and AI applications."
+        "AI agents & automation",
+        "Design bounded agent workflows and tools around real operational use cases."
       ],
       [
-        "Practical automation",
-        "Design bounded agent workflows with testing, human review, observability and cost controls."
+        "Trust, evaluation & cost",
+        "Plan governance, safety controls, human approval, monitoring and token or inference cost."
       ]
     ],
-    "fit": "Teams ready to use governed data for activation and practical automation."
+    "fit": "Teams ready to use governed data for activation and practical automation.",
+    "process": [
+      [
+        "Identify",
+        "Select a useful outcome and the right automation boundary."
+      ],
+      [
+        "Prepare",
+        "Validate data, permissions and safe tool access for AI."
+      ],
+      [
+        "Build",
+        "Combine structured workflows and AI agents where appropriate."
+      ],
+      [
+        "Evaluate",
+        "Check quality, safety, human review, observability and cost."
+      ]
+    ]
   }
 ];
 
