@@ -33,7 +33,6 @@ jobs:
           node --check src/lib/site.mjs
           node --check public/site-analytics.js
           node --check public/intake.js
-          node --check public/lifecycle.js
           node --check scripts/check-release.mjs
       - name: Build Astro
         run: npm run build
