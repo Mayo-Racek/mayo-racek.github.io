@@ -1151,3 +1151,16 @@ body{background:#101317;color:var(--ink)}
  }
  .hero-grid{align-content:space-between}
 }
+
+
+/* Tablet and desktop: a balanced first screen.
+   Unlike the old mobile implementation, the portrait remains in normal
+   grid flow and the content is centered, with no absolute overlap. */
+@media(min-width:601px){
+ .hero,.hero-grid{
+   min-height:calc(100vh - 80px);
+   min-height:calc(100svh - 80px)
+ }
+ .hero-grid{align-items:center}
+ .hero-visual{align-self:center}
+}
