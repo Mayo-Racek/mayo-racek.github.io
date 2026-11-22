@@ -120,7 +120,7 @@ const style=path.join(dist,'styles.css');
 if(!fs.existsSync(style))errors.push('CSS missing');
 else {
   const css=read(style);
-  for(const name of ['.process-timeline','.capability-grid','.life-step','.life-path-mobile','.life-viz--connect','.life-growth','100svh','prefers-reduced-motion','.enquiry-card','.about-human','.resume-v2-hero','.career-timeline','.skip-link','.service-grid','background:#191b1f!important'])must(css,name,'Stylesheet');
+  for(const name of ['.process-timeline','.capability-grid','.life-step','.life-path-mobile','.life-viz--connect','.life-growth','display:grid!important','prefers-reduced-motion','.enquiry-card','.about-human','.resume-v2-hero','.career-timeline','.skip-link','.service-grid','background:#191b1f!important'])must(css,name,'Stylesheet');
 }
 for(const [route,html] of pages) {
   for(const m of html.matchAll(/\bhref="(\/[^"#?]*)"/g)) {
