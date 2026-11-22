@@ -1020,3 +1020,121 @@ body{background:#101317;color:var(--ink)}
 @media(prefers-reduced-motion:reduce){
  .life-step{transition:none}
 }
+
+
+/* Stage-specific SVG motion and viewport-first homepage.
+   No animation framework, third-party images or font loading. */
+.life-panel{max-width:810px}
+.life-detail .life-viz{width:min(100%,530px);height:auto;margin:6px auto 14px}
+.life-viz svg{width:100%;height:auto;display:block;overflow:visible}
+.life-viz .life-muted{stroke:rgba(201,208,217,.48);stroke-width:2;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.life-viz .life-accent{stroke:#edca98;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.life-viz .life-accent circle{fill:#ecc795;stroke:none}
+.life-viz .life-viz-label{font-size:12px;font-weight:650;letter-spacing:.05em;text-anchor:middle;fill:#c8c7c4;stroke:none}
+.life-viz .life-trace{stroke-dasharray:8 9;animation:life-travel 2.4s linear infinite}
+.life-viz .life-pulse{transform-box:fill-box;transform-origin:center;animation:life-pulse 2s ease-in-out infinite}
+.life-viz .life-delay-1{animation-delay:.35s}
+.life-viz .life-delay-2{animation-delay:.7s}
+.life-viz .life-spark{animation:life-spark 2.2s ease-in-out infinite}
+.life-viz .life-growth{fill:rgba(228,200,160,.4);stroke:#edca98;stroke-width:1.5;transform-origin:center bottom;transform-box:fill-box;animation:life-grow 2.3s ease-in-out infinite alternate}
+.life-viz .life-agent{fill:rgba(228,200,160,.18);stroke:#edca98;stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:life-agent 3s ease-in-out infinite}
+.life-viz .life-raw{stroke-dasharray:17 8;animation:life-travel 2.7s linear infinite}
+.life-viz--collect .life-pulse.life-delay-0{animation-duration:1.8s}
+.life-viz--connect .life-spark{animation-duration:1.8s}
+.life-viz--automate .life-pulse{animation-duration:3s}
+@keyframes life-travel{to{stroke-dashoffset:-68}}
+@keyframes life-pulse{0%,100%{opacity:.55;transform:scale(.85)}50%{opacity:1;transform:scale(1.16)}}
+@keyframes life-grow{0%{transform:scaleY(.5);opacity:.6}100%{transform:scaleY(1);opacity:1}}
+@keyframes life-agent{0%,100%{opacity:.78;transform:scale(.93)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes life-spark{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* Only the home hero gets viewport positioning. Other pages retain natural flow. */
+.hero{min-height:calc(100vh - 80px);min-height:calc(100svh - 80px)}
+.hero-grid{min-height:calc(100vh - 80px);min-height:calc(100svh - 80px)}
+.hero-copy,.hero-grid,.hero-visual{box-sizing:border-box}
+.hero-visual{max-height:calc(100svh - 85px)}
+
+/* Mobile hero first: users encounter positioning and primary actions before
+   the data lifecycle, across browser chrome changes and safe screen areas. */
+@media(max-width:700px){
+ .hero{min-height:calc(100vh - 68px);min-height:calc(100svh - 68px)}
+ .hero-grid{min-height:calc(100vh - 68px);min-height:calc(100svh - 68px)}
+ .hero-visual{max-height:none}
+}
+@media(max-width:600px){
+ .hero-grid{display:block}
+ .hero-copy{padding-top:clamp(24px,5svh,48px);padding-bottom:clamp(34px,5svh,64px)}
+ .hero h1{margin-top:clamp(17px,3svh,27px)}
+ .hero-visual{top:clamp(82px,12svh,111px)}
+ .hero-bottom-fade{pointer-events:none}
+}
+@media(max-width:390px){
+ .hero h1{min-height:clamp(190px,52vw,225px)}
+ .hero-visual{height:clamp(230px,68vw,272px)}
+ .hero-actions{gap:9px}
+ .hero-signoff{margin-top:17px}
+}
+@media(max-width:360px) and (max-height:720px){
+ .hero-copy{padding-top:18px;padding-bottom:25px}
+ .hero h1{font-size:clamp(27px,7.9vw,31px);min-height:180px;margin-top:13px;margin-bottom:7px}
+ .hero-intro{font-size:14px;line-height:1.5}
+ .hero-actions{margin-top:15px}
+ .hero-actions .btn{min-height:44px}
+ .hero-signoff{margin-top:12px}
+ .hero-visual{height:220px;top:74px}
+}
+@media(min-width:701px) and (max-height:700px){
+ .hero-copy{padding-top:34px;padding-bottom:34px}
+ .hero-visual{max-height:calc(100svh - 100px);height:calc(100svh - 100px)}
+ .hero-visual .portrait{max-height:100%}
+}
+@media(max-height:500px) and (orientation:landscape){
+ .hero,.hero-grid{min-height:540px}
+ .hero-visual{max-height:440px}
+}
+/* Explicitly keep the selected stage readable without any motion. */
+@media(prefers-reduced-motion:reduce){
+ .life-viz *{animation:none!important;transition:none!important}
+ .life-step{transition:none!important}
+}
+
+
+/* Mobile portrait alignment: override legacy grid positioning so the
+   colorful portrait accompanies the headline instead of falling to the
+   bottom of the tall first-screen hero. */
+@media(max-width:600px){
+ .hero-grid{position:relative;display:block}
+ .hero-visual{
+   position:absolute;grid-column:auto;grid-row:auto;
+   left:auto;bottom:auto;right:-12px;top:clamp(78px,11svh,104px);
+   width:53%;max-width:none;height:clamp(210px,62vw,265px);
+   align-self:auto;margin:0;overflow:visible;pointer-events:none
+ }
+ .hero-visual .portrait{
+   position:absolute;right:-8px;bottom:0;
+   width:118%;height:100%;max-width:none;max-height:100%;
+   object-fit:contain;object-position:right bottom
+ }
+}
+@media(max-width:360px) and (max-height:720px){
+ .hero-visual{height:210px;top:74px;right:-8px;width:52%}
+ .hero-visual .portrait{width:114%;right:-5px}
+}
+
+
+/* Reserve real space for the portrait in the headline band.
+   On 400–600px phones, older theme rules set min-height:0 and allowed the
+   paragraph and CTAs to sit underneath the absolute-positioned portrait. */
+@media(max-width:600px){
+ .hero h1{min-height:clamp(265px,72vw,345px)}
+}
+@media(max-width:350px) and (max-height:630px){
+ .hero h1{font-size:27px;min-height:195px;margin-top:13px;margin-bottom:7px}
+ .hero-visual{height:150px;width:45%;top:76px;right:-5px}
+ .hero-visual .portrait{width:115%;right:-3px}
+ .hero-intro{font-size:14px;line-height:1.5}
+ .hero-actions{margin-top:14px}
+ .hero-actions .btn{min-height:43px}
+ .hero-copy{padding-top:18px;padding-bottom:24px}
+ .hero-signoff{margin-top:11px}
+}
