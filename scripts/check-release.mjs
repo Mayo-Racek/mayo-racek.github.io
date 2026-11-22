@@ -73,10 +73,26 @@ absent(home,'work-section','Unfinished project showcase on homepage');
 absent(home,'blog-section','Repeated blog cards on homepage');
 absent(home,'Discuss your project','Retired CTA');
 
-for (const service of ['Collect &amp; Measure','Connect &amp; Analyze','Activate &amp; Automate']) {
+for (const service of ['Measurement Strategy &amp; Implementation','Data Engineering &amp; Analytics','Data Activation &amp; Intelligent Automation']) {
   must(home,service,'Lifecycle service destinations');
   must(services,service,'Services landing page');
 }
+if ((services.match(/class="service-card-question"/g) || []).length !== 3) errors.push('Each service card needs one example business question');
+for (const id of ['measurement-architecture','cloud-data-products','applied-ai-systems']) {
+  must(services,'data-track-id="'+id+'"','Stable service tracking ID');
+}
+for (const [route,needle] of [
+  ['services/measurement-architecture/','Can we trust our conversion and performance numbers?'],
+  ['services/cloud-data-products/','Why do sales, marketing and product reports show different figures?'],
+  ['services/applied-ai-systems/','How can we test an AI agent safely before real use?']
+]) {
+  const html=page(route);
+  must(html,needle,'Business example question');
+  must(html,'Questions I can help you answer.','Manager-friendly questions heading');
+  if ((html.match(/class="service-question"/g) || []).length !== 3) errors.push('Expected 3 question/answer pairs: '+route);
+  must(html,'"@type":"Service"','Service schema');
+}
+
 for (const route of ['services/measurement-architecture/','services/cloud-data-products/','services/applied-ai-systems/']) {
   const html=page(route);
   must(html,'A clear path from idea to delivery.','Service process heading');
