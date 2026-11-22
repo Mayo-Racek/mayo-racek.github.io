@@ -13,97 +13,242 @@ export const profile = {
 
 export const services = [
   {
-    slug: 'measurement-architecture', number: '01', icon: 'measure',
-    name: 'Web & App measurement', short: 'Design tracking properly from day one, or improve and govern what is already running.',
-    teaser: 'Launching a website or app without tracking, or improving an existing implementation? I design measurement plans, event specifications and web and server-side collection that teams can maintain and trust.',
-    eyebrow: 'From measurement strategy to reliable reporting',
-    headline: 'Web & App measurement built to last.',
-    intro: 'Start with what the business needs to understand and what it is permitted to collect. I design Web & App measurement from scratch, improve unreliable implementations and build reusable enterprise frameworks for international teams. Shared event standards, consent-aware collection, server-side tagging where appropriate, quality checks and a clear reporting path are all part of the work. No unnecessary tracking or data sharing.',
-    problemTitle: 'Starting fresh or improving tracking?',
-    problems: [
-      ['Reports disagree', 'GA4, advertising platforms and internal systems tell different stories, and nobody is quite sure which one to use.'],
-      ['Tracking breaks quietly', 'Changes to the website, consent flow or tag setup create gaps that are only noticed weeks later.'],
-      ['No clear measurement foundation', 'A new website or app is ready to launch, but the events, identities, consent rules and success measures have not been designed.'],
+    "slug": "measurement-architecture",
+    "number": "01",
+    "icon": "measure",
+    "name": "Data Collection & Measurement",
+    "short": "Create a dependable view of customer and product activity across your digital channels.",
+    "teaser": "Design consent-aware events, data layers and first-party collection that give your teams a reliable starting point for analytics and activation.",
+    "eyebrow": "Turn customer activity into meaningful, trustworthy data",
+    "headline": "Collect the right data. Build confidence from day one.",
+    "intro": "Good decisions start with reliable information. I design measurement architectures for websites, apps and digital products, with clear event standards, consent-aware collection and a direct path to analytics and data platforms. From the first data layer event to controlled server-side collection, the architecture is designed to be understandable, maintainable and useful.",
+    "problemTitle": "What this makes possible",
+    "problems": [
+      [
+        "A shared understanding",
+        "Product, marketing and data teams work from consistent event definitions, business goals and measurement requirements."
+      ],
+      [
+        "Dependable collection",
+        "Important journeys are instrumented and tested, with consent and data-quality checks built into delivery."
+      ],
+      [
+        "A foundation for what comes next",
+        "Collected data is ready for approved reporting, analysis and downstream integration, not trapped in individual tags."
+      ]
     ],
-    helpTitle: 'Where I can help',
-    offerings: [
-      ['Measurement strategy and implementation', 'Plan what to measure for a new Web & App experience, or audit and improve a live setup. Define events, goals, ownership and acceptance checks.'],
-      ['Event and data layer design', 'Define the events, parameters, identifiers and business rules before adding more tags.'],
-      ['GTM, server-side GTM and GA4', 'Design a practical collection path, from the data layer through client-side and server-side tagging to analytics and downstream destinations.'],
-      ['Enterprise measurement frameworks', 'Set shared event standards and governance across brands, countries and product teams, with controlled local extensions, consent and repeatable QA.'],
-      ['Privacy, consent and governance', 'Define a legitimate purpose for every collection and destination. Apply legal-basis and consent requirements, data minimisation, access controls, QA and ownership throughout the measurement framework.'],
-      ['Quality and governance', 'Put validation, change control, monitoring and clear ownership around the setup so it stays reliable.'],
+    "helpTitle": "What I design and deliver",
+    "offerings": [
+      [
+        "Measurement strategy and event taxonomy",
+        "Translate business decisions and customer journeys into clear events, parameters, success measures and acceptance criteria."
+      ],
+      [
+        "Data layer and SDK design",
+        "Create consistent web and app event contracts that developers and analysts can implement and maintain."
+      ],
+      [
+        "Client-side and server-side collection",
+        "Use GTM, server-side GTM and GA4 where appropriate, with validated routing and purpose-specific destinations."
+      ],
+      [
+        "Enterprise measurement governance",
+        "Build reusable event standards across products and markets, with clear ownership and controlled local variations."
+      ],
+      [
+        "Privacy and consent integration",
+        "Document purpose and legal-basis requirements, integrate consent rules and minimize unnecessary collection or transmission."
+      ],
+      [
+        "Testing, quality and handover",
+        "Validate journeys and requests, reconcile data and provide readable documentation and ownership."
+      ]
     ],
-    process: [
-      ['Define the need', 'Clarify business questions, important customer journeys and any existing collection gaps. New implementations start with the same discovery.'],
-      ['Agree what good looks like', 'Document event definitions, collection rules, identity constraints and a testable tracking plan.'],
-      ['Build with the team', 'Implement or guide changes in the right place: product, data layer, tag manager, server or data warehouse.'],
-      ['Prove it works', 'Test real user journeys, reconcile data where possible and hand over clear QA evidence and ownership.'],
+    "process": [
+      [
+        "Define the decisions",
+        "Understand the business questions and the customer actions needed to answer them."
+      ],
+      [
+        "Design the contract",
+        "Specify event names, properties, identity constraints, consent rules and test scenarios."
+      ],
+      [
+        "Implement the collection",
+        "Connect applications, data layers, tag managers and destinations through the simplest suitable architecture."
+      ],
+      [
+        "Verify and maintain",
+        "Perform QA and UAT, document exceptions, and establish a process for change control."
+      ]
     ],
-    deliverables: ['Measurement strategy, audit or implementation plan', 'Event taxonomy, data layer and consent specification', 'Web and server-side tracking implementation or guidance', 'Collection purpose, vendor-destination and consent control mapping', 'Global framework and local market governance where needed', 'QA evidence, monitoring and handover'],
-    fit: 'For product, marketing and data teams that need to stop debating the measurement and start using it.',
+    "deliverables": [
+      "Measurement strategy and event catalogue",
+      "Web and app data-layer or SDK specification",
+      "Approved GTM/GA4 and server-side collection architecture",
+      "Consent and destination mapping",
+      "Reproducible QA/UAT evidence and handover"
+    ],
+    "fit": "For teams launching, scaling or improving digital experiences that need measurable, trustworthy customer activity."
   },
   {
-    slug: 'cloud-data-products', number: '02', icon: 'cloud',
-    name: 'Data engineering & activation', short: 'Connect scattered data, improve reporting and put trusted information to work across your business.',
-    teaser: 'Build a dependable data foundation for reporting, marketing and CRM activation, and secure AI applications. No prescribed vendor stack: the tools should fit your needs.',
-    eyebrow: 'From scattered sources to usable, connected data',
-    headline: 'Use your data wherever it creates value.',
-    intro: 'Your data should not stop at a dashboard. I connect sources, define trustworthy business metrics and build reliable models that support reporting, customer engagement and other approved destinations. The same foundations can make data more useful for AI, with permissions, quality and security considered from the start. The architecture stays tool-agnostic: use the platforms that suit your business.',
-    problemTitle: 'The usual signs',
-    problems: [
-      ['The same metric has five definitions', 'Each team joins and filters raw data differently, so agreeing on a number takes longer than producing it.'],
-      ['Pipelines need constant babysitting', 'Late inputs, schema changes and undocumented dependencies keep breaking the reporting layer.'],
-      ['Data is trapped between systems', 'Useful customer or product information cannot reach reporting, marketing, CRM or AI workflows without one-off exports and manual fixes.'],
+    "slug": "cloud-data-products",
+    "number": "02",
+    "icon": "cloud",
+    "name": "Cloud Data Engineering & Analytics",
+    "short": "Connect, transform and activate data so teams can make confident decisions and take action.",
+    "teaser": "Build dependable ingestion, cloud data platforms, transformations, analysis, visualization and approved activation on the tools that fit your business.",
+    "eyebrow": "From connected data to insights and action",
+    "headline": "Make data useful across your business.",
+    "intro": "I engineer the journey from source systems to useful information: ingestion, transformation, modelling, quality checks, analysis, visualization and activation. Whether you use Google Cloud, BigQuery and Dataform or a different stack, the goal is a reliable data foundation with definitions people agree on and outputs that support real decisions.",
+    "problemTitle": "What your data can enable",
+    "problems": [
+      [
+        "A connected picture",
+        "Bring web, app, CRM, product and operational data into a consistent, documented model."
+      ],
+      [
+        "Clarity you can trust",
+        "Give teams shared metrics, tested transformations and reports that are easier to explain."
+      ],
+      [
+        "Data that drives action",
+        "Deliver approved segments and attributes to dashboards, CRM, marketing and operational workflows."
+      ]
     ],
-    helpTitle: 'Where I can help',
-    offerings: [
-      ['BigQuery architecture', 'Plan datasets, access patterns, partitioning, costs and a structure that matches the questions people need to answer.'],
-      ['ELT and transformation', 'Build maintainable Dataform / SQL transformations and the checks around them.'],
-      ['Trusted data products', 'Define identity, grains, metrics and reusable models that serve reporting, activation and future AI applications.'],
-      ['Data activation & integrations', 'Make approved events, segments and attributes available to tools such as Customer.io, Google Ads, CRM or other destinations when permitted. Respect consent, eligibility, access and purpose limitations.'],
-      ['AI-ready data foundations', 'Prepare documented, validated data and governed access paths for AI. Define permissions, sensitive fields, safe retrieval and monitoring before a model or agent connects.'],
-      ['Reliability and cost control', 'Add freshness checks, reconciliation, sensible scheduling and visibility into expensive workloads.'],
+    "helpTitle": "What I design and deliver",
+    "offerings": [
+      [
+        "Data ingestion and integration",
+        "Bring together events, APIs, operational systems and exports with suitable ingestion and orchestration patterns."
+      ],
+      [
+        "Cloud warehouse architecture",
+        "Design BigQuery data structures, access controls, partitioning, scheduling and predictable query costs."
+      ],
+      [
+        "Transformation and modelling",
+        "Use Dataform, SQL and tested ELT patterns to turn raw data into reusable, clearly defined data products."
+      ],
+      [
+        "Analytics and visualization",
+        "Design useful metrics, business analysis and Looker Studio or other BI reporting for specific decisions."
+      ],
+      [
+        "Data activation and reverse ETL",
+        "Connect eligible data to tools such as Customer.io, Google Ads or CRM systems, with permission and purpose checks."
+      ],
+      [
+        "Data reliability and cost management",
+        "Build freshness checks, reconciliation, observability and cost controls into everyday operations."
+      ]
     ],
-    process: [
-      ['Start with decisions', 'Understand who uses the data, what they need and why the existing process falls short.'],
-      ['Inspect the sources', 'Check the shape, quality, timing, ownership and limitations of the data already available.'],
-      ['Model, connect and validate', 'Build reusable data models, test the results and connect approved reporting, activation or AI destinations based on the business need.'],
-      ['Check and hand over', 'Reconcile against source systems, add tests and make the operating model clear.'],
+    "process": [
+      [
+        "Start with decisions",
+        "Define who needs the data, what decisions it supports and the acceptable latency and quality."
+      ],
+      [
+        "Connect and govern",
+        "Inventory sources, access, retention, lawful use and reliability requirements."
+      ],
+      [
+        "Model and deliver",
+        "Build the ingestion paths, transformations, reports and approved activation integrations."
+      ],
+      [
+        "Test and transfer ownership",
+        "Reconcile sources to outputs, document assumptions and establish monitoring and support."
+      ]
     ],
-    deliverables: ['Source and model design', 'Data pipelines and reusable transformation models', 'Reporting and/or activation-ready datasets with access controls', 'Metric definitions, tests and documented assumptions', 'AI-readiness review and governed data access where relevant'],
-    fit: 'For teams that need to make trusted information useful in reports, campaigns, CRM workflows and responsible AI applications, without unnecessary lock-in.',
+    "deliverables": [
+      "Source-to-target architecture and ingestion plan",
+      "Documented, tested cloud data models and pipelines",
+      "Shared metrics and analytics-ready datasets",
+      "Dashboards or governed activation feeds as required",
+      "Data-quality checks, monitoring and operating documentation"
+    ],
+    "fit": "For businesses that want reliable information for analytics, reporting, customer activation and responsible future AI use."
   },
   {
-    slug: 'applied-ai-systems', number: '03', icon: 'spark',
-    name: 'Practical AI & automation', short: 'Reduce repetitive work with AI workflows that can be checked, monitored and controlled.',
-    teaser: 'I look for repeatable tasks where AI can genuinely help, then build practical workflows with the controls, evidence and human oversight they need.',
-    eyebrow: 'Useful automation, with controls from day one',
-    headline: 'Spend less time on work that can be automated.',
-    intro: 'A useful AI workflow depends on trustworthy information, not just a clever prompt. I help teams select practical tasks, prepare suitable data access and build controlled automations. Permissions, sensitive-data handling, human review, testing and a reliable way to stop or reverse actions are design requirements, not extras.',
-    problemTitle: 'Where teams get stuck',
-    problems: [
-      ['The demo never becomes a workflow', 'An idea looks promising, but it has no dependable data access, clear task boundary or operating owner.'],
-      ['Nobody can verify the output', 'Answers look plausible, but there is no evidence trail or safe way to catch mistakes.'],
-      ['Automation feels too risky', 'A system could save time, but access, approvals, rollback and monitoring are not defined.'],
+    "slug": "applied-ai-systems",
+    "number": "03",
+    "icon": "spark",
+    "name": "AI-Ready Data & Intelligent Automation",
+    "short": "Prepare trusted data for AI and build controlled workflows that create useful business outcomes.",
+    "teaser": "Bring data readiness, secure access, AI use-case design, agentic engineering, evaluation and cost visibility together in practical systems.",
+    "eyebrow": "Build on a trustworthy data foundation",
+    "headline": "Make your data ready for intelligent action.",
+    "intro": "AI becomes useful when it can work with the right information under the right controls. I help teams assess AI readiness, organize governed access to trusted data and design practical automation and agent-assisted workflows. Security, measurable outcomes, human oversight, observability and cost are part of the architecture, not an afterthought.",
+    "problemTitle": "Where intelligent systems can add value",
+    "problems": [
+      [
+        "AI-ready information",
+        "Structure and document trusted data so approved applications can retrieve and interpret it."
+      ],
+      [
+        "Practical automation",
+        "Identify repeatable, bounded workflows where models, tools or deterministic services improve daily work."
+      ],
+      [
+        "Controlled decisions",
+        "Keep agent actions observable and reviewable, with permissions, evaluation cases and human approval when needed."
+      ]
     ],
-    helpTitle: 'Where I can help',
-    offerings: [
-      ['Use-case selection', 'Pick a narrow, measurable workflow with clear inputs, outputs and a sensible human fallback.'],
-      ['Agent and workflow design', 'Connect models, tools, APIs and structured data with explicit permissions and task boundaries.'],
-      ['Secure data access for AI', 'Connect only approved sources through least-privilege access, with data classification, minimisation, logging and safeguards for sensitive information.'],
-      ['Evaluation and safety', 'Define what success looks like, test failure cases and keep consequential actions reviewable.'],
-      ['Practical deployment', 'Add logging, monitoring, cost visibility and operating rules before treating a prototype as production.'],
+    "helpTitle": "What I can help you build",
+    "offerings": [
+      [
+        "AI readiness and data access",
+        "Assess data quality, metadata, access paths, classification, permitted retrieval and governance gaps."
+      ],
+      [
+        "Workflow and agent design",
+        "Select practical use cases and connect model reasoning, APIs, tools and deterministic business rules."
+      ],
+      [
+        "Secure AI architecture",
+        "Design least-privilege access, approved data boundaries, secrets management and human-in-the-loop actions."
+      ],
+      [
+        "Evaluation and guardrails",
+        "Define acceptance criteria, run representative and failure-path tests, and control high-impact actions."
+      ],
+      [
+        "Observability and AI FinOps",
+        "Plan execution traces, quality monitoring, token or service cost visibility and cost per accepted outcome."
+      ],
+      [
+        "Operational rollout",
+        "Document ownership, escalation, rollback and release controls before treating a prototype as production."
+      ]
     ],
-    process: [
-      ['Find the friction', 'Map the repeated work, its costs, failure points and the decisions a person still needs to make.'],
-      ['Prove the narrow case', 'Build a small end-to-end workflow and check it against real, permitted examples.'],
-      ['Put boundaries around it', 'Add tool permissions, validation, review gates, observability and a way to stop or reverse actions.'],
-      ['Measure usefulness', 'Assess accuracy, time saved and operational effort before expanding its scope.'],
+    "process": [
+      [
+        "Identify the opportunity",
+        "Find an outcome where trusted data and automation can deliver measurable value."
+      ],
+      [
+        "Assess readiness",
+        "Check the necessary data, integration surfaces, access permissions and risks."
+      ],
+      [
+        "Build a bounded workflow",
+        "Implement the smallest viable flow with validation, evaluation and human fallback."
+      ],
+      [
+        "Prove usefulness",
+        "Test accuracy and reliability, measure operational cost and expand only when results justify it."
+      ]
     ],
-    deliverables: ['Use-case, data-readiness and risk assessment', 'Working workflow or limited-scope agent', 'Documented access boundaries and sensitive-data controls', 'Evaluation cases and human approval points', 'Runbook, observability and cost considerations'],
-    fit: 'For teams with repetitive operational work that might benefit from AI, but need more than a chatbot experiment.',
-  },
+    "deliverables": [
+      "AI-readiness and use-case assessment",
+      "Governed data-access and integration design",
+      "Limited-scope workflow or agent prototype as agreed",
+      "Evaluation cases, human review and safety boundaries",
+      "Observability, FinOps and operational handover plan"
+    ],
+    "fit": "For teams exploring trustworthy AI applications and automation without sacrificing data quality, security or control."
+  }
 ];
 
 // Editorial placeholders. Never display as completed client work.
