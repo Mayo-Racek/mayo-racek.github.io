@@ -1140,3 +1140,14 @@ body{background:#101317;color:var(--ink)}
  .life-viz *{animation:none!important;transition:none!important}
  .life-step{transition:none!important}
 }
+
+
+/* On taller phones, use available vertical space BETWEEN real hero content
+   rather than leaving a large empty tail or revealing the next section. */
+@media(max-width:600px){
+ .hero,.hero-grid{
+   min-height:calc(100vh - 68px)!important;
+   min-height:calc(100svh - 68px)!important
+ }
+ .hero-grid{align-content:space-between}
+}
