@@ -5,5 +5,12 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://mayoracek.com",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [mdx(), sitemap({
+    filter: (page) => {
+      const pathname = new URL(page).pathname;
+      return !pathname.startsWith('/projects/') &&
+        !pathname.startsWith('/lab/') &&
+        pathname !== '/start/' && pathname !== '/404/';
+    }
+  }), tailwind()],
 });
