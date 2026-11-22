@@ -1196,3 +1196,22 @@ body{background:#101317;color:var(--ink)}
  .services-landing .service-card{min-height:0}
  .service-card-question{margin-top:3px}
 }
+
+/* Blog-first edition: one personal hero, one recent-writing feature.
+   Existing responsive portrait, accessible navigation and typography remain. */
+.home-writing{padding:clamp(48px,6vw,78px) 0 83px;background:linear-gradient(180deg,#191b1e,#151719)}
+.home-writing .section-head{margin-bottom:22px}
+.home-writing .section-head h2{font-size:clamp(28px,3.2vw,39px);margin:10px 0}
+.home-writing .section-head p{font-size:15px;line-height:1.65;max-width:680px}
+.home-writing .post-grid{display:grid;grid-template-columns:minmax(0,750px)}
+.home-writing .post-card{width:100%;min-height:0;padding:28px}
+.home-writing .post-card h3{font-size:clamp(22px,2.4vw,29px)}
+.home-writing-all{display:inline-flex;margin-top:23px;font-size:14px}
+.blog-listing{padding-top:52px;padding-bottom:82px}
+@media(max-width:600px){
+ .hero h1{letter-spacing:-.048em}
+ .hero-intro{font-size:14px;line-height:1.6}
+ .home-writing{padding:42px 0 55px}
+ .home-writing .post-card{padding:23px}
+ .home-writing .post-card h3{font-size:22px}
+}

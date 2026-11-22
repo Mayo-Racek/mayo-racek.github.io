@@ -1,50 +1,36 @@
-# Website intent map — final navigation and visitor journey
+# Website intent map — personal technical blog
 
-## Homepage
+## Purpose
+**Mayo Racek writes about engineering reliable data systems, digital measurement, analytics and practical AI.**
 
-**Main message:** Designing data solutions to empower your goals.
+This is a personal professional blog, **not** a commercial services catalog or a portfolio of unfinished products. It should be clear who is writing, what they work on, what readers can learn and how to follow their thinking. Avoid marketing claims, manufactured outcomes and placeholder case studies.
 
-The hero introduces the engineering promise and provides two choices: **Explore Services** and **Read My Blog**. The homepage does **not** duplicate the service cards. Instead it contains one interactive full data lifecycle followed by one invitation to describe an opportunity.
+## Public navigation and pages
 
-### Full data lifecycle
-
-The curved path is the information architecture: Collect → Connect → Transform → Analyze → Activate → Automate. Each real button selects a self-contained, static HTML explanation with a descriptive link to an existing service page.
-
-| Stage | Visitor understanding | Link destination |
+| Page | Reader goal | Main action |
 | --- | --- | --- |
-| Collect | Consent-aware measurement and useful events | Measurement Strategy & Implementation |
-| Connect | Integrate applications, APIs and business data | Data Engineering & Analytics |
-| Transform | Govern and test data models | Data Engineering & Analytics |
-| Analyze | Produce decision-oriented insights | Data Engineering & Analytics |
-| Activate | Feed approved data into business workflows | Data Activation & Intelligent Automation |
-| Automate | Build evaluated, controlled AI-assisted workflows | Data Activation & Intelligent Automation |
+| Home | Understand who Mayo is and why this blog exists | Read the Blog; About Me |
+| Blog | Browse original articles | Read an article |
+| Article | Read a complete technical perspective | Return to the Blog |
+| About | Meet the engineer and person behind the writing | Download CV; View Experience; Read Blog |
+| Resume | Review professional history | Download CV |
+| Contact | Ask a question, share feedback or start a conversation | Open Email Draft / Copy Message |
 
-The lifecycle communicates how data becomes useful. The three service pages communicate what Mayo can actually deliver. Do not put another copy of all three services on the homepage.
+The homepage consists of **a compact, portrait-led personal introduction and latest writing**. Do not add service cards, full data lifecycle, sales CTAs, fake results or decorative content solely to fill space.
 
-## Services
+## What was retired
+The Services, service-detail, Work, lab/Aria and duplicate Start public routes were removed. Their source remains available in repository history if a verified consultancy or product offering is intentionally launched in the future. The existing Contact form is still available without a backend; it opens an email draft for the visitor to review and send.
 
-Each service page first answers three indicative business questions, then explains three tangible deliverables and a short four-stage delivery timeline. The single CTA is **Start a Conversation**, linking to the enquiry section of Contact. The questions illustrate possible conversations; they are not testimonials, client quotes or guaranteed outcomes. Do not insert "best suited for" or similar audience restrictions. Do not publish invented success metrics.
+## Honest editorial policy
+Only complete and technically defensible articles are published. Projects and AI agents must not be presented as launched or completed without documented testing/UAT and appropriate disclosure permission.
 
-## About Me
+## Contract and technical continuity
+- First-party data layer stays on **schema 1.1.0**.
+- The original event dictionary remains supported; events for removed Services, lifecycle and lab UI are now **dormant**, not repurposed.
+- **pageViewed**, **articleSelected**, **ctaClicked**, navigation, CV and contact-intent events continue to work with their existing shapes.
+- The scripts do not forward data to a vendor or store/free-text visitor messages.
+- Site metadata remains static HTML with canonical URLs and factual Person, WebSite, ProfilePage, Article and BreadcrumbList schemas.
+- The sitemap contains only current public pages. Removed URLs return not found rather than pretending there is still a service to purchase.
 
-Warm, credible first-person introduction about data engineering, AI, continuous learning, knowledge-sharing, family and football. Visitors can download the PDF CV immediately or open the detailed Resume page. About Me is a people/identity page, not another services list.
-
-## Contact
-
-Contact includes a topic dropdown (Measurement Strategy & Implementation, Data Engineering & Analytics, Activation/AI, Not sure yet, Other) and one required short description. Visitors can prepare an email draft or copy it. The form has **no backend**. Never call a prepared draft a submitted lead.
-
-The legacy /start/ route reuses the same interface but has a noindex directive; canonical contact is /contact/. Any future direct submission requires a deployed and secured backend, spam protection, privacy terms, acknowledgement/receipt handling and an updated tracking event.
-
-## Resume
-
-The Resume page keeps verified career history and displays a link to the professionally designed two-page PDF. No unearned certification badges or unverified outcomes.
-
-## Blog and Work
-
-The blog is for original, published, complete technical articles with clear attribution and defensible content. Work remains unindexed until case studies are truly completed, tested and publication-approved. Aria is an openly labelled in-development lab initiative, not a finished product.
-
-## Tracking and SEO
-
-Data-layer v1.1.0: pageViewed; CTA/content/service navigation; lifecycleStepSelected; resumeDownloadClicked; meaningful contact-intent events. No free-text form values enter event payloads. GTM/GA4 forwarding is not yet deployed.
-
-SEO/GEO: static HTML content, canonical URLs, sitemap filtering, robots directives, profile/service/article/breadcrumb structured data, and direct internal links. Verify external indexing, browser interactions, mobile layout, real publication dates and social-preview assets as separate QA activities.
+## Future expansion
+Start with meaningful, original writing. Add case studies or a commercial services section only when there is enough tested real work and a clear reader/customer purpose. Preserve old data-layer naming/IDs and use a versioned change when an event contract genuinely changes.

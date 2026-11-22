@@ -1,9 +1,9 @@
 // Global website configuration.
 
-export const SITE_TITLE = "Mayo Racek | Data & AI Solutions Architect";
+export const SITE_TITLE = "Mayo Racek | Data Engineering, Analytics & AI Blog";
 
 export const SITE_DESCRIPTION =
-  "Designing data solutions to empower your goals. Collection, cloud data engineering, analytics and responsible automation.";
+  "Personal technical notes on data engineering, analytics, digital measurement and practical AI, by Mayo Racek.";
 
 export const GENERATE_SLUG_FROM_TITLE = true;
 

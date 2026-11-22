@@ -1,8 +1,0 @@
----
-import { services, renderService } from '../../lib/site.mjs';
-export function getStaticPaths() {
-  return services.map(({ slug }) => ({ params: { slug }, props: { slug } }));
-}
-const html = renderService(Astro.props.slug);
----
-<Fragment set:html={html} />
