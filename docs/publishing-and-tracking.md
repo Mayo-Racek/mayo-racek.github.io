@@ -3,7 +3,7 @@
 ## Site structure and editorial purpose
 
 - **Home**: single promise plus interactive six-stage full data lifecycle, leading to the appropriate service.
-- **Services**: three commercial offers—Collect & Measure, Connect & Analyze, Activate & Automate. Each service detail explains its own four-step delivery path.
+- **Services**: three commercial offers—Measurement Strategy & Implementation, Data Engineering & Analytics, Data Activation & Intelligent Automation. Each service detail explains its own four-step delivery path.
 - **About Me**: who Mayo is, why he enjoys the work, family, football, knowledge sharing and a direct public CV download.
 - **Resume**: more detailed verified career experience, and the same generated two-page PDF.
 - **Blog**: only complete, reviewed and original technical articles.
