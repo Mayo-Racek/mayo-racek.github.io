@@ -1,25 +1,25 @@
-# mayoracek.com — First-party Data Layer Contract
+# First-party data layer — mayoracek.com
 
-**Status:** Proposed on a feature branch, pending browser UAT. No vendor collection is enabled by this change.
-**Version:** 1.0.0
-**Owner:** Mayo Racek
-**Implementation:** src/lib/site.mjs, public/site-analytics.js, public/intake.js.
+**Schema version:** 1.1.0  
+**Status:** Implemented in GitHub source; browser UAT still required. No external analytics forwarding is configured.  
+**Implementation:** \`src/lib/site.mjs\`, \`public/site-analytics.js\`, \`public/lifecycle.js\`, \`public/intake.js\`.  
+**Owner:** Mayo Racek.
 
-## Design principles
+## Why it exists
 
-The purpose is to measure meaningful outcomes, not every DOM click. Events use past-tense, action-oriented camelCase such as pageViewed and serviceSelected. Parameters use camelCase as well, with stable IDs independent of presentation text. A single click generates one semantic event. Custom data-layer events and GA4 event names are separate contracts.
+The site records meaningful intent on the browser's \`window.dataLayer\` queue. It does not record every pointer movement, scroll or decorative click. The schema uses **camelCase** action-oriented, past-tense event names and stable IDs.
 
-The implementation creates window.dataLayer locally and pushes data into it. It does not set cookies, persist visitor IDs, read free-text form answers into analytics, or transmit data to external endpoints.
+Never collect free-text message content, company names, personal details, email subjects, email bodies, passwords, credentials or user identifiers in this data layer. The scripts create no cookies, persistent IDs, local storage entries or analytics network requests.
 
-## Page event
+## Page-level payload
 
-Each page queues exactly one pageViewed event with this structure:
+Emitted once in the static HTML head for every full page load:
 
 ~~~js
 window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
   event: 'pageViewed',
-  schemaVersion: '1.0.0',
+  schemaVersion: '1.1.0',
   page: {
     pageType: 'home',
     pagePath: '/',
@@ -30,73 +30,86 @@ window.dataLayer.push({
 });
 ~~~
 
-The page types used by the static routes include home, services, serviceDetail, projects, labProject, blog, article, about, resume, contact and start. Parameters contain canonical paths without query strings. The fallback 404 page should use notFound.
+Page types include \`home\`, \`services\`, \`serviceDetail\`, \`article\`, \`blog\`, \`about\`, \`resume\`, \`contact\`, \`start\`, \`projects\`, \`labProject\` and \`notFound\`. Full page navigation produces a new pageViewed on the destination page, not a second event on the current page.
 
-## Interaction event
+## Interaction payload
 
 ~~~js
 window.dataLayer.push({
-  event: 'serviceSelected',
-  schemaVersion: '1.0.0',
+  event: 'lifecycleStepSelected',
+  schemaVersion: '1.1.0',
   interaction: {
-    actionId: 'cloud-data-products',
-    actionLocation: 'servicesGrid',
-    targetPath: '/services/cloud-data-products/',
-    contentType: 'service',
-    contentId: 'cloud-data-products',
+    actionId: 'transform',
+    actionLocation: 'dataLifecycle',
+    targetPath: null,
+    contentType: 'dataLifecycleStage',
+    contentId: 'transform',
     formId: null
   }
 });
 ~~~
 
-All six interaction properties are always provided, set to null when irrelevant, to prevent stale data from earlier events being mistaken for data about the current event.
+All six interaction fields are always present; irrelevant fields are null. Do not reuse GTM variables without event-scope guards, since earlier values may linger in data layer state.
 
-| Event | Trigger | Measurement question |
+## Event dictionary
+
+| Event | When it fires | Important distinction |
 | --- | --- | --- |
-| pageViewed | One event for each page load | Which pages and content types attract interest? |
-| navigationClicked | Header, footer or brand navigation | Can users find the relevant section? |
-| navigationMenuOpened | Mobile navigation expands | Are users using mobile navigation? |
-| ctaClicked | Hero or other purposeful CTA link | Which invitations cause a next step? |
-| serviceSelected | Service card clicked | What problem category interests visitors? |
-| articleSelected | Published article card clicked | Which technical topics are selected? |
-| labProjectSelected | Aria link clicked | Are visitors interested in the in-development initiative? |
-| contentLinkClicked | Other content anchor clicked | Where do readers go next? |
-| socialLinkClicked | Footer profile link clicked | Which professional profile is selected? |
-| contactMethodSelected | Contact option link clicked | Which contact option is chosen? |
-| projectBriefStarted | First focus within brief form | Is there intent to explain a problem? |
-| projectBriefNeedSelected | Brief category radio selection | Which broad needs are selected? |
-| projectBriefEmailPrepared | Valid brief generates a mailto draft | Is a draft prepared? Not a sent lead. |
-| projectBriefCopied | Valid brief is successfully copied | Is the brief copied? Not a submitted lead. |
+| pageViewed | Every HTML page load | Once, from server-rendered HTML |
+| navigationClicked | Header, footer or brand navigation | Navigation intent |
+| navigationMenuOpened | Mobile menu opens | Not on close |
+| ctaClicked | Action button-style link | Links to a destination; not a conversion |
+| serviceSelected | Service card or selected lifecycle service link | Stable service slug and page context |
+| lifecycleStepSelected | Visitor activates a curved path stage | Stable ID: collect, connect, transform, analyze, activate, automate |
+| articleSelected | Published article card clicked | Article content ID |
+| labProjectSelected | Aria link clicked | In-development interest, not production use |
+| contentLinkClicked | Other useful content link | Generic navigation |
+| socialLinkClicked | Footer social profile link | Profile destination |
+| contactMethodSelected | Contact option selected | Outreach intent |
+| resumeDownloadClicked | CV download link explicitly instrumented | Click intent, not guaranteed download completion |
+| projectBriefStarted | First focus within the enquiry form | Starts once per form load |
+| projectBriefNeedSelected | Dropdown selection changes | Only stable codes: collect, connect, activate, unsure, other |
+| projectBriefEmailPrepared | Valid form generates an email draft | NOT a submitted enquiry |
+| projectBriefCopied | Valid message successfully copied | NOT a submitted enquiry |
 
-For form category selection, record only stable codes needOption1 through needOption5. Never record names, email addresses, company, free-text descriptions or subject/body strings.
+**16 supported events: one page event and 15 interaction events.**
 
-## Destinations and consent
+## Enquiry form / conversion boundary
 
-Phase 1 has **no GTM or GA4 network calls** and no implied consent status. If you later add a consent management platform and Google Tag Manager, define legal basis, vendor purpose and actual consent handling first. For Basic Consent Mode, prevent relevant Google tags from loading until required consent is granted. Do not publish an invented consent flag.
+The contact form has only two fields: an approved topic dropdown (including Other) and a short free-text description. The free text is used **only in the visitor's own email draft or clipboard**, never in \`window.dataLayer\`. The site itself does not send the email or receive the form data.
 
-Suggested future GA4 mapping:
-- pageViewed → page_view, but only if automatic GA4 page views have been disabled. Avoid duplication.
-- serviceSelected or articleSelected → select_content, with approved content_type and item_id parameters.
-- navigationClicked → navigation_click custom event, only if it answers a business question.
-- ctaClicked → cta_click custom event.
-- projectBriefEmailPrepared → project_brief_email_prepared custom intent event, not generate_lead.
-- projectBriefCopied → project_brief_copied custom intent event.
+Mapping \`projectBriefEmailPrepared\` to GA4 \`generate_lead\` would be misleading. A future verified submission event would need a genuine server-side acknowledgement from a secure backend and an updated event contract. Record only permissible data with documented purpose, consent and retention policy.
 
-Map only useful events. GA4 expects its own event naming conventions and parameter constraints, so do not send camelCase data-layer events directly as if they were GA4 recommended event names.
+## Proposed future GA4 / GTM mapping (not live)
 
-## Browser UAT
+| Data layer | Possible GA4 event | Notes |
+| --- | --- | --- |
+| pageViewed | page_view | Avoid duplicate enhanced/automatic page_view |
+| ctaClicked | cta_click | Only meaningful CTA destinations |
+| serviceSelected | select_content | Use approved content_type and item_id |
+| lifecycleStepSelected | lifecycle_step_select | Optional; retain stable step_id |
+| resumeDownloadClicked | file_download | Ensure enhanced measurement is not already collecting the same PDF click |
+| articleSelected | select_content | content_type = article |
+| projectBriefEmailPrepared | project_brief_email_prepared | Intent only; not a lead |
+| projectBriefCopied | project_brief_copied | Intent only |
 
-1. Load a page with DevTools open and run: window.dataLayer.filter(e => e && e.schemaVersion === '1.0.0').
-2. Confirm exactly one pageViewed per full page load, with correct pageType, pagePath and canonical URL.
-3. Click Explore Services and Read My Blog. Each should produce one ctaClicked event with the stable IDs heroExploreServices and heroReadBlog, and go to the correct page.
-4. Select a service, article and Aria link. Confirm serviceSelected, articleSelected and labProjectSelected with the corresponding IDs.
-5. Open and close the mobile menu. navigationMenuOpened should occur only when opening.
-6. Start a project brief, select a category, and check that text inputs and company details never enter the dataLayer.
-7. Try preparing/copying an invalid brief. No success events should fire. With a valid brief, confirm projectBriefEmailPrepared for the mailto draft and projectBriefCopied only for actual clipboard success.
-8. Inspect Network, Cookies and Local Storage to confirm the analytics implementation itself does not transmit or persist data.
-9. Test on desktop and mobile, with keyboard navigation and real link destinations.
-10. Review content claims, build output and the GitHub Actions PR validation before approving a production merge.
+GA4 naming convention and custom dimensions are **separate** from the camelCase first-party contract. Prefer tracking fewer purposeful events over forwarding every link click.
 
-## Publication
+## UAT before live analytics activation
 
-The release pipeline runs syntax, Astro build, link, route, content integrity and privacy-related static checks. These checks are **not** a substitute for browser UAT, consent/legal review or client acceptance. The production deployment workflow continues to run only after merge to main.
+1. On home, run \`window.dataLayer.filter(x => x?.schemaVersion === '1.1.0')\`. Expect one pageViewed.
+2. Click each of the six curved stages, verify the displayed explanation, \`aria-pressed\`, one \`lifecycleStepSelected\` per activation and the relevant service link.
+3. Click the lifecycle service link and verify one \`serviceSelected\` followed by a pageViewed on the destination.
+4. Check both hero CTAs; IDs remain \`heroExploreServices\` and \`heroReadBlog\`.
+5. Select Contact topic values including Other. Verify only stable codes enter \`projectBriefNeedSelected\`, never the written description.
+6. Trigger invalid form inputs. No email-prepared/copied success event should fire.
+7. For a valid message, verify mailto composition and an explicit notice that the visitor must press Send in the email application.
+8. Download the CV from About and verify \`resumeDownloadClicked\`, the PDF link and two-page PDF.
+9. Test keyboard (Tab and arrow keys), mobile viewport, browsers and reduced-motion settings.
+10. In the browser Network / Storage panels, verify no vendor endpoint, identity cookie or analytics storage originates from this code.
+11. Validate the static GitHub Actions checks, compare markup to actual site content and approve browser UAT.
+12. Design consent and GTM/GA4 mapping before turning on any analytics vendor collection.
+
+## External analytics roadmap
+
+The site currently has a first-party event queue, not a connected tracking system. To complete analytics, define purpose, consent requirements, CMP implementation, GTM/GA4 tagging behavior, exact event mapping, parameter minimization, deduplication, UAT and documentation. If server-side GTM is added later, connect only the endpoints actually required by the approved measurement architecture.
