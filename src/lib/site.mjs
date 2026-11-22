@@ -204,7 +204,7 @@ function shell({title,description,body,active='home',base='/',canonical='',og='w
   const pagePath = title==='Page not found'?'/404/':canonical||'/';
   const segments = pagePath.split('/').filter(Boolean);
   const pageType = title==='Page not found' ? 'notFound' : !segments.length ? 'home' : segments[0] === 'services' && segments.length > 1 ? 'serviceDetail' : segments[0] === 'blog' && segments.length > 1 ? 'article' : segments[0] === 'lab' ? 'labProject' : segments[0];
-  const pageEvent = {event:'pageViewed',schemaVersion:'1.0.0',page:{pageType,pagePath,pageTitle:title,language:'en',canonicalUrl:fullUrl}};
+  const pageEvent = {event:'pageViewed',schemaVersion:'1.1.0',page:{pageType,pagePath,pageTitle:title,language:'en',canonicalUrl:fullUrl}};
   // Data layer messages remain local until a separately governed collection integration is added.
   const dataLayerInit = '<script>window.dataLayer=window.dataLayer||[];window.dataLayer.push('+JSON.stringify(pageEvent).replace(/</g,'\\u003c')+');</script>';
   const homeUrl='https://mayoracek.com/';
