@@ -26,6 +26,45 @@
     'resumeDownloadClicked'
   ]);
 
+  // Optional semantic activity fields explain what happened without changing
+  // the existing event names, interaction fields, or schemaVersion 1.1.0.
+  // Values are deliberately fixed enums; visitor-supplied text never enters them.
+  const activityByEvent = Object.freeze({
+    navigationClicked:     ['navigateSite', 'navigation', 'intent'],
+    navigationMenuOpened:  ['openMenu', 'navigation', 'opened'],
+    ctaClicked:            ['followLink', 'navigation', 'intent'],
+    serviceSelected:       ['exploreService', 'navigation', 'intent'],
+    articleSelected:       ['openArticle', 'reading', 'intent'],
+    labProjectSelected:    ['exploreLabProject', 'navigation', 'intent'],
+    contentLinkClicked:    ['followContentLink', 'reading', 'intent'],
+    socialLinkClicked:     ['openSocialProfile', 'profile', 'intent'],
+    contactMethodSelected: ['chooseContactMethod', 'contact', 'intent'],
+    projectBriefStarted:   ['startContactMessage', 'contact', 'started'],
+    projectBriefNeedSelected: ['chooseContactTopic', 'contact', 'selected'],
+    projectBriefEmailPrepared: ['prepareContactEmail', 'contact', 'prepared'],
+    projectBriefCopied:    ['copyContactMessage', 'contact', 'copied'],
+    lifecycleStepSelected: ['exploreDataLifecycle', 'navigation', 'selected'],
+    resumeDownloadClicked: ['downloadResume', 'profile', 'intent']
+  });
+  const activityByActionId = Object.freeze({
+    heroReadBlog: 'readBlog',
+    heroAboutMe: 'readAbout',
+    homeAllArticles: 'browseArticles',
+    aboutDownloadResume: 'downloadResume',
+    resumeHeroDownload: 'downloadResume',
+    resumeBottomDownload: 'downloadResume'
+  });
+  function describeActivity(eventName, actionId) {
+    const definition = activityByEvent[eventName];
+    if (!definition) return null;
+    return {
+      name: eventName === 'ctaClicked' && Object.prototype.hasOwnProperty.call(activityByActionId, actionId)
+        ? activityByActionId[actionId] : definition[0],
+      category: definition[1],
+      status: definition[2]
+    };
+  }
+
   // Never allow free-text inputs (such as brief details, company name or email)
   // to be passed into the event schema.
   function token(value) {
@@ -59,7 +98,8 @@
       formId: token(input.formId) || null
     };
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: eventName, schemaVersion, interaction });
+    window.dataLayer.push({ event: eventName, schemaVersion, interaction,
+      activity: describeActivity(eventName, interaction.actionId) });
     return true;
   }
 
