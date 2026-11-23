@@ -33,7 +33,8 @@ const post=page('blog/start-with-the-problem/');
 const about=page('about/');
 const resume=page('resume/');
 const contact=page('contact/');
-must(home,'Building data systems.','Blog-first headline');
+must(home,'Designing data solutions.','Blog-first headline');
+must(home,'17+ years designing and engineering data solutions.','Clear experience statement');
 must(home,'Sharing what works.','Blog-first promise');
 must(home,'Read the Blog','Primary blog CTA');
 must(home,'About Me','Secondary about CTA');
@@ -67,6 +68,14 @@ must(resume,'Download Resume (PDF)','CV download');
 must(resume,'career-timeline','Experience timeline');
 must(resume,'resumeDownloadClicked','Download intent tracking');
 must(contact,'id="project-brief"','Contact form');
+must(contact,'class="contact-focus"','Compact contact section');
+must(contact,'id="contact-title"','Accessible contact heading');
+must(contact,'Get in <em>touch.</em>','Short contact message');
+absent(contact,'contact-hero','No duplicate contact banner');
+absent(contact,'page-hero','No contact banner');
+must(contact,'What is your message about?','Plain language subject field');
+must(contact,'Your message</label>','Plain language message field');
+must(contact,'General question','General enquiry topic');
 must(contact,'value="other"','Flexible Other selection');
 must(contact,'Open Email Draft','Honest email handoff');
 must(contact,'Copy Message','Copy fallback');
@@ -84,7 +93,7 @@ else{
 }
 const css=path.join(dist,'styles.css');
 if(!fs.existsSync(css))errors.push('Stylesheet missing');
-else for(const needle of ['.hero-grid','.home-writing','.post-card','.about-human','.resume-v2-hero','.enquiry-card','.skip-link'])
+else for(const needle of ['.hero-grid','.home-writing','.post-card','.about-human','.resume-v2-hero','.enquiry-card','.contact-focus-grid','.skip-link'])
   must(read(css),needle,'Blog layout CSS');
 for(const [route,html] of pages){
  for(const m of html.matchAll(/\bhref="(\/[^"#?]*)"/g)){
@@ -109,6 +118,8 @@ const supported=['navigationClicked','navigationMenuOpened','ctaClicked','servic
  'resumeDownloadClicked'];
 for(const event of supported)must(analytics,"'"+event+"'","Unchanged supported data-layer event");
 must(analytics,"const schemaVersion = '1.1.0'","Schema version");
+for(const value of ['activityByEvent','activityByActionId','describeActivity','chooseContactTopic','prepareContactEmail','readBlog'])must(analytics,value,'Human-readable activity');
+must(home,'"activity":{"name":"viewPage","category":"navigation","status":"observed"}','Page view activity metadata');
 const intake=fs.existsSync(path.join(dist,'intake.js'))?read(path.join(dist,'intake.js')):'';
 must(intake,'projectBriefEmailPrepared','Email intent only');
 must(intake,'projectBriefCopied','Clipboard intent only');
