@@ -1278,3 +1278,22 @@ body{background:#101317;color:var(--ink)}
  .contact-focus-form{padding:14px}
  .contact-focus-form .enquiry-actions{gap:8px}
 }
+
+
+/* Editorial hierarchy: smaller titles, tighter introductions, less empty space. */
+@media(min-width:701px){
+ .hero h1{font-size:clamp(43px,4.15vw,61px);line-height:1.1}
+}
+.page-hero.small-hero{padding:clamp(35px,4.6vw,63px) 0}
+.page-hero.small-hero h1{
+ font-size:clamp(33px,4vw,51px);
+ line-height:1.12;letter-spacing:-.04em;
+ margin:13px 0 14px
+}
+.page-hero.small-hero p{font-size:clamp(14px,1.5vw,16px);line-height:1.63}
+.blog-listing{padding-top:38px}
+@media(max-width:600px){
+ .page-hero.small-hero{padding:35px 0 38px}
+ .page-hero.small-hero h1{font-size:clamp(31px,8vw,39px);margin:11px 0}
+ .blog-listing{padding-top:32px}
+}
