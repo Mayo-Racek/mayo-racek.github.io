@@ -1,11 +1,11 @@
 # Blog publishing and tracking guide — mayoracek.com
 
 ## Current public site
-- **Home:** personal portrait, specific engineering headline, two purposeful links (Blog and About), latest article.
+- **Home:** personal portrait, "Designing data solutions. Sharing what works.", clear 17+ years engineering experience, two purposeful links (Blog and About), latest article.
 - **Blog:** a small collection of complete technical articles.
 - **About:** professional background, interests, family, knowledge sharing and downloadable CV.
 - **Resume:** verifiable career history and the same generated PDF.
-- **Contact:** two-field topic/message form. The website does not send enquiries: it prepares a mailto draft or allows copying text.
+- **Contact:** compact, single-section form immediately visible beside or beneath the brief introduction. The website does not send enquiries: it prepares a mailto draft or allows copying text.
 
 No Services, Work, Aria lab or duplicate Start pages are published. This does **not** prevent adding tested products, case studies or an offer at a later date.
 
@@ -24,7 +24,7 @@ Possible topics from ongoing professional learning: measurement QA, BigQuery/Dat
 Only publish completed, tested and disclosure-approved implementations. Distinguish the business problem, architecture, what was implemented, QA/UAT evidence, measured outcome and limitations. An active AI agent prototype is **in development**, not a proven production product.
 
 ## Data layer 1.1.0 — unchanged contract
-The browser queues one `pageViewed` event per full HTML load. Meaningful link, article, navigation, CV-download and contact-intent interactions use the original camelCase first-party `window.dataLayer` contract.
+The browser queues one `pageViewed` event per full HTML load. Every event now includes a fixed-value `activity` description (name, category, status), so the intent is clear even when the established event name is generic. Meaningful link, article, navigation, CV-download and contact-intent interactions use the original camelCase first-party `window.dataLayer` contract.
 
 `serviceSelected`, `lifecycleStepSelected` and `labProjectSelected` remain recognized by `public/site-analytics.js` for compatibility, but no current page emits them. Do not remove, rename or repurpose these events without a planned contract version change.
 
