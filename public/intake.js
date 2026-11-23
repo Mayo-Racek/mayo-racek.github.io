@@ -11,10 +11,10 @@
   const needField = form.querySelector('#brief-need');
   const detailsField = form.querySelector('#brief-details');
   const needLabels = Object.freeze({
-    collect: 'Data collection and measurement',
-    connect: 'Data engineering and analytics',
-    activate: 'Data activation, AI agents and automation',
-    unsure: 'Not sure yet',
+    collect: 'Measurement or tracking',
+    connect: 'Data engineering or analytics',
+    activate: 'AI and automation',
+    unsure: 'General question',
     other: 'Other'
   });
 
