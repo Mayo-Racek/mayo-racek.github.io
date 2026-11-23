@@ -56,6 +56,16 @@ try:
     errors.append(f"{width}x{height}: incorrect pageViewed count")
    if width in (390,1366):
     page.screenshot(path=str(SHOTS/f"blog-home-{width}.png"),full_page=True)
+   if page.evaluate("window.dataLayer.find(x=>x.event==='pageViewed')?.activity?.name")!="viewPage":
+    errors.append(f"{width}x{height}: page activity missing")
+   if width==390:
+    # Prevent navigation only for the test, so the intent event stays visible.
+    page.evaluate("""() => document.querySelector('[data-track-id="heroReadBlog"]')
+      .addEventListener('click', event => event.preventDefault(), {capture:true})""")
+    page.locator('[data-track-id="heroReadBlog"]').click()
+    activity=page.evaluate("""() => window.dataLayer.filter(e=>e.event==='ctaClicked').at(-1)?.activity""")
+    if activity!={"name":"readBlog","category":"navigation","status":"intent"}:
+     errors.append(f"Homepage article CTA activity incorrect: {activity}")
    page.close()
 
   page=browser.new_page(viewport={"width":390,"height":844})
@@ -64,7 +74,7 @@ try:
    ("blog/start-with-the-problem/","Start with the problem"),
    ("about/","Hi, I’m Mayo"),
    ("resume/","Mayo Racek"),
-   ("contact/","Let's talk")
+   ("contact/","Get in touch")
   ]:
    page.goto(url+route,wait_until="networkidle")
    if not page.locator("h1").count() or heading.lower() not in page.locator("h1").first.inner_text().lower():
@@ -86,11 +96,36 @@ try:
   cv=page.get_by_role("link",name="Download My CV")
   if cv.count()!=1 or "Mayo_Racek_CV.pdf" not in cv.get_attribute("href"):
    errors.append("About CV link missing")
+  # Contact form must begin inside the first visible screen, not below a banner.
+  for cw,ch in [(320,568),(390,844),(430,932),(768,1024),(1366,768)]:
+   page.set_viewport_size({"width":cw,"height":ch})
+   page.goto(url+"contact/",wait_until="networkidle")
+   form=page.locator("#project-brief").bounding_box()
+   heading=page.locator("#contact-title").bounding_box()
+   if not form or not heading:
+    errors.append(f"{cw}x{ch}: Contact heading or form missing")
+   elif form["y"]>=ch*.69:
+    errors.append(f"{cw}x{ch}: Contact form appears too far below fold ({form['y']:.0f}px)")
+   if page.locator(".contact-hero,.page-hero").count():
+    errors.append(f"{cw}x{ch}: Redundant Contact hero still present")
+   if cw>=390:
+    action=page.locator('#project-brief button[type="submit"]').bounding_box()
+    if action and action["y"]+action["height"]>ch+3:
+     errors.append(f"{cw}x{ch}: Contact action not initially visible")
+   if page.evaluate("document.documentElement.scrollWidth")>cw+5:
+    errors.append(f"{cw}x{ch}: Contact horizontal overflow")
+   if cw in (390,1366):
+    page.screenshot(path=str(SHOTS/f"contact-{cw}.png"),full_page=True)
+  page.set_viewport_size({"width":390,"height":844})
   page.goto(url+"contact/",wait_until="networkidle")
   page.locator("#brief-need").select_option("other")
-  events=page.evaluate("window.dataLayer.filter(x=>x.event==='projectBriefNeedSelected').map(x=>x.interaction.actionId)")
-  if events!=["other"]:
-   errors.append(f"Other topic data-layer contract changed: {events}")
+  selected=page.evaluate("""() => window.dataLayer.filter(x=>x.event==='projectBriefNeedSelected').map(x=>({
+   code:x.interaction.actionId,name:x.activity?.name,category:x.activity?.category,status:x.activity?.status
+  }))""")
+  if selected!=[{"code":"other","name":"chooseContactTopic","category":"contact","status":"selected"}]:
+   errors.append(f"Other topic contract or activity changed: {selected}")
+  if page.evaluate("window.dataLayer.some(x => JSON.stringify(x).includes('Tell me briefly'))"):
+   errors.append("Form message text must never reach data layer")
   for dead in ("services/","projects/","lab/aria/","start/"):
    resp=page.request.get(url+dead)
    if resp.status==200:
