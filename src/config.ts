@@ -3,7 +3,7 @@
 export const SITE_TITLE = "Mayo Racek | Data Engineering, Analytics & AI Blog";
 
 export const SITE_DESCRIPTION =
-  "Personal technical notes on data engineering, analytics, digital measurement and practical AI, by Mayo Racek.";
+  "Designing data solutions. Sharing what works. Practical notes on engineering, measurement, analytics and AI by Mayo Racek.";
 
 export const GENERATE_SLUG_FROM_TITLE = true;
 
