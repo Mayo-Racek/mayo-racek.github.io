@@ -1,117 +1,142 @@
-# First-party data layer — mayoracek.com
+# First-party data layer: what visitors do on mayoracek.com
 
-**Schema version:** 1.1.0  
-**Status:** Active on the personal blog, unchanged schema 1.1.0. Some previous UI event types are dormant following the removal of service, lifecycle and lab pages. No external analytics forwarding is configured.  
-**Implementation:** \`src/lib/site.mjs\`, \`public/site-analytics.js\`, \`public/intake.js\`.  
-**Owner:** Mayo Racek.
+**Contract:** v1.1.0, unchanged event names and existing fields.  
+**Enhancement:** each event now has an additional, optional \`activity\` object describing its purpose in plain camelCase terms. This is a backward-compatible addition; existing GTM/data-layer listeners that use \`event\`, \`page\` or \`interaction\` can keep their paths.  
+**Status:** browser-only queue; no GA4, GTM, cookies, visitor identifiers, persistence or external analytics requests configured.  
+**Code:** \`src/lib/site.mjs\`, \`public/site-analytics.js\`, \`public/intake.js\`.
 
-## Why it exists
+## The questions an event should answer
 
-The site records meaningful intent on the browser's \`window.dataLayer\` queue. It does not record every pointer movement, scroll or decorative click. The schema uses **camelCase** action-oriented, past-tense event names and stable IDs.
+1. **What happened?** \`event\`: a past-tense, camelCase event such as \`articleSelected\`.
+2. **What was the visitor trying to do?** \`activity.name\`: a specific verb phrase such as \`openArticle\` or \`readBlog\`.
+3. **What part of the journey is this?** \`activity.category\`: \`navigation\`, \`reading\`, \`profile\` or \`contact\`.
+4. **What actually occurred?** \`activity.status\`: \`intent\`, \`observed\`, \`opened\`, \`started\`, \`selected\`, \`prepared\`, or \`copied\` (only as appropriate).
+5. **Which element / page?** The existing \`interaction.actionId\`, \`interaction.actionLocation\`, \`interaction.targetPath\`, \`interaction.contentType\`, \`interaction.contentId\`, \`interaction.formId\` and \`page\` fields.
 
-Never collect free-text message content, company names, personal details, email subjects, email bodies, passwords, credentials or user identifiers in this data layer. The scripts create no cookies, persistent IDs, local storage entries or analytics network requests.
+**Important:** A click is **intent**, not proof that navigation, a PDF download or an email send finished. \`projectBriefEmailPrepared\` is **not** a lead submission. The website has no contact backend.
 
-## Page-level payload
+## Real examples
 
-Emitted once in the static HTML head for every full page load:
+### Page viewed
+
+One event per full HTML page load. The \`page\` object is unchanged:
 
 ~~~js
-window.dataLayer = window.dataLayer || [];
 window.dataLayer.push({
   event: 'pageViewed',
   schemaVersion: '1.1.0',
   page: {
-    pageType: 'home',
-    pagePath: '/',
-    pageTitle: 'Home',
+    pageType: 'article',
+    pagePath: '/blog/start-with-the-problem/',
+    pageTitle: 'Start with the problem, not the platform',
     language: 'en',
-    canonicalUrl: 'https://mayoracek.com/'
+    canonicalUrl: 'https://mayoracek.com/blog/start-with-the-problem/'
+  },
+  activity: {
+    name: 'viewPage',
+    category: 'navigation',
+    status: 'observed'
   }
 });
 ~~~
 
-Page types include \`home\`, \`services\`, \`serviceDetail\`, \`article\`, \`blog\`, \`about\`, \`resume\`, \`contact\`, \`start\`, \`projects\`, \`labProject\` and \`notFound\`. Full page navigation produces a new pageViewed on the destination page, not a second event on the current page.
-
-## Interaction payload
+### Article card selected
 
 ~~~js
 window.dataLayer.push({
-  event: 'lifecycleStepSelected',
+  event: 'articleSelected',
   schemaVersion: '1.1.0',
   interaction: {
-    actionId: 'transform',
-    actionLocation: 'dataLifecycle',
-    targetPath: null,
-    contentType: 'dataLifecycleStage',
-    contentId: 'transform',
+    actionId: 'start-with-the-problem',
+    actionLocation: 'blogGrid',
+    targetPath: '/blog/start-with-the-problem/',
+    contentType: 'article',
+    contentId: 'start-with-the-problem',
     formId: null
+  },
+  activity: {
+    name: 'openArticle',
+    category: 'reading',
+    status: 'intent'
   }
 });
 ~~~
 
-All six interaction fields are always present; irrelevant fields are null. Do not reuse GTM variables without event-scope guards, since earlier values may linger in data layer state.
+### Contact topic selected (not the visitor's message)
 
-**Compatibility note:** The event names `serviceSelected`, `lifecycleStepSelected` and `labProjectSelected` remain supported by the browser tracker and are not renamed or reassigned. They do not currently fire because the corresponding UI was retired. Historical page-type values likewise remain documented for continuity; current routes are Home, Blog, Article, About, Resume and Contact.
+~~~js
+window.dataLayer.push({
+  event: 'projectBriefNeedSelected',
+  schemaVersion: '1.1.0',
+  interaction: {
+    actionId: 'other',
+    actionLocation: 'projectBriefForm',
+    targetPath: null,
+    contentType: null,
+    contentId: null,
+    formId: 'projectBrief'
+  },
+  activity: {
+    name: 'chooseContactTopic',
+    category: 'contact',
+    status: 'selected'
+  }
+});
+~~~
 
-## Event dictionary
+The contact dropdown labels have changed to suit the blog, but the stored codes **remain** \`collect\`, \`connect\`, \`activate\`, \`unsure\`, \`other\`. The text field, email subject, recipient details, names, email body and all other free text are excluded from the data layer.
 
-| Event | When it fires | Important distinction |
-| --- | --- | --- |
-| pageViewed | Every HTML page load | Once, from server-rendered HTML |
-| navigationClicked | Header, footer or brand navigation | Navigation intent |
-| navigationMenuOpened | Mobile menu opens | Not on close |
-| ctaClicked | Action button-style link | Links to a destination; not a conversion |
-| serviceSelected | Service card or selected lifecycle service link | Stable service slug and page context |
-| lifecycleStepSelected | Visitor activates a curved path stage | Stable ID: collect, connect, transform, analyze, activate, automate |
-| articleSelected | Published article card clicked | Article content ID |
-| labProjectSelected | Aria link clicked | In-development interest, not production use |
-| contentLinkClicked | Other useful content link | Generic navigation |
-| socialLinkClicked | Footer social profile link | Profile destination |
-| contactMethodSelected | Contact option selected | Outreach intent |
-| resumeDownloadClicked | CV download link explicitly instrumented | Click intent, not guaranteed download completion |
-| projectBriefStarted | First focus within the enquiry form | Starts once per form load |
-| projectBriefNeedSelected | Dropdown selection changes | Only stable codes: collect, connect, activate, unsure, other |
-| projectBriefEmailPrepared | Valid form generates an email draft | NOT a submitted enquiry |
-| projectBriefCopied | Valid message successfully copied | NOT a submitted enquiry |
+## Event catalog
 
-**16 supported events: one page event and 15 interaction events.**
+| Event | Human-readable activity | Category / status | Where it happens |
+| --- | --- | --- | --- |
+| \`pageViewed\` | \`viewPage\` | navigation / observed | Every HTML page, once |
+| \`navigationClicked\` | \`navigateSite\` | navigation / intent | Header, footer and logo navigation |
+| \`navigationMenuOpened\` | \`openMenu\` | navigation / opened | Mobile menu opens, not closes |
+| \`ctaClicked\` | \`readBlog\`, \`readAbout\`, \`browseArticles\`, or \`followLink\` | navigation / intent | Hero, article list and other action links |
+| \`articleSelected\` | \`openArticle\` | reading / intent | Published article card |
+| \`contentLinkClicked\` | \`followContentLink\` | reading / intent | Other content links |
+| \`socialLinkClicked\` | \`openSocialProfile\` | profile / intent | Footer social profiles |
+| \`resumeDownloadClicked\` | \`downloadResume\` | profile / intent | Explicitly tracked CV PDF links |
+| \`contactMethodSelected\` | \`chooseContactMethod\` | contact / intent | Direct email link |
+| \`projectBriefStarted\` | \`startContactMessage\` | contact / started | First focus in Contact form |
+| \`projectBriefNeedSelected\` | \`chooseContactTopic\` | contact / selected | Dropdown selection, approved code only |
+| \`projectBriefEmailPrepared\` | \`prepareContactEmail\` | contact / prepared | Valid form creates a mailto draft |
+| \`projectBriefCopied\` | \`copyContactMessage\` | contact / copied | Successful clipboard copy |
+| \`serviceSelected\` | \`exploreService\` | navigation / intent | Retired service UI; retained for compatibility |
+| \`lifecycleStepSelected\` | \`exploreDataLifecycle\` | navigation / selected | Retired lifecycle UI; retained for compatibility |
+| \`labProjectSelected\` | \`exploreLabProject\` | navigation / intent | Retired lab UI; retained for compatibility |
 
-## Enquiry form / conversion boundary
+**Total: 16 recognized events**, one page event and 15 interaction events. The last three events are dormant on the current blog, not reused for unrelated activities.
 
-The contact form has only two fields: an approved topic dropdown (including Other) and a short free-text description. The free text is used **only in the visitor's own email draft or clipboard**, never in \`window.dataLayer\`. The site itself does not send the email or receive the form data.
+### The meaning of an activity
 
-Mapping \`projectBriefEmailPrepared\` to GA4 \`generate_lead\` would be misleading. A future verified submission event would need a genuine server-side acknowledgement from a secure backend and an updated event contract. Record only permissible data with documented purpose, consent and retention policy.
+An \`activity\` is a **controlled description of a visible visitor action**, not a business outcome, user profile, session identity or behavioral prediction. Values come from a fixed code map. They cannot contain what someone typed into the form.
 
-## Proposed future GA4 / GTM mapping (not live)
+The \`interaction\` object still contains all six fields, set to a stable value or null; GTM readers should scope values to the current event and not inherit old values that may persist in data-layer state.
 
-| Data layer | Possible GA4 event | Notes |
-| --- | --- | --- |
-| pageViewed | page_view | Avoid duplicate enhanced/automatic page_view |
-| ctaClicked | cta_click | Only meaningful CTA destinations |
-| serviceSelected | select_content | Use approved content_type and item_id |
-| lifecycleStepSelected | lifecycle_step_select | Optional; retain stable step_id |
-| resumeDownloadClicked | file_download | Ensure enhanced measurement is not already collecting the same PDF click |
-| articleSelected | select_content | content_type = article |
-| projectBriefEmailPrepared | project_brief_email_prepared | Intent only; not a lead |
-| projectBriefCopied | project_brief_copied | Intent only |
+## QA in the browser console
 
-GA4 naming convention and custom dimensions are **separate** from the camelCase first-party contract. Prefer tracking fewer purposeful events over forwarding every link click.
+~~~js
+// All events from the current schema
+window.dataLayer.filter(item => item?.schemaVersion === '1.1.0');
 
-## UAT before live analytics activation
+// Read activity purpose without looking up generic event definitions
+window.dataLayer
+  .filter(item => item?.activity)
+  .map(({ event, activity, interaction, page }) => ({
+    event,
+    activity: activity.name,
+    category: activity.category,
+    status: activity.status,
+    target: interaction?.targetPath ?? page?.pagePath ?? null
+  }));
+~~~
 
-1. On home, run \`window.dataLayer.filter(x => x?.schemaVersion === '1.1.0')\`. Expect one pageViewed.
-2. Click each of the six curved stages, verify the displayed explanation, \`aria-pressed\`, one \`lifecycleStepSelected\` per activation and the relevant service link.
-3. Click the lifecycle service link and verify one \`serviceSelected\` followed by a pageViewed on the destination.
-4. Check both hero CTAs; IDs remain \`heroExploreServices\` and \`heroReadBlog\`.
-5. Select Contact topic values including Other. Verify only stable codes enter \`projectBriefNeedSelected\`, never the written description.
-6. Trigger invalid form inputs. No email-prepared/copied success event should fire.
-7. For a valid message, verify mailto composition and an explicit notice that the visitor must press Send in the email application.
-8. Download the CV from About and verify \`resumeDownloadClicked\`, the PDF link and two-page PDF.
-9. Test keyboard (Tab and arrow keys), mobile viewport, browsers and reduced-motion settings.
-10. In the browser Network / Storage panels, verify no vendor endpoint, identity cookie or analytics storage originates from this code.
-11. Validate the static GitHub Actions checks, compare markup to actual site content and approve browser UAT.
-12. Design consent and GTM/GA4 mapping before turning on any analytics vendor collection.
+Check: a home page view creates exactly one \`pageViewed\`; clicking **Read the Blog** produces \`ctaClicked\` with \`activity.name='readBlog'\`; choosing **Other** produces \`projectBriefNeedSelected\` with \`actionId='other'\` and no message text; preparing an email creates \`projectBriefEmailPrepared\` but never \`formSubmitted\` or \`generate_lead\`. Rejected/incomplete inputs must not produce success events. CV clicks are intent only.
 
-## External analytics roadmap
+## Privacy and future activation
 
-The site currently has a first-party event queue, not a connected tracking system. To complete analytics, define purpose, consent requirements, CMP implementation, GTM/GA4 tagging behavior, exact event mapping, parameter minimization, deduplication, UAT and documentation. If server-side GTM is added later, connect only the endpoints actually required by the approved measurement architecture.
+There are no GA4/GTM tags, analytics network calls, marketing pixels, cookies, storage writes or visitor identifiers in this implementation. Event collection and consent requirements must be designed and tested **before** connecting a vendor.
+
+If the contract is extended again, keep camelCase, document allowed values, differentiate intent from completed outcomes and avoid sensitive payloads. Do not silently reinterpret old events or change the contract to claim conversions that did not happen.
