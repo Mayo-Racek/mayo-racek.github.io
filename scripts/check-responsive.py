@@ -92,6 +92,30 @@ try:
    page.locator(".post-card").first.click()
    if "start-with-the-problem" not in page.url:
     errors.append("Article card did not navigate")
+  # About: personal story chapters alternate on desktop, stack naturally on mobile.
+  for aw,ah in [(390,844),(1366,900)]:
+   page.set_viewport_size({"width":aw,"height":ah})
+   page.goto(url+"about/",wait_until="networkidle")
+   rows=page.locator(".about-story-row")
+   if rows.count()!=4:
+    errors.append(f"{aw}x{ah}: expected four About chapters")
+   else:
+    first_h=rows.nth(0).locator(".about-story-heading").bounding_box()
+    first_p=rows.nth(0).locator(".about-story-copy").bounding_box()
+    second_h=rows.nth(1).locator(".about-story-heading").bounding_box()
+    second_p=rows.nth(1).locator(".about-story-copy").bounding_box()
+    if aw>860 and first_h and first_p and second_h and second_p:
+     if not first_h["x"]<first_p["x"] or not second_h["x"]>second_p["x"]:
+      errors.append("About chapters do not alternate on desktop")
+    if aw<=600 and first_h and first_p and first_h["y"]>=first_p["y"]:
+     errors.append("About mobile chapter title should precede the copy")
+   if page.locator(".about-story").inner_text().lower().find("astronomy")<0:
+    errors.append("About missing astronomy and curiosity")
+   if "Fortune 200" not in page.locator(".about-story").inner_text():
+    errors.append("About missing six-year enterprise context")
+   if aw==1366:
+    page.screenshot(path=str(SHOTS/"about-desktop.png"),full_page=True)
+  page.set_viewport_size({"width":390,"height":844})
   page.goto(url+"about/",wait_until="networkidle")
   cv=page.get_by_role("link",name="Download My CV")
   if cv.count()!=1 or "Mayo_Racek_CV.pdf" not in cv.get_attribute("href"):
@@ -108,6 +132,21 @@ try:
     errors.append(f"{cw}x{ch}: Contact form appears too far below fold ({form['y']:.0f}px)")
    if page.locator(".contact-hero,.page-hero").count():
     errors.append(f"{cw}x{ch}: Redundant Contact hero still present")
+   if page.locator("#copy-brief").count() or page.get_by_text("Copy Message").count():
+    errors.append(f"{cw}x{ch}: Removed copy action still visible")
+   send=page.get_by_role("button",name="Send Message")
+   if send.count()!=1:
+    errors.append(f"{cw}x{ch}: Send Message button missing")
+   else:
+    button_box=send.bounding_box()
+    action_box=page.locator(".enquiry-actions").bounding_box()
+    if button_box and action_box and abs(button_box["x"]+button_box["width"]-action_box["x"]-action_box["width"])>5:
+     errors.append(f"{cw}x{ch}: Send Message is not right-aligned")
+   if page.locator(".contact-network-links a").count()!=3:
+    errors.append(f"{cw}x{ch}: Social network links missing")
+   if not page.locator(".enquiry-privacy").is_visible():
+    errors.append(f"{cw}x{ch}: Email draft explanation missing")
+
    if cw>=390:
     action=page.locator('#project-brief button[type="submit"]').bounding_box()
     if action and action["y"]+action["height"]>ch+3:
@@ -124,6 +163,14 @@ try:
   }))""")
   if selected!=[{"code":"other","name":"chooseContactTopic","category":"contact","status":"selected"}]:
    errors.append(f"Other topic contract or activity changed: {selected}")
+  # Social links on Contact must use the same meaningful event as the footer.
+  page.evaluate("""() => document.querySelector('.contact-network-links a')
+    .addEventListener('click', event => event.preventDefault(), {capture:true})""")
+  page.locator(".contact-network-links a").first.click()
+  social=page.evaluate("""() => window.dataLayer.filter(x=>x.event==='socialLinkClicked').at(-1)""")
+  if not social or social.get("activity",{}).get("name")!="openSocialProfile" or social.get("interaction",{}).get("contentType")!="socialProfile":
+   errors.append(f"Contact network activity incorrect: {social}")
+
   if page.evaluate("window.dataLayer.some(x => JSON.stringify(x).includes('Tell me briefly'))"):
    errors.append("Form message text must never reach data layer")
   for dead in ("services/","projects/","lab/aria/","start/"):
