@@ -158,7 +158,7 @@
     if (!link || link.hasAttribute('data-track-ignore')) return;
     const eventName = eventForLink(link);
     const href = link.getAttribute('href') || '';
-    const isExternalSocial = !!link.closest('.footer-social');
+    const isExternalSocial = eventName === 'socialLinkClicked';
     track(eventName, {
       actionId: idForLink(link),
       actionLocation: link.getAttribute('data-track-location') || actionLocation(link),
