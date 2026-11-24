@@ -22,27 +22,27 @@ export const posts = [
     "sections": [
       [
         "A request is not yet a problem statement",
-        "A team asks for a dashboard, more tracking or an AI agent. That is a proposed solution, not necessarily the underlying need. I start by asking what decision is difficult today, what manual work stands in the way, who is affected and how we would recognize an improvement. A dashboard is useful if someone acts on it. Automation is useful if it reliably removes a bottleneck. Without this connection, sophisticated engineering can produce very little value."
+        "A team asks for a dashboard, more tracking or an AI agent. That is a proposed solution, not necessarily the underlying need. I start by asking what decision is difficult today, what manual work stands in the way, who is affected and how we would recognize an improvement.\n\n A dashboard is useful if someone acts on it. Automation is useful if it reliably removes a bottleneck. Without this connection, sophisticated engineering can produce very little value."
       ],
       [
         "Define the contract before choosing tools",
-        "Once the outcome is clear, I make inputs and outputs explicit. For measurement, that means defining the business action, its event name, permitted properties, identity rules, consent dependencies and acceptance criteria. For data models, it means specifying grain, metric definitions, freshness expectations and ownership. For AI workflows, it means allowed tasks, authoritative sources, tool permissions, human approvals and failure behavior. A written contract gives engineers and stakeholders something concrete to test."
+        "Once the outcome is clear, I make inputs and outputs explicit. For measurement, that means defining the business action, its event name, permitted properties, identity rules, consent dependencies and acceptance criteria.\n\n For data models, it means specifying grain, metric definitions, freshness expectations and ownership. For AI workflows, it means allowed tasks, authoritative sources, tool permissions, human approvals and failure behavior. A written contract gives engineers and stakeholders something concrete to test."
       ],
       [
         "Trace the full system, not just the dashboard",
-        "A website event may travel through the data layer, client-side tagging, a server-side collection endpoint, an analytics platform and an export into a warehouse. Other tools follow different paths. When reported numbers disagree, I inspect each boundary rather than assume the dashboard is wrong. I check the browser action, request payload, identifiers, consent conditions, delivery timing, deduplication and transformation logic. The same mindset applies to AI: inspect retrieval, instructions, tool calls, execution traces and final actions as one connected workflow."
+        "A website event may travel through the data layer, client-side tagging, a server-side collection endpoint, an analytics platform and an export into a warehouse. Other tools follow different paths.\n\n When reported numbers disagree, I inspect each boundary rather than assume the dashboard is wrong. I check the browser action, request payload, identifiers, consent conditions, delivery timing, deduplication and transformation logic. The same mindset applies to AI: inspect retrieval, instructions, tool calls, execution traces and final actions as one connected workflow."
       ],
       [
         "Make verification part of delivery",
-        "Tests should follow real journeys, including failure paths. I want explicit cases for consent choices, missing inputs, duplicate events, navigation changes and late-arriving data. In the warehouse, reconciliation and freshness monitoring help distinguish expected differences from defects. For agents, evaluations should cover correct outcomes, incorrect tool use, denied actions and escalation to a human. A feature is not delivered simply because the happy-path demo works. A UAT sign-off should reference test cases and evidence, not only a stakeholder impression."
+        "Tests should follow real journeys, including failure paths. I want explicit cases for consent choices, missing inputs, duplicate events, navigation changes and late-arriving data.\n\n In the warehouse, reconciliation and freshness monitoring help distinguish expected differences from defects. For agents, evaluations should cover correct outcomes, incorrect tool use, denied actions and escalation to a human. A feature is not delivered simply because the happy-path demo works. A UAT sign-off should reference test cases and evidence, not only a stakeholder impression."
       ],
       [
         "Build automation with boundaries",
-        "Repetitive review work is a promising AI use case, but an agent is not automatically safer or faster than a deterministic script. Start with the simplest reliable mechanism. When reasoning across varied inputs genuinely helps, keep access narrow, record tool operations, validate proposed changes and require approval for consequential actions. Give operators a way to stop, inspect and reverse a workflow. Evaluate the cost of accepted results rather than the number of model calls."
+        "Repetitive review work is a promising AI use case, but an agent is not automatically safer or faster than a deterministic script.\n\n Start with the simplest reliable mechanism. When reasoning across varied inputs genuinely helps, keep access narrow, record tool operations, validate proposed changes and require approval for consequential actions. Give operators a way to stop, inspect and reverse a workflow. Evaluate the cost of accepted results rather than the number of model calls."
       ],
       [
         "What a successful solution looks like",
-        "A good outcome is not a long list of technologies. It is a process someone can explain, evidence that it produces the intended result, and an operating model that survives after the original engineer steps away. I look for clarity of purpose, privacy and security by design, repeatable tests, understandable ownership and an honest account of limitations. The goal is useful engineering that earns trust."
+        "A good outcome is not a long list of technologies. It is a process someone can explain, evidence that it produces the intended result, and an operating model that survives after the original engineer steps away.\n\n I look for clarity of purpose, privacy and security by design, repeatable tests, understandable ownership and an honest account of limitations. The goal is useful engineering that earns trust."
       ]
     ]
   }
@@ -101,10 +101,18 @@ export function renderBlog(base='/'){
  return shell({title:'Blog',description:'Practical articles on measurement, cloud data engineering and trustworthy AI systems by Mayo Racek.',body,active:'blog',base,canonical:'/blog/'});
 }
 export function renderPost(slug,base='/'){
- const p=posts.find(x=>x.slug===slug);if(!p)throw new Error('Unknown post '+slug);
- const body=`<section class="page-hero small-hero"><div class="site-container"><a class="back-link" href="${path('blog/',base)}">← All writing</a><span class="kicker">${esc(p.category.toUpperCase())} / FIELD NOTE</span><h1>${esc(p.title)}</h1><p>${esc(p.excerpt)}</p></div></section><section class="section"><div class="site-container article-shell"><p class="article-byline">By Mayo Racek · Engineering field note</p>${p.sections.map(([t,d],i)=>`<section class="article-outline"><span class="tiny-number">SECTION 0${i+1}</span><h2>${esc(t)}</h2><p>${esc(d)}</p></section>`).join('')}<a class="text-link" href="${path('blog/',base)}">← Return to the blog</a></div></section>`;
- return shell({title:p.title,description:p.excerpt,body,active:'blog',base,canonical:'/blog/'+slug+'/',og:'article'});
+ const p=posts.find(item=>item.slug===slug);
+ if(!p)throw new Error('Unknown post '+slug);
+ const sections=p.sections.map(([heading,paragraph])=>{
+  const anchor=heading.toLowerCase().normalize('NFKD').replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+  const paragraphs=String(paragraph).split(/\n\s*\n/).filter(Boolean).map(text=>'<p>'+esc(text.trim())+'</p>').join('');
+  return '<section class="blog-article-section" aria-labelledby="'+esc(anchor)+'"><h2 id="'+esc(anchor)+'">'+esc(heading)+'</h2>'+paragraphs+'</section>';
+ }).join('');
+ const articleHeader='<header class="blog-article-header"><div class="site-container"><a class="back-link" href="'+path('blog/',base)+'">← Back to the blog</a><p class="blog-article-category">'+esc(p.category)+'</p><h1>'+esc(p.title)+'</h1><p class="blog-article-deck">'+esc(p.excerpt)+'</p><p class="blog-article-byline">By <strong>Mayo Racek</strong></p></div></header>';
+ const articleBody='<div class="site-container"><div class="blog-article-content">'+sections+'<footer class="blog-article-footer"><a class="text-link" href="'+path('blog/',base)+'">← Back to the blog</a></footer></div></div>';
+ return shell({title:p.title,description:p.excerpt,body:'<article class="blog-article">'+articleHeader+articleBody+'</article>',active:'blog',base,canonical:'/blog/'+slug+'/',og:'article'});
 }
+
 export function renderAbout(base='/'){
  const hero='<section class="page-hero about-hero about-new"><div class="site-container about-hero-grid"><div class="about-new-copy"><span class="kicker">ABOUT ME</span><h1>Hi, I’m <em>Mayo.</em></h1><p>I’m a data engineer and solutions architect based in Slovakia. I like understanding the problem behind a request, building things that work reliably and sharing what I learn along the way.</p><p>There’s more to me than work. Family, football, astronomy and a constant curiosity about how things work all shape the way I approach life and engineering.</p><div class="hero-actions"><a class="btn btn-primary" data-track-event="resumeDownloadClicked" data-track-id="aboutDownloadResume" data-track-location="aboutHero" href="'+path('Mayo_Racek_CV.pdf',base)+'" download="Mayo_Racek_CV.pdf">Download My CV <span aria-hidden="true">↓</span></a><a class="btn btn-outline" href="'+path('resume/',base)+'">View My Experience <span aria-hidden="true">↗</span></a></div></div><div class="about-photo"><img src="'+path('mayo-portrait-cropped.webp',base)+'" alt="Portrait of Mayo Racek" width="415" height="643"/></div></div></section>';
  const chapters=[

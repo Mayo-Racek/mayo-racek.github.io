@@ -96,6 +96,28 @@ try:
    page.locator(".post-card").first.click()
    if "start-with-the-problem" not in page.url:
     errors.append("Article card did not navigate")
+  # Article reading experience: semantic headings, clear author, no section numbers.
+  for width,height in [(390,844),(768,1024),(1366,900)]:
+   page.set_viewport_size({"width":width,"height":height})
+   page.goto(url+"blog/start-with-the-problem/",wait_until="networkidle")
+   if page.locator("article.blog-article").count()!=1:
+    errors.append(f"{width}x{height}: Semantic article wrapper missing")
+   if page.locator(".blog-article-section h2").count()!=6:
+    errors.append(f"{width}x{height}: Missing descriptive article headings")
+   if page.locator(".blog-article-section p").count()!=12:
+    errors.append(f"{width}x{height}: Expected readable two-paragraph sections")
+   if page.locator(".blog-article .tiny-number,.blog-article .status-label").count():
+    errors.append(f"{width}x{height}: Outdated numbered or badge markup")
+   if "SECTION 0" in page.locator("article.blog-article").inner_text():
+    errors.append(f"{width}x{height}: Numbered section labels still visible")
+   if page.locator(".blog-article-byline").inner_text()!="By Mayo Racek":
+    errors.append(f"{width}x{height}: Author byline incorrect")
+   if page.evaluate("document.documentElement.scrollWidth")>width+5:
+    errors.append(f"{width}x{height}: Article causes horizontal scrolling")
+   if page.locator(".blog-article-footer a[href*='blog']").count()!=1:
+    errors.append(f"{width}x{height}: Missing back-to-blog link")
+   if width in (390,1366):
+    page.screenshot(path=str(SHOTS/f"article-{width}.png"),full_page=True)
   # About: personal story chapters alternate on desktop, stack naturally on mobile.
   for aw,ah in [(390,844),(1366,900)]:
    page.set_viewport_size({"width":aw,"height":ah})
