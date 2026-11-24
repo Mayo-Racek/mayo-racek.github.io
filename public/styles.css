@@ -1458,6 +1458,7 @@ body{background:#101317;color:var(--ink)}
   margin:0;font-size:clamp(16px,1.38vw,18px);
   line-height:1.85;color:#d6d2cb;max-width:74ch
 }
+.blog-article-section p+p{margin-top:17px}
 .blog-article-footer{
   padding-top:31px;margin-top:8px;
   border-top:1px solid rgba(228,200,160,.2)
