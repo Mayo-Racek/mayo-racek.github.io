@@ -16,7 +16,7 @@ This is a personal professional blog, **not** a commercial services catalog or a
 | Resume | Review professional history | Download CV |
 | Contact | Ask a question, share feedback or start a conversation | Send Message (opens email app); LinkedIn, GitHub, X |
 
-The homepage consists of **a compact, portrait-led introduction** ("Designing data solutions. Sharing what works.") with a factual "17+ years designing data solutions, including six years supporting a Fortune 200 organization through consulting" line, plus **latest writing**. Do not add service cards, full data lifecycle, sales CTAs, fake results or decorative content solely to fill space.
+The homepage consists of **a compact, portrait-led introduction** ("From complex data to clear decisions.") with a factual "17+ years building data and analytics systems (Fortune 200 consulting details remain on About and CV)" line, plus **one recent article** (without a redundant section eyebrow, introduction, or extra All Articles link when there is only one post). Do not add service cards, full data lifecycle, sales CTAs, fake results or decorative content solely to fill space.
 
 ## What was retired
 The Services, service-detail, Work, lab/Aria and duplicate Start public routes were removed. Their source remains available in repository history if a verified consultancy or product offering is intentionally launched in the future. The Contact page is a compact form-first layout with a warm invitation, three social profile links, a topic selector, a message field and one right-aligned **Send Message** button. The copy-to-clipboard control is retired. There is no backend; it opens an email draft for the visitor to review and send.

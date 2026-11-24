@@ -30,6 +30,10 @@ try:
     continue
    if writing["y"] < height-3:
     errors.append(f"{width}x{height}: latest writing enters first screen")
+   if "from complex data to" not in page.locator(".hero h1").inner_text().lower() or "clear decisions" not in page.locator(".hero h1").inner_text().lower():
+    errors.append(f"{width}x{height}: Homepage must lead with concrete data-to-decision promise")
+   if page.locator(".home-writing .kicker,.home-writing .section-head p,.home-writing-all,.home-writing .status-label").count():
+    errors.append(f"{width}x{height}: Redundant blog subtitles or labels visible")
    if page.locator("#data-lifecycle,.service-grid,.contact-band").count():
     errors.append(f"{width}x{height}: retired consultancy UI still displayed")
    if width<=600:
@@ -70,7 +74,7 @@ try:
 
   page=browser.new_page(viewport={"width":390,"height":844})
   for route,heading in [
-   ("blog/","Writing about the"),
+   ("blog/","My blog"),
    ("blog/start-with-the-problem/","Start with the problem"),
    ("about/","Hi, I’m Mayo"),
    ("resume/","Mayo Racek"),
