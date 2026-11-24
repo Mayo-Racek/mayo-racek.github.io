@@ -1,11 +1,11 @@
 # Blog publishing and tracking guide — mayoracek.com
 
 ## Current public site
-- **Home:** personal portrait, "Designing data solutions. Sharing what works.", clear 17+ years engineering experience, two purposeful links (Blog and About), latest article.
+- **Home:** personal portrait, "Designing data solutions. Sharing what works.", 17+ years engineering experience and six years supporting a Fortune 200 organization through consulting, two purposeful links (Blog and About), latest article.
 - **Blog:** a small collection of complete technical articles.
-- **About:** professional background, interests, family, knowledge sharing and downloadable CV.
+- **About:** four short alternating sections on the person, professional work, family and football, and curiosity/astronomy, plus the downloadable CV.
 - **Resume:** verifiable career history and the same generated PDF.
-- **Contact:** compact, single-section form immediately visible beside or beneath the brief introduction. The website does not send enquiries: it prepares a mailto draft or allows copying text.
+- **Contact:** compact, single-section form immediately visible beside or beneath the brief introduction. The single **Send Message** button prepares a mailto draft; the visitor must explicitly send it in their email application. The Copy Message feature has been removed.
 
 No Services, Work, Aria lab or duplicate Start pages are published. This does **not** prevent adding tested products, case studies or an offer at a later date.
 
