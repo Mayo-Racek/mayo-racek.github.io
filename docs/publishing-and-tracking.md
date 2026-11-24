@@ -1,7 +1,7 @@
 # Blog publishing and tracking guide — mayoracek.com
 
 ## Current public site
-- **Home:** personal portrait, "Designing data solutions. Sharing what works.", 17+ years engineering experience and six years supporting a Fortune 200 organization through consulting, two purposeful links (Blog and About), latest article.
+- **Home:** personal portrait, "From complex data to clear decisions.", 17+ years in data and analytics (enterprise consulting details remain on About and CV), two purposeful links (Blog and About), one recent article, without repetitive subheadings.
 - **Blog:** a small collection of complete technical articles.
 - **About:** four short alternating sections on the person, professional work, family and football, and curiosity/astronomy, plus the downloadable CV.
 - **Resume:** verifiable career history and the same generated PDF.
