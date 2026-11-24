@@ -57,34 +57,5 @@
     window.location.href = href;
   });
 
-  document.getElementById('copy-brief')?.addEventListener('click', async () => {
-    const draft = compose();
-    if (!draft) return;
-    const value = 'To: me@mayoracek.com\nSubject: ' + draft.subject + '\n\n' + draft.body;
-    let copied = false;
-    try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
-      await navigator.clipboard.writeText(value);
-      copied = true;
-    } catch {
-      const area = document.createElement('textarea');
-      area.value = value;
-      area.style.position = 'fixed';
-      area.style.left = '-9999px';
-      document.body.append(area);
-      area.select();
-      copied = document.execCommand('copy');
-      area.remove();
-    }
-    if (copied) {
-      window.siteAnalytics?.track('projectBriefCopied', {
-        actionId: 'copyBrief',
-        actionLocation: 'projectBriefForm',
-        formId: 'projectBrief'
-      });
-      feedback.textContent = 'Copied. Paste the message into an email addressed to me@mayoracek.com.';
-    } else {
-      feedback.textContent = 'Copy was unavailable. You can email me directly at me@mayoracek.com.';
-    }
-  });
+
 })();
