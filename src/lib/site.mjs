@@ -101,10 +101,17 @@ export function renderBlog(base='/'){
  return shell({title:'Blog',description:'Practical articles on measurement, cloud data engineering and trustworthy AI systems by Mayo Racek.',body,active:'blog',base,canonical:'/blog/'});
 }
 export function renderPost(slug,base='/'){
- const p=posts.find(x=>x.slug===slug);if(!p)throw new Error('Unknown post '+slug);
- const body=`<section class="page-hero small-hero"><div class="site-container"><a class="back-link" href="${path('blog/',base)}">← All writing</a><span class="kicker">${esc(p.category.toUpperCase())} / FIELD NOTE</span><h1>${esc(p.title)}</h1><p>${esc(p.excerpt)}</p></div></section><section class="section"><div class="site-container article-shell"><p class="article-byline">By Mayo Racek · Engineering field note</p>${p.sections.map(([t,d],i)=>`<section class="article-outline"><span class="tiny-number">SECTION 0${i+1}</span><h2>${esc(t)}</h2><p>${esc(d)}</p></section>`).join('')}<a class="text-link" href="${path('blog/',base)}">← Return to the blog</a></div></section>`;
- return shell({title:p.title,description:p.excerpt,body,active:'blog',base,canonical:'/blog/'+slug+'/',og:'article'});
+ const p=posts.find(item=>item.slug===slug);
+ if(!p)throw new Error('Unknown post '+slug);
+ const sections=p.sections.map(([heading,paragraph])=>{
+  const anchor=heading.toLowerCase().normalize('NFKD').replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-');
+  return '<section class="blog-article-section" aria-labelledby="'+esc(anchor)+'"><h2 id="'+esc(anchor)+'">'+esc(heading)+'</h2><p>'+esc(paragraph)+'</p></section>';
+ }).join('');
+ const articleHeader='<header class="blog-article-header"><div class="site-container"><a class="back-link" href="'+path('blog/',base)+'">← Back to the blog</a><p class="blog-article-category">'+esc(p.category)+'</p><h1>'+esc(p.title)+'</h1><p class="blog-article-deck">'+esc(p.excerpt)+'</p><p class="blog-article-byline">By <strong>Mayo Racek</strong></p></div></header>';
+ const articleBody='<div class="site-container"><div class="blog-article-content">'+sections+'<footer class="blog-article-footer"><a class="text-link" href="'+path('blog/',base)+'">← Back to the blog</a></footer></div></div>';
+ return shell({title:p.title,description:p.excerpt,body:'<article class="blog-article">'+articleHeader+articleBody+'</article>',active:'blog',base,canonical:'/blog/'+slug+'/',og:'article'});
 }
+
 export function renderAbout(base='/'){
  const hero='<section class="page-hero about-hero about-new"><div class="site-container about-hero-grid"><div class="about-new-copy"><span class="kicker">ABOUT ME</span><h1>Hi, I’m <em>Mayo.</em></h1><p>I’m a data engineer and solutions architect based in Slovakia. I like understanding the problem behind a request, building things that work reliably and sharing what I learn along the way.</p><p>There’s more to me than work. Family, football, astronomy and a constant curiosity about how things work all shape the way I approach life and engineering.</p><div class="hero-actions"><a class="btn btn-primary" data-track-event="resumeDownloadClicked" data-track-id="aboutDownloadResume" data-track-location="aboutHero" href="'+path('Mayo_Racek_CV.pdf',base)+'" download="Mayo_Racek_CV.pdf">Download My CV <span aria-hidden="true">↓</span></a><a class="btn btn-outline" href="'+path('resume/',base)+'">View My Experience <span aria-hidden="true">↗</span></a></div></div><div class="about-photo"><img src="'+path('mayo-portrait-cropped.webp',base)+'" alt="Portrait of Mayo Racek" width="415" height="643"/></div></div></section>';
  const chapters=[
