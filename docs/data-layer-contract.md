@@ -107,6 +107,8 @@ The contact dropdown labels have changed to suit the blog, but the stored codes 
 | \`lifecycleStepSelected\` | \`exploreDataLifecycle\` | navigation / selected | Retired lifecycle UI; retained for compatibility |
 | \`labProjectSelected\` | \`exploreLabProject\` | navigation / intent | Retired lab UI; retained for compatibility |
 
+**Compatibility update (24 November 2026):** The Contact page now has a single **Send Message** button that opens an email draft. There is no backend and the message is not sent by this website. `projectBriefEmailPrepared` still indicates *draft prepared*. The old `projectBriefCopied` event stays recognized for historical compatibility but is dormant because the Copy Message control was retired. New Contact social links use `socialLinkClicked` with `contentType='socialProfile'` and stable IDs `contactLinkedIn`, `contactGithub`, `contactX`. No visitor-entered text is collected. The browser favicon now uses an astronomy-inspired north-star emblem; it has no analytics behavior.
+
 **Total: 16 recognized events**, one page event and 15 interaction events. The last three events are dormant on the current blog, not reused for unrelated activities.
 
 ### The meaning of an activity
