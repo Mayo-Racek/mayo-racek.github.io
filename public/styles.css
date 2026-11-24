@@ -1388,3 +1388,22 @@ body{background:#101317;color:var(--ink)}
 @media(prefers-reduced-motion:reduce){
  .contact-network-links a{transition:none}
 }
+
+
+/* Focused editorial homepage: readable promise and one article, not stacked subtitles. */
+.home-writing .section-head{margin-bottom:17px}
+.home-writing .section-head h2{
+  font-size:clamp(27px,2.9vw,36px);
+  line-height:1.2;letter-spacing:-.035em;margin:0
+}
+.home-writing .post-topline{margin-bottom:15px}
+.home-writing .post-grid{grid-template-columns:minmax(0,750px)}
+@media(max-width:600px){
+ .hero-grid{align-content:space-evenly}
+ .hero h1{font-size:clamp(28px,8vw,36px);line-height:1.12}
+ .hero-intro{font-size:14px;line-height:1.58}
+ .hero-signoff p{font-size:12px}
+ .home-writing{padding:35px 0 55px}
+ .home-writing .section-head{margin-bottom:16px}
+ .home-writing .section-head h2{font-size:27px}
+}
