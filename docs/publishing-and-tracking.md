@@ -13,8 +13,8 @@ No Services, Work, Aria lab or duplicate Start pages are published. This does **
 1. Write an original technical article with a clear problem, relevant context, design decisions, trade-offs, and evidence where available.
 2. Check technical details, code samples, assumptions, security/privacy, any client disclosures and factual claims.
 3. Add a complete object to `posts` in `src/lib/site.mjs` with a stable slug, category, title, excerpt and reviewed sections. Never publish a placeholder just to fill the grid.
-4. Keep headings and passages understandable independently. Link to related writing only when genuinely useful.
-5. Show the actual author. Add genuine publication/updated dates only when they can be verified; don't invent dates.
+4. Use descriptive, reader-friendly section headings. Do **not** display generic `Section 1`, `Section 2`, `Field Note` or similar labels. Each section can contain multiple short paragraphs separated by a blank line (`\n\n` in the stored string). Preserve a logical argument from the problem through evidence and trade-offs to the conclusion. Link to related writing only when genuinely useful.
+5. Render the page as a semantic `<article>` with one H1, a brief summary, real author attribution, distinct H2 headings, paragraphs and a simple return link. Add genuine publication/updated dates only when they can be verified; don't invent dates or read-time statistics.
 6. Verify the generated page, HTML article schema, canonical, internal navigation, mobile layout and data-layer events before merge.
 7. Merge only after the build, browser and full-history secrets scan passes.
 
