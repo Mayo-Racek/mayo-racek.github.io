@@ -94,8 +94,8 @@ try:
    if route in ("blog/","about/"):
     page.screenshot(path=str(SHOTS/("blog-listing.png" if route=="blog/" else "blog-about.png")),full_page=True)
   page.goto(url+"blog/",wait_until="networkidle")
-  if page.locator("a.post-card").count()!=1 or page.locator("article.post-preview[data-nosnippet]").count()!=3:
-   errors.append("Expected one complete blog article and three non-clickable previews")
+  if page.locator("a.post-card").count()<1 or page.locator(".post-preview a,.post-preview[data-track-event]").count()!=0:
+   errors.append("Expected published articles and no clickable placeholder previews")
   else:
    page.locator("a.post-card").first.click()
    if "start-with-the-problem" not in page.url:
