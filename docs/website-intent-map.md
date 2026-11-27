@@ -14,12 +14,12 @@ This is a personal professional blog, **not** a commercial services catalog or a
 | Article | Read a complete technical perspective | Return to the Blog |
 | About | Meet the engineer and person behind the writing | Download CV; View Experience; Read Blog |
 | Resume | Review professional history | Download CV |
-| Contact | Ask a question, share feedback or start a conversation | Send Message (opens email app); LinkedIn, GitHub, X |
+| Contact | Ask a question, share feedback or start a conversation | Send Message (opens email app); LinkedIn, X, Bluesky, GitHub |
 
-The homepage consists of **a compact, portrait-led introduction** ("Engineering data you can trust.") with a factual "17+ years in data and analytics (Fortune 200 consulting details remain on About and CV)" line, plus **one recent article** (without a redundant section eyebrow, introduction, or extra All Articles link when there is only one post). Do not add service cards, full data lifecycle, sales CTAs, fake results or decorative content solely to fill space.
+The homepage consists of **a compact, portrait-led introduction** ("Engineering data for an AI-driven world.") with a factual "17+ years in data and analytics (Fortune 200 consulting details remain on About and CV)" line, plus **one published article and up to two clearly labelled previews** (without a redundant section eyebrow, introduction, or extra All Articles link when there is only one post). Do not add service cards, full data lifecycle, sales CTAs, fake results or decorative content solely to fill space.
 
 ## What was retired
-The Services, service-detail, Work, lab/Aria and duplicate Start public routes were removed. Their source remains available in repository history if a verified consultancy or product offering is intentionally launched in the future. The Contact page is a compact form-first layout with a warm invitation, three social profile links, a topic selector, a message field and one right-aligned **Send Message** button. The copy-to-clipboard control is retired. There is no backend; it opens an email draft for the visitor to review and send.
+The Services, service-detail, Work, lab/Aria and duplicate Start public routes were removed. Their source remains available in repository history if a verified consultancy or product offering is intentionally launched in the future. The Contact page is a compact form-first layout with a warm invitation, four social profile links, a topic selector, a message field and one right-aligned **Send Message** button. The copy-to-clipboard control is retired. There is no backend; it opens an email draft for the visitor to review and send.
 
 The About page uses four unnumbered, alternating chapters: personal introduction, data engineering and Fortune 200 consulting experience, family and football, and curiosity (astronomy, AI and knowledge sharing). The browser favicon uses a north-star emblem in the existing brand colors.
 
@@ -36,3 +36,6 @@ Only complete and technically defensible articles are published. Projects and AI
 
 ## Future expansion
 Start with meaningful, original writing. Add case studies or a commercial services section only when there is enough tested real work and a clear reader/customer purpose. Preserve old data-layer naming/IDs and use a versioned change when an event contract genuinely changes.
+
+## Article preview cards
+Three replaceable editorial previews live in `articlePreviews`, separate from `posts`. They have no URLs, no `Article` schema, no selection event, and are excluded from search snippets via `data-nosnippet`. The actual Blog collection schema and sitemap include only published articles. Delete each preview as its corresponding complete article is added to `posts`. Facebook remains disabled until the actual public profile URL is supplied.
