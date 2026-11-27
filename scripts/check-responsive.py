@@ -24,15 +24,19 @@ try:
    page.goto(url,wait_until="networkidle")
    hero=page.locator(".hero").bounding_box()
    writing=page.locator(".home-writing").bounding_box()
+   if page.locator(".site-nav .nav-link").all_text_contents()!=["About","Blog","Contact"]:
+    errors.append(f"{width}x{height}: Wrong navigation order")
+   if page.locator(".site-header .brand-icon").count()!=1:
+    errors.append(f"{width}x{height}: Brand icon missing")
    if not hero or not writing:
     errors.append(f"{width}x{height}: hero or latest writing missing")
     page.close()
     continue
    if writing["y"] < height-3:
     errors.append(f"{width}x{height}: latest writing enters first screen")
-   if "engineering data" not in page.locator(".hero h1").inner_text().lower() or "you can trust" not in page.locator(".hero h1").inner_text().lower():
+   if "engineering data" not in page.locator(".hero h1").inner_text().lower() or "ai-driven world" not in page.locator(".hero h1").inner_text().lower():
     errors.append(f"{width}x{height}: Homepage must use the concise engineering headline")
-   if page.locator(".home-writing .kicker,.home-writing .section-head p,.home-writing-all,.home-writing .status-label").count():
+   if page.locator(".home-writing .kicker,.home-writing .section-head p,.home-writing .status-label").count():
     errors.append(f"{width}x{height}: Redundant blog subtitles or labels visible")
    if page.locator("#data-lifecycle,.service-grid,.contact-band").count():
     errors.append(f"{width}x{height}: retired consultancy UI still displayed")
@@ -50,7 +54,7 @@ try:
    scroll_width=page.evaluate("Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)")
    if scroll_width>width+5:
     errors.append(f"{width}x{height}: horizontal overflow {scroll_width}")
-   for label in ("Read the Blog","About Me"):
+   for label in ("Read my blog","About me"):
     rect=page.get_by_role("link",name=label,exact=True).first.bounding_box()
     if not rect:
      errors.append(f"{width}x{height}: {label} CTA missing")
@@ -90,10 +94,10 @@ try:
    if route in ("blog/","about/"):
     page.screenshot(path=str(SHOTS/("blog-listing.png" if route=="blog/" else "blog-about.png")),full_page=True)
   page.goto(url+"blog/",wait_until="networkidle")
-  if page.locator(".post-card").count()!=1:
-   errors.append("Expected one complete blog article")
+  if page.locator("a.post-card").count()!=1 or page.locator("article.post-preview[data-nosnippet]").count()!=3:
+   errors.append("Expected one complete blog article and three non-clickable previews")
   else:
-   page.locator(".post-card").first.click()
+   page.locator("a.post-card").first.click()
    if "start-with-the-problem" not in page.url:
     errors.append("Article card did not navigate")
   # Article reading experience: semantic headings, clear author, no section numbers.
@@ -168,7 +172,7 @@ try:
     action_box=page.locator(".enquiry-actions").bounding_box()
     if button_box and action_box and abs(button_box["x"]+button_box["width"]-action_box["x"]-action_box["width"])>5:
      errors.append(f"{cw}x{ch}: Send Message is not right-aligned")
-   if page.locator(".contact-network-links a").count()!=3:
+   if page.locator(".contact-network-links a").count()!=4:
     errors.append(f"{cw}x{ch}: Social network links missing")
    if not page.locator(".enquiry-privacy").is_visible():
     errors.append(f"{cw}x{ch}: Email draft explanation missing")
