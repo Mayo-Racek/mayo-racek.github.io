@@ -1,9 +1,9 @@
 # Blog publishing and tracking guide — mayoracek.com
 
 ## Current public site
-- **Home:** personal portrait, "From complex data to clear decisions.", 17+ years in data and analytics (enterprise consulting details remain on About and CV), two purposeful links (Blog and About), one recent article, without repetitive subheadings.
+- **Home:** personal portrait, "Engineering data for an AI-driven world.", 17+ years in data and analytics (enterprise consulting details remain on About and CV), two purposeful links (Blog and About), one published article and up to two clearly labelled previews, without repetitive subheadings.
 - **Blog:** a small collection of complete technical articles.
-- **About:** four short alternating sections on the person, professional work, family and football, and curiosity/astronomy, plus the downloadable CV.
+- **About:** four short, unnumbered alternating sections on the person, professional work, family and football, and curiosity/astronomy, plus the downloadable CV.
 - **Resume:** verifiable career history and the same generated PDF.
 - **Contact:** compact, single-section form immediately visible beside or beneath the brief introduction. The single **Send Message** button prepares a mailto draft; the visitor must explicitly send it in their email application. The Copy Message feature has been removed.
 
@@ -34,3 +34,6 @@ The contact form never adds free-text messages to the data layer. `projectBriefE
 Static HTML, canonical URLs, a filtered XML sitemap, honest personal/author structured data and well-written articles are the foundations. Verify external indexing in Search Console/Bing separately. A public GitHub repository must never contain secrets; CI blocks deployment if a full-history or generated-site secrets scan fails.
 
 Keep the homepage short. Improving article quality takes priority over adding visuals, sales modules or unnecessary schema.
+
+## Article preview cards
+Three replaceable editorial previews live in `articlePreviews`, separate from `posts`. They have no URLs, no `Article` schema, no selection event, and are excluded from search snippets via `data-nosnippet`. The actual Blog collection schema and sitemap include only published articles. Delete each preview as its corresponding complete article is added to `posts`. Facebook remains disabled until the actual public profile URL is supplied.
