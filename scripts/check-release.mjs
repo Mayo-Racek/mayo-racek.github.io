@@ -1,12 +1,13 @@
 /** Release gates for the blog-first portfolio. Does not change data-layer v1.1.0. */
 import fs from 'node:fs';
 import path from 'node:path';
+import { posts, articlePreviews } from '../src/lib/site.mjs';
 const dist=path.resolve('dist');
 const errors=[];
 const read=(file)=>fs.readFileSync(file,'utf8');
 const must=(html,needle,label)=>{if(!html.includes(needle))errors.push('Missing '+label+': '+needle)};
 const absent=(html,needle,label)=>{if(html.includes(needle))errors.push('Unexpected '+label+': '+needle)};
-const routes=['','blog/','blog/start-with-the-problem/','about/','resume/','contact/'];
+const routes=['','blog/','about/','resume/','contact/',...posts.map(p=>'blog/'+p.slug+'/')];
 const pages=new Map();
 for(const route of routes){
  const file=path.join(dist,route,'index.html');
@@ -48,12 +49,34 @@ must(home,'Latest from my blog','Latest writing headline');
 absent(home,'Ideas and lessons from data engineering','Redundant blog subtitle removed');
 absent(home,'<span class="kicker">THE BLOG</span>','Redundant blog eyebrow removed');
 must(home,'class="brand-icon"','Visible brand icon');
-must(home,'homeAllArticles','Full blog link');
-if((home.match(/class="post-card post-preview"/g)||[]).length!==2)errors.push('Home must show two preview cards beside published article');
-if((blog.match(/class="post-card post-preview"/g)||[]).length!==3)errors.push('Blog must show three non-published previews');
-if((blog.match(/data-nosnippet/g)||[]).length!==3)errors.push('Previews must be excluded from snippets');
-if((blog.match(/data-track-event="articleSelected"/g)||[]).length!==1)errors.push('Only real articles may be selected');
+if(posts.length+articlePreviews.length>3)must(home,'homeAllArticles','Full blog link');
+if((home.match(/class="post-card post-preview"/g)||[]).length!==Math.min(articlePreviews.length,Math.max(0,3-posts.length)))errors.push('Incorrect homepage preview count');
+if((blog.match(/class="post-card post-preview"/g)||[]).length!==articlePreviews.length)errors.push('Incorrect non-published preview count');
+if((blog.match(/data-nosnippet/g)||[]).length!==articlePreviews.length)errors.push('Previews must be excluded from snippets');
+if((blog.match(/data-track-event="articleSelected"/g)||[]).length!==posts.length)errors.push('Only real articles may be selected');
 must(blog,'"@type":"CollectionPage"','Blog collection schema');
+const schemaNodes=(html)=>[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>JSON.parse(m[1])['@graph']||[]);
+try{
+ const nodes=schemaNodes(blog);
+ const itemList=nodes.find(n=>n['@type']==='CollectionPage')?.mainEntity?.itemListElement||[];
+ const expected=posts.map(p=>'https://mayoracek.com/blog/'+p.slug+'/');
+ if(JSON.stringify(itemList.map(n=>n.url))!==JSON.stringify(expected))errors.push('Collection schema contains missing or non-published articles');
+ for(const p of posts){
+  const route='blog/'+p.slug+'/';
+  const article=schemaNodes(page(route)).find(n=>n['@type']==='Article');
+  if(!article||article.headline!==p.title||article.mainEntityOfPage!=='https://mayoracek.com/'+route)errors.push('Article schema does not match visible content: '+route);
+ }
+ for(const [route,html] of pages){
+  const canon='<link rel="canonical" href="https://mayoracek.com/'+route+'"';
+  must(html,canon,'Exact canonical '+route);
+  if(!schemaNodes(html).some(n=>n['@type']==='Person'&&n.sameAs.includes('https://bsky.app/profile/mayoracek.bsky.social')))errors.push('Missing consistent author identity: '+route);
+ }
+}catch(error){errors.push('Structured data validation failed: '+error.message)}
+const sitemapFiles=fs.readdirSync(dist).filter(n=>/^sitemap.*\.xml$/.test(n));
+const sitemapXml=sitemapFiles.map(n=>read(path.join(dist,n))).join('\n');
+for(const route of routes)must(sitemapXml,'<loc>https://mayoracek.com/'+route+'</loc>','Published route in sitemap');
+for(const preview of articlePreviews)absent(sitemapXml,preview.title,'Preview not published');
+must(read(path.join(dist,'robots.txt')),'Sitemap: https://mayoracek.com/sitemap-index.xml','Sitemap discovery');
 absent(home,'status-label','Duplicate article card status removed');
 must(home,'start-with-the-problem','Real published article');
 must(home,'fetchpriority="high"','Hero portrait image priority');
